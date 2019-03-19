@@ -1,0 +1,66 @@
+
+<div class="container">
+  <%= simple_form_for @bus do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.input :status1, collection: ["client", "indisponible", "disponible"] %>
+    </div>
+    <div class="col-md-2">
+      <%= f.input :status2, collection: [ 'A commander',
+                                          'Config usine à valider',
+                                          'En commande',
+                                          'Annulé',
+                                          'En Stock SE35',
+                                          'Stock VO',
+                                          'En stock VTFL',
+                                          'Démo SE35',
+                                          'Démo FR05',
+                                          'Facturé VN',
+                                          'Facturé VTFL',
+                                          'VO à rentrer',
+                                          'Facturé VO',
+                                          'Facturé VO (ex Demo)']  %>
+    </div>
+    <div class="col-md-2">
+      <%= f.input :description_id, collection: @descriptions %>
+    </div>
+    <div class="col-md-2">
+       <%= f.input :type_id, collection: @types %>
+    </div>
+    <div class="col-md-1">
+      <%= f.input :ch_cb, collection: ["CB","CH"] %>
+    </div>
+    <div class="col-md-1">
+      <%= f.input :sept_neuf, collection: ["7","9"] %>
+    </div>
+    <div class="col-md-1">
+    <%= f.button :submit %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="container">
+  <% @buses.each  do | bus| %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= bus.status1 %>
+    </div>
+    <div class="col-md-2">
+      <%= bus.status2 %>
+    </div>
+    <div class="col-md-2">
+      <%= bus.description[:name] %>
+    </div>
+    <div class="col-md-2">
+       <%= bus.type[:name] %>
+    </div>
+    <div class="col-md-1">
+      <%= bus.ch_cb %>
+    </div>
+    <div class="col-md-1">
+      <%= bus.sept_neuf %>
+    </div>
+  </div>
+  <% end %>
+</div>
