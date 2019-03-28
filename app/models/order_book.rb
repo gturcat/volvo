@@ -1,3 +1,3 @@
 class OrderBook < ApplicationRecord
-  has_many :Orders
+  has_many :lines
 end

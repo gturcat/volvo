@@ -1,0 +1,56 @@
+<div class="main-container">
+  <div class="navigation" id="sidebar">
+    <ul>
+      <li><a href="#section-1">Commande Client</a></li>
+      <li><a href="#section-2">Information Véhicule</a></li>
+      <li><a href="#section-3">Indentification Usine</a></li>
+      <li><a href="#section-4">Commande Usine</a></li>
+      <li><a href="#section-5">Section 5</a></li>
+      <li><a href="#section-6">Section 6</a></li>
+      <li><a href="#section-7">Section 7</a></li>
+      <li><a href="#section-8">Section 8</a></li>
+      <li><a href="#section-9">Section 9</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="add-padding-left" id="section-1">
+      <h5>Commande Client</h5>
+      <%= render "order" %>
+    </div>
+    <div class="add-padding-left" id="section-2">
+      <h5>Information Véhicule</h5>
+       <%= render "bus_resume" %>
+    </div>
+    <div class="add-padding-left" id="section-3">
+      <h5>Indentification Usine</h5>
+     <%= render "identification_usine" %>
+    </div>
+    <div class="add-padding-left" id="section-4">
+      <h5>Commande Usine</h5>
+      <%= render "nouvelle_commande_usine" if !@bus.factory_orders.last.id.present?  %>
+      <%= render "maj_commande_usine" if @bus.factory_orders.last.id.present?  %>
+    </div>
+    <div class="add-padding-left" id="section-5">
+      <h5>Section 5</h5>
+      <p>Officia ipsum fugit iure eaque quisquam error tempore earum enim illum, delectus officiis incidunt corrupti aliquid nam quas perspiciatis eveniet doloremque quod labore? Doloremque, ipsum?</p>
+    </div>
+    <div class="add-padding-left" id="section-6">
+      <h5>Section 6</h5>
+      <p>Aperiam repellat dignissimos fugiat possimus esse, suscipit neque nisi libero alias obcaecati ipsam, porro illo corrupti nostrum reprehenderit unde, illum in laudantium impedit. Modi, veniam.</p>
+    </div>
+    <div class="add-padding-left" id="section-7">
+      <h5>Section 7</h5>
+      <p>Cum asperiores temporibus itaque consequatur quod inventore, quia quis explicabo dicta esse minus voluptatem reiciendis eveniet animi, necessitatibus illum dolorem doloremque repellat placeat, dolores eaque.</p>
+    </div>
+    <div class="add-padding-left" id="section-8">
+      <h5>Section 8</h5>
+      <p>Optio qui, omnis itaque rerum iusto molestiae necessitatibus deleniti quod tenetur id perspiciatis voluptatum dolorum quisquam eius ipsum non architecto labore! Distinctio, tenetur. Officiis, necessitatibus?</p>
+    </div>
+    <div class="add-padding-left" id="section-9">
+      <h5>Section 9</h5>
+      <p>Rem iste iure blanditiis excepturi esse nisi corrupti sequi, illo, laborum quo quis quaerat assumenda perspiciatis quod fuga vel laudantium doloribus architecto tempora omnis earum!</p>
+    </div>
+  </div>
+</div>
+

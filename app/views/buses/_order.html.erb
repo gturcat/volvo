@@ -1,0 +1,30 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents-->
+    <div class="panel-heading">
+    </div>
+    <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Délai Bon de Commande</th>
+            <th>Client</th>
+            <th>N° Bdc</th>
+            <th>Oder Book</th>
+            <th>Vendeur</th>
+            <th>Date de commande</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @bus.lines.last[:date_livraison_bdc] %></td>
+            <td><%= @bus.orders.last[:client] %></td>
+            <td><%= @bus.orders.last[:numero_bon_de_commande] %></td>
+            <td><%= @bus.lines.last.order_book[:name] %></td>
+            <td><%= @bus.orders.last.sales_advisor[:name] %></td>
+            <td><%= @bus.orders.last.date %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
