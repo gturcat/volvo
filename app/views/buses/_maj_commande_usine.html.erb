@@ -1,0 +1,60 @@
+<%= simple_form_for @factory_order do |f| %>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Envoi OF</th>
+          <th>date limite modif. Config.</th>
+          <th>reception OC</th>
+          <th>Dispo FR demandée</th>
+          <th>CDD</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><%= f.text_field :envoiOF, label: false %></td>
+          <td><%= f.date_field :date_limit_modif_config, label: false %></td>
+          <td><%= f.text_field :reception_oc, label: false %></td>
+          <td><%= f.text_field :dispo_fr, label: false %></td>
+          <td><%= f.date_field :CDD, label: false %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Lieu départ Usine</th>
+          <th>Date Départ Usine</th>
+          <th>lieu Arrivée chez Partenaire Volvo</th>
+          <th>Date Arrivée chez partenaire Volvo</th>
+          <th>Partenaire Volvo Prevenu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.text_field :lieu_depart_usine, label: false %></td>
+          <td><%= f.date_field :date_depart_usine, label: false %></td>
+          <td><%= f.text_field :lieu_arrivee_partenaire_volvo, label: false %></td>
+          <td><%= f.date_field :date_arrivee_partenaire_volvo, label: false %></td>
+          <td><%= f.text_field :partenaire_prevenu, label: false %></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+  </div>
+</div>

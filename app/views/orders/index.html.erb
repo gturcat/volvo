@@ -1,0 +1,33 @@
+<h2>Commande en cours</h2>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents-->
+    <div class="panel-heading">
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th>N° Bdc</th>
+          <th>Vendeur</th>
+          <th>Date</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.client %></td>
+          <td><%= order.date %></td>
+          <td><%= order.numero_bon_de_commande %></td>
+          <td><%= order.sales_advisor[:name] %></td>
+          <td><%= link_to "voir la commande", order_path(order[:id]) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

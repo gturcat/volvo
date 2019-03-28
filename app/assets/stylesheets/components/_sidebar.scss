@@ -1,0 +1,61 @@
+.main-container {
+  display: flex;
+}
+
+#sidebar {
+  width: 200px;
+  height: 100vh;
+  background-color: #D8D7D5;
+   position: sticky;
+  top: 0;
+}
+
+.add-padding-left{
+  padding :20px;
+}
+
+.tab {
+padding: 0px;
+}
+
+#section-9 {
+padding-bottom: 1000px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Only stick if you can fit */
+@media (min-height: 300px) {
+  #sidebar {
+    position: sticky;
+    top: 0;
+  }
+}
+#sidebar ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #4D4E53;
+  text-decoration: none;
+}
+#sidebar ul li a.current {
+  background: #FEFEFE;
+}
+main {
+  padding-bottom: 40rem;
+}
+#section {
+  padding: 2rem;
+  margin: 0 0 2rem 0;
+}
+footer {
+  grid-column: 1 / 3;
+  background: #607D8B;
+  padding: 5rem 1rem;
+}

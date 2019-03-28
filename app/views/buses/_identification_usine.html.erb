@@ -1,0 +1,30 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>reference</th>
+          <th>Designation Configuration</th>
+          <th>BO N°</th>
+          <th>N°Chassis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= simple_form_for @bus do |f| %>
+        <tr>
+          <td><%= f.input :reference_usine, label: false %></td>
+          <td><%= f.input :designation_configuration, label: false %></td>
+          <td><%= f.input :bo_number, label: false %></td>
+          <td><%= f.input :numero_chassis, label: false %></td>
+        </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+    </div>
+  </div>

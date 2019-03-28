@@ -1,0 +1,28 @@
+
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents-->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>envoi OF</th>
+          <th>Date limite Configuration Productio</th>
+          <th>Reception OC</th>
+          <th>Disponibilité FR demandée</th>
+          <th>CDD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @bus.orders.last[:client] %></td>
+          <td><%= @bus.orders.last[:numero_bon_de_commande] %></td>
+          <td><%= @bus.orders.last.order_book[:name] %></td>
+          <td><%= @bus.orders.last.sales_advisor[:name] %></td>
+          <td><%= @bus.orders.last.date %></td>
+        </tr>
+      </tbody>
+    </table>
+  </table>
+</div>

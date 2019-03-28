@@ -1,4 +1,4 @@
-rails # This file is auto-generated from the current state of the database. Instead
+# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,7 @@ rails # This file is auto-generated from the current state of the database. Inst
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_190321) do
+ActiveRecord::Schema.define(version: 2019_03_28_103745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 2019_03_19_190321) do
     t.string "status2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "description_id"
     t.bigint "type_id"
     t.string "ch_cb"
     t.string "sept_neuf"
+    t.bigint "description_id"
     t.index ["description_id"], name: "index_buses_on_description_id"
     t.index ["type_id"], name: "index_buses_on_type_id"
   end
@@ -40,6 +40,23 @@ ActiveRecord::Schema.define(version: 2019_03_19_190321) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "factory_orders", force: :cascade do |t|
+    t.string "envoiOF"
+    t.date "date_limit_modif_config"
+    t.string "reception_oc"
+    t.boolean "dispo_fr"
+    t.date "CDD"
+    t.string "lieu_depart_usine"
+    t.date "date_depart_usine"
+    t.string "lieu_arrivee_partenaire_volvo"
+    t.date "date_arrivee_partenaire_volvo"
+    t.boolean "partenaire_prevenu"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "bus_id"
+    t.index ["bus_id"], name: "index_factory_orders_on_bus_id"
   end
 
   create_table "lines", force: :cascade do |t|
@@ -53,7 +70,9 @@ ActiveRecord::Schema.define(version: 2019_03_19_190321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
+    t.bigint "order_book_id"
     t.index ["bus_id"], name: "index_lines_on_bus_id"
+    t.index ["order_book_id"], name: "index_lines_on_order_book_id"
     t.index ["order_id"], name: "index_lines_on_order_id"
   end
 
@@ -67,11 +86,9 @@ ActiveRecord::Schema.define(version: 2019_03_19_190321) do
     t.string "client"
     t.string "numero_bon_de_commande"
     t.date "date"
-    t.bigint "order_book_id"
     t.bigint "sales_advisor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_book_id"], name: "index_orders_on_order_book_id"
     t.index ["sales_advisor_id"], name: "index_orders_on_sales_advisor_id"
   end
 
@@ -99,6 +116,9 @@ ActiveRecord::Schema.define(version: 2019_03_19_190321) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "buses", "descriptions"
   add_foreign_key "buses", "types"
+  add_foreign_key "factory_orders", "buses"
   add_foreign_key "lines", "buses"
+  add_foreign_key "lines", "order_books"
 end
