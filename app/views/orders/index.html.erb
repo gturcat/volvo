@@ -18,9 +18,9 @@
         <% @orders.each do |order| %>
         <tr>
           <td><%= order.client %></td>
-          <td><%= order.date %></td>
           <td><%= order.numero_bon_de_commande %></td>
           <td><%= order.sales_advisor[:name] %></td>
+          <td><%= order.date %></td>
           <td><%= link_to "voir la commande", order_path(order[:id]) %></td>
         </tr>
         <% end %>
