@@ -1,7 +1,6 @@
 class FactoryOrdersController < ApplicationController
 
   def show
-    raise
   end
 
   def edit

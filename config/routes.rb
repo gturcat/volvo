@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :buses
   resources :orders, only: [:new, :create, :show, :index]
   resources :factory_orders, only: [:show, :edit, :update]
-  resources :documents, only: [:new, :create, :show]
+  resources :documents, only: [:new, :create, :show, :edit, :update]
 end

@@ -1,7 +1,7 @@
 <div class="container">
 <%= simple_form_for @document do |f| %>
-  <%= f.input :name, label: "Titre de la fiche" %>
-  <%= f.input :pdf, as: :file, label: "Contenu(pdf)" %>
+  <%= f.input :name, as: :hidden %>
+  <%= f.input :pdf, as: :file, label: "#{@document.name}" %>
 
   <button type="submit" class="btn btn-primary">
                   <i class="fas fa-plus-circle"></i>
