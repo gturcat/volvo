@@ -8,6 +8,7 @@ class BusesController < ApplicationController
 
   def show
     @bus = Bus.find(params[:id])
+    session[:bus_id] = @bus.id
     if @bus.factory_orders.last.present?
       @factory_order = @bus.factory_orders.last
     else
@@ -39,6 +40,7 @@ def edit
   def update
     @bus = Bus.find(params[:id])
     @bus.update(bus_params)
+    redirect_to bus_path(@bus)
   end
 
 private

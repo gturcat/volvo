@@ -1,0 +1,30 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>VCR</th>
+          <th>Doc de transport</th>
+          <th>Photos</th>
+          <th>Man Certif</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= simple_form_for @bus do |f| %>
+        <tr>
+          <td><%= link_to "voir", document_path(@bus.factory_orders.last.documents.last[:id]) if @bus.factory_orders.last.documents.present?  %></td>
+          <td> <%= link_to "creer/modifier", new_document_path %></td>
+          <td></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+    </div>
+  </div>
