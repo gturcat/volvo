@@ -1,10 +1,8 @@
 <div class="container">
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
 <%= simple_form_for @order do |f| %>
   <%= f.input :client %>
   <%= f.input :numero_bon_de_commande %>
-  <%= f.input :date %>
+  <%= f.input :date, as: :date, html5: true  %>
   <%= f.association :sales_advisor%>
   <button type="submit" class="btn btn-primary">
                   <i class="fas fa-plus-circle"></i>

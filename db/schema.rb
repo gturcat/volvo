@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_28_103745) do
+ActiveRecord::Schema.define(version: 2019_03_29_141255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2019_03_28_103745) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.text "pdf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "factory_order_id"
+    t.index ["factory_order_id"], name: "index_documents_on_factory_order_id"
   end
 
   create_table "factory_orders", force: :cascade do |t|
@@ -118,6 +127,7 @@ ActiveRecord::Schema.define(version: 2019_03_28_103745) do
 
   add_foreign_key "buses", "descriptions"
   add_foreign_key "buses", "types"
+  add_foreign_key "documents", "factory_orders"
   add_foreign_key "factory_orders", "buses"
   add_foreign_key "lines", "buses"
   add_foreign_key "lines", "order_books"

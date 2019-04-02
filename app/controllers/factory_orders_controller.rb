@@ -1,4 +1,8 @@
 class FactoryOrdersController < ApplicationController
+
+  def show
+  end
+
   def edit
     @factory_order = FactoryOrder.find(params[:id])
   end
@@ -6,6 +10,7 @@ class FactoryOrdersController < ApplicationController
   def update
     @factory_order = FactoryOrder.find(params[:id])
     @factory_order.update(factory_order_params)
+    redirect_to bus_path(@factory_order.bus)
   end
 
   private
