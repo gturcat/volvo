@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   def show
+  @photo = params[:photo]
   @bus = Bus.find(session[:bus_id])
   @document = @bus.factory_orders.last.documents.where(name: params[:name]).take
   end

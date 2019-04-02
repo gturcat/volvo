@@ -16,6 +16,8 @@ Delivery Note
 
 <br>
 Photo
-<%= link_to "voir", document_path(@bus.factory_orders.last.documents.where(:name => "Delivery Note").take, :name => 'Delivery Note') if @bus.factory_orders.last.documents.where(:name => "Delivery Note").take.present?  %>
+<%= link_to "voir", document_path(@bus.factory_orders.last.documents.where(:name => "photo").take, :name => 'photo', :photo => true) if @bus.factory_orders.last.documents.where(:name => "photo").take.present?  %>
 
-<%= link_to "creer/modifier", new_document_path(:name => 'Delivery Note')%>
+<%= link_to "creer/modifier", new_document_path(:name => 'photo')%>
+
+
