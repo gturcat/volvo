@@ -1,11 +1,10 @@
 <div class="container">
-      <h3><%= @document.name%></h3>
-    </div>
-    <div class="link_to_retour">
-      <%= link_to "Retour", :back %>
-    </div>
-  </div>
-<div class="liseuse-pdf">
-      <iframe src="https://docs.google.com/viewer?url=<%= @document.pdf %>&embedded=true"
-      style="width:100%; height:750px;" frameborder="0"></iframe>
+  <h3><%= @document.name%></h3>
 </div>
+<div class="link_to_retour">
+<%= link_to "Retour", :back %>
+</div>
+</div>
+<%= cl_image_tag(@document.pdf, :sign_url=>true, :type=>"private", :format => :png) %>
+</div>
+

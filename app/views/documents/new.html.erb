@@ -2,6 +2,7 @@
 <%= simple_form_for @document do |f| %>
   <%= f.input :name, as: :hidden %>
   <%= f.input :pdf, as: :file, label: "#{@document.name}" %>
+  <%= f.input :pdf_cache, as: :hidden %>
 
   <button type="submit" class="btn btn-primary">
                   <i class="fas fa-plus-circle"></i>
