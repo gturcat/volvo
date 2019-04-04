@@ -21,7 +21,13 @@
           <td><%= order.numero_bon_de_commande %></td>
           <td><%= order.sales_advisor[:name] %></td>
           <td><%= order.date %></td>
-          <td><%= link_to "voir la commande", order_path(order[:id]) %></td>
+          <td><%= link_to order_path(order[:id]), class: "btn btn-primary" do %>
+          <i class="far fa-eye"></i>
+          <% end %>
+          <%= link_to order_path(order[:id]), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
+              <i class="fas fa-minus-circle"></i>
+            <% end %>
+            </td>
         </tr>
         <% end %>
       </tbody>

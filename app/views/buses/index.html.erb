@@ -34,7 +34,10 @@
                 <td><%= bus.orders.last[:client] %></td>
                 <td><%= bus.status1 %></td>
                 <td><%= bus.status2 %></td>
-                <td><%= link_to "edit", bus_path(bus[:id]), class: "btn-primary" %></td>
+                <td><%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
+                  <i class="far fa-edit"></i>
+                  <% end %>
+                </td>
               </tr>
               <% end %>
             </tbody>
