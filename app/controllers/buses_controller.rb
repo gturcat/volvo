@@ -43,6 +43,14 @@ def edit
     redirect_to bus_path(@bus)
   end
 
+def destroy
+  @bus = Bus.find(params[:id])
+  id = @bus.orders.last.id
+  @bus.destroy
+  redirect_to order_path(id)
+end
+
+
 private
 
 def bus_params

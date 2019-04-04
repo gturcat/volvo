@@ -1,7 +1,7 @@
 class Bus < ApplicationRecord
-  has_many :lines
+  has_many :lines, dependent: :destroy
   accepts_nested_attributes_for :lines
-  has_many :factory_orders
+  has_many :factory_orders, dependent: :destroy
   accepts_nested_attributes_for :factory_orders
   belongs_to :description
   belongs_to :type, optional: true
