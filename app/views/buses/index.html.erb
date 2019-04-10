@@ -21,7 +21,7 @@
                 <th>Client</th>
                 <th>Status 1</th>
                 <th>Status 2</th>
-                <th>edit</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -29,9 +29,9 @@
               <tr>
                 <td><%= bus.lines.last[:date_livraison_bdc] %></td>
                 <td><%= bus.description[:name] %></td>
-                <td><%= bus.lines.last.order_book[:name] %></td>
-                <td><%= bus.lines.last[:couleur_ext_vehicule] %></td>
-                <td><%= bus.orders.last[:client] %></td>
+                <td><%= bus.lines.last.order_book[:name] if bus.lines.last.present?%></td>
+                <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.last.present? %></td>
+                <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>
                 <td><%= bus.status1 %></td>
                 <td><%= bus.status2 %></td>
                 <td><%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
