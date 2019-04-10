@@ -32,6 +32,16 @@ class OrdersController < ApplicationController
     create_new_bus if params[:bus].present?
   end
 
+  def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    redirect_to order_path(@order[:id])
+  end
+
   def destroy
      @order = Order.find(params[:id])
      @order.destroy

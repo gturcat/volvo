@@ -37,7 +37,7 @@
           <th>Delai Bon de commande</th>
           <th>Status 1</th>
           <th>Status 2</th>
-          <th></th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -80,7 +80,12 @@
           <td><%= bus.lines.last[:date_livraison_bdc] %></td>
           <td><%= bus.status1 %></td>
           <td><%= bus.status2 %></td>
-          <td><%= link_to bus_path(bus.id), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
+          <td>
+            <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
+                  <i class="far fa-edit"></i>
+                  <% end %>
+
+            <%= link_to bus_path(bus.id), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
               <i class="fas fa-minus-circle"></i>
             <% end %></td>
         </tr>
