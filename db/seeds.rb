@@ -78,5 +78,9 @@ Type.create(name:'B8R')
 Type.create(name:'B8RLE')
 Type.create(name:'B11R')
 
+User.destroy_all
+puts 'destroy all user'
+puts 'creating one user'
+User.create(email: 'gturcat@me.com', password: '123456')
 
 

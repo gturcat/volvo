@@ -82,12 +82,11 @@
           <td><%= bus.status2 %></td>
           <td>
             <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
-                  <i class="far fa-edit"></i>
-                  <% end %>
-
+            <i class="far fa-edit"></i>
+            <% end %>
             <%= link_to bus_path(bus.id), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
-              <i class="fas fa-minus-circle"></i>
-            <% end %></td>
+            <i class="fas fa-minus-circle"></i>
+          <% end %></td>
         </tr>
         <% end %>
       </tbody>

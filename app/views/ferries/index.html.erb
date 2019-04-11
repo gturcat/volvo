@@ -1,0 +1,46 @@
+<div class="main-container">
+  <div class="navigation" id="sidebar">
+    <ul>
+      <li><a href="#section-1">Commande Client</a></li>
+  </div>
+
+  <div>
+    <div class="add-padding-left" id="section-1">
+      <div class="tab">
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading"></div>
+          <!-- Table -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Chassis</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Sens</th>
+                <th>Depart</th>
+                <th>Arrivée</th>
+                <th>n° BdC</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ferries.each  do | ferry| %>
+              <tr>
+                <td><%= ferry.bus.numero_chassis %></td>
+                <td><%= ferry.bus.type %></td>
+                <td><%= ferry.date_convoyage %></td>
+                <td><%= ferry.sens %></td>
+                <td><%= ferry.depart %></td>
+                <td><%= ferry.arrivee %></td>
+                <td><%= ferry.numero_bdc %></td>
+                <td></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

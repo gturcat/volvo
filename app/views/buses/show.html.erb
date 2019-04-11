@@ -6,9 +6,9 @@
       <li><a href="#section-3">Indentification Usine</a></li>
       <li><a href="#section-4">Commande Usine</a></li>
       <li><a href="#section-5">Livraison Usine</a></li>
+      <li><a href="#section-6">Emplacement</a></li>
     </ul>
   </div>
-
   <div>
     <div class="add-padding-left" id="section-1">
       <h5>Commande Client</h5>
@@ -16,11 +16,11 @@
     </div>
     <div class="add-padding-left" id="section-2">
       <h5>Information Véhicule</h5>
-       <%= render "bus_resume" %>
+      <%= render "bus_resume" %>
     </div>
     <div class="add-padding-left" id="section-3">
       <h5>Indentification Usine</h5>
-     <%= render "identification_usine" %>
+      <%= render "identification_usine" %>
     </div>
     <div class="add-padding-left" id="section-4">
       <h5>Commande Usine</h5>
@@ -30,23 +30,12 @@
     <div class="add-padding-left" id="section-5">
       <h5>Livraison Usine Chez le Partenaire </h5>
       <%= render "livraison_usine" if @bus.factory_orders.last.id.present?%>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+    </div>
+    <% if @bus.numero_chassis.present? %>
+    <div class="add-padding-left" id="section-6">
+      <h5>Emplacement</h5>
+      <%= render "emplacement" if @bus.numero_chassis.present?%>
+    </div>
+    <% end %>
   </div>
 </div>
-

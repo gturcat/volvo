@@ -14,6 +14,7 @@ class BusesController < ApplicationController
     else
       @bus.factory_orders.build
     end
+      @bus.ferries.build
   end
 
   def new
@@ -33,7 +34,7 @@ class BusesController < ApplicationController
    end
   end
 
-def edit
+  def edit
     @bus = bus.find(params[:id])
   end
 
@@ -53,9 +54,10 @@ end
 
 private
 
-def bus_params
-  params.require(:bus).permit(:status1, :status2, :description_id, :type_id, :ch_cb, :sept_neuf, :numero_chassis, :reference_usine, :designation_configuration, :bo_number,
-   factory_orders_attributes: [:id, :envoiOF, :date_limit_modif_config, :reception_oc, :dispo_fr, :CDD, :_destroy, :lieu_depart_usine, :date_depart_usine, :lieu_arrivee_partenaire_volvo, :date_arrivee_partenaire_volvo, :partenaire_prevenu])
-end
-
+  def bus_params
+    params.require(:bus).permit(:status1, :status2, :description_id, :type_id, :ch_cb, :sept_neuf, :numero_chassis, :reference_usine, :designation_configuration, :bo_number,
+     factory_orders_attributes: [:id, :envoiOF, :date_limit_modif_config, :reception_oc, :dispo_fr, :CDD, :_destroy, :lieu_depart_usine, :date_depart_usine, :lieu_arrivee_partenaire_volvo, :date_arrivee_partenaire_volvo, :partenaire_prevenu],
+     ferries_attributes: [:id, :date_convoyage, :depart, :arrivee, :sens, :site, :numero_bdc, :note ]
+     )
+  end
 end
