@@ -1,0 +1,10 @@
+<%= simple_form_for [@bus, @ferry] do |f| %>
+  <%= f.input :date_convoyage, as: :date %>
+  <%= f.input :depart %>
+  <%= f.input :arrivee %>
+  <%= f.input :sens %>
+  <%= f.input :site %>
+  <%= f.input :numero_bdc %>
+  <%= f.input :note, as: :text %>
+  <%= f.submit "Convoyer", class: "btn btn-primary" %>
+<% end %>
