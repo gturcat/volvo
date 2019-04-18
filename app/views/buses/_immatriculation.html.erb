@@ -1,0 +1,30 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Kilometrage</th>
+          <th>Date du relevé du Kilometrage</th>
+          <th>Numero Immat.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= simple_form_for @bus do |f| %>
+        <tr>
+          <td><%= f.date_field :date_debut_garantie, label: false %></td>
+          <td><%= f.text_field :kilometrage, label: false %></td>
+          <td><%= f.date_field :date_kilometrage, label: false %></td>
+          <td><%= f.text_field :immatriculation, label: false %></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button>
+    <% end %>
+  </div>
+</div>

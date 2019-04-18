@@ -20,6 +20,23 @@ class FerriesController < ApplicationController
     end
   end
 
+  def edit
+    @ferry = Ferry.find(params[:id])
+  end
+
+  def update
+    @ferry = Ferry.find(params[:id])
+    @ferry.update(ferry_params)
+    redirect_to ferry_path(@ferry[:id])
+  end
+
+  def destroy
+    @ferry = Ferry.find(params[:id])
+    @ferry.delete
+    redirect_to ferries_path
+  end
+
+
   def show
     @ferry = Ferry.find(params[:id])
   end

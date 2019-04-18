@@ -1,0 +1,26 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mention telematique du Bdc</th>
+          <th>Email envoyé</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= simple_form_for @line do |f| %>
+        <tr>
+          <td><%= f.input :mention_telematique, label: false %></td>
+          <td><%= f.input :telematique_demandee, label: false %></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button>
+    <% end %>
+  </div>
+</div>

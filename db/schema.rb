@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_02_192738) do
+ActiveRecord::Schema.define(version: 2019_04_18_153457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,40 @@ ActiveRecord::Schema.define(version: 2019_04_02_192738) do
     t.bigint "description_id"
     t.index ["description_id"], name: "index_buses_on_description_id"
     t.index ["type_id"], name: "index_buses_on_type_id"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string "lieu_prepa"
+    t.date "date_livraison"
+    t.time "heure_livraison"
+    t.string "bon_de_commande"
+    t.string "plan_implantation"
+    t.string "info_peinture"
+    t.string "info_pneu"
+    t.string "plan_vocp_exl"
+    t.string "fiche_rcr"
+    t.string "email_entree_bdc"
+    t.string "email_entree_bdc_date"
+    t.string "photos"
+    t.string "bl_recu"
+    t.string "attestation_ead"
+    t.string "attestation_limiteur_vitesse"
+    t.string "dcok_recu"
+    t.date "cdoc_envoye"
+    t.string "enregistrement_cm"
+    t.string "enregistrement_vda"
+    t.bigint "bus_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "place_id"
+    t.string "lieu_livraison"
+    t.date "date_facturation"
+    t.string "montant"
+    t.string "entitee"
+    t.string "pourcentage_buy_back"
+    t.integer "duree_buy_back"
+    t.index ["bus_id"], name: "index_deliveries_on_bus_id"
+    t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
   create_table "descriptions", force: :cascade do |t|
@@ -94,6 +128,8 @@ ActiveRecord::Schema.define(version: 2019_04_02_192738) do
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
     t.bigint "order_book_id"
+    t.boolean "garantie_pep_tool"
+    t.string "telematique_demandee"
     t.index ["bus_id"], name: "index_lines_on_bus_id"
     t.index ["order_book_id"], name: "index_lines_on_order_book_id"
     t.index ["order_id"], name: "index_lines_on_order_id"
@@ -113,6 +149,13 @@ ActiveRecord::Schema.define(version: 2019_04_02_192738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sales_advisor_id"], name: "index_orders_on_sales_advisor_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "city"
+    t.string "adress"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sales_advisors", force: :cascade do |t|
@@ -141,6 +184,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_192738) do
 
   add_foreign_key "buses", "descriptions"
   add_foreign_key "buses", "types"
+  add_foreign_key "deliveries", "buses"
   add_foreign_key "documents", "factory_orders"
   add_foreign_key "factory_orders", "buses"
   add_foreign_key "ferries", "buses"

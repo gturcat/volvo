@@ -9,12 +9,23 @@ class BusesController < ApplicationController
   def show
     @bus = Bus.find(params[:id])
     session[:bus_id] = @bus.id
+
+    if @bus.deliveries.last.present?
+      @delivery = @bus.deliveries.last
+    else
+      @bus.deliveries.build
+      @delivery = @bus.deliveries.last
+      @delivery.save
+    end
+
     if @bus.factory_orders.last.present?
       @factory_order = @bus.factory_orders.last
     else
       @bus.factory_orders.build
     end
+
       @bus.ferries.build
+      @line = @bus.lines.last
   end
 
   def new
@@ -51,13 +62,55 @@ def destroy
   redirect_to order_path(id)
 end
 
-
-private
+  private
 
   def bus_params
-    params.require(:bus).permit(:status1, :status2, :description_id, :type_id, :ch_cb, :sept_neuf, :numero_chassis, :reference_usine, :designation_configuration, :bo_number,
-     factory_orders_attributes: [:id, :envoiOF, :date_limit_modif_config, :reception_oc, :dispo_fr, :CDD, :_destroy, :lieu_depart_usine, :date_depart_usine, :lieu_arrivee_partenaire_volvo, :date_arrivee_partenaire_volvo, :partenaire_prevenu],
-     ferries_attributes: [:id, :date_convoyage, :depart, :arrivee, :sens, :site, :numero_bdc, :note ]
+    params.require(:bus).permit(
+      :status1,
+      :status2,
+      :description_id,
+      :type_id,
+      :ch_cb,
+      :sept_neuf,
+      :numero_chassis,
+      :reference_usine,
+      :designation_configuration,
+      :bo_number,
+      :date_debut_garantie,
+      :kilometrage,
+      :date_kilometrage,
+      :immatriculation,
+        factory_orders_attributes: [
+        :id,
+        :envoiOF,
+        :date_limit_modif_config,
+        :reception_oc,
+        :dispo_fr,
+        :CDD,
+        :_destroy,
+        :lieu_depart_usine,
+        :date_depart_usine,
+        :lieu_arrivee_partenaire_volvo,
+        :date_arrivee_partenaire_volvo,
+        :partenaire_prevenu
+        ],
+        ferries_attributes: [
+          :id,
+          :date_convoyage,
+          :depart,
+          :arrivee,
+          :sens,
+          :site,
+          :numero_bdc,
+          :note
+          ],
+        deliveries_attributes: [
+          :id,
+          :lieu_prepa,
+          :place_id,
+          :date_livraison,
+          :heure_livraison,
+        ]
      )
   end
 end

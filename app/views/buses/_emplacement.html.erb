@@ -10,16 +10,14 @@
           <th>Date du relevé</th>
         </tr>
       </thead>
-
+<% @bus.ferries.each  do | ferry| %>
       <tbody>
-        <% @bus.ferries.each  do | ferry| %>
         <tr>
           <td><%= ferry.arrivee %></td>
           <td><%= ferry.date_convoyage %></td>
-          <% end %>
         </tr>
-
       </tbody>
+       <% end %>
     </table>
   </div>
 </div>

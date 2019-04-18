@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-
   def create
     @order = Order.new(order_params)
     if @order.save
@@ -52,12 +51,30 @@ class OrdersController < ApplicationController
 private
 
   def order_params
-    params.require(:order).permit(:client, :numero_bon_de_commande, :date, :sales_advisor_id)
+    params.require(:order).permit(
+      :client,
+      :numero_bon_de_commande,
+      :date,
+      :sales_advisor_id
+    )
   end
 
   def bus_params
-    params.require(:bus).permit(:description_id,:status1, :status2,
-      lines_attributes: [:id, :couleur_ext_vehicule, :order_id, :order_book_id, :date_livraison_bdc, :_destroy])
+    params.require(:bus).permit(
+      :description_id,
+      :status1,
+      :status2,
+      lines_attributes: [
+        :id,
+        :couleur_ext_vehicule,
+        :order_id,
+        :order_book_id,
+        :date_livraison_bdc,
+        :mention_telematique,
+        :mention_garantie,
+        :_destroy
+      ]
+    )
   end
 
   def create_new_bus
@@ -68,8 +85,5 @@ private
       render :show
     end
   end
-
 end
-
-
 

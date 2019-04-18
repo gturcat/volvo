@@ -1,0 +1,32 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Montant</th>
+          <th>Entitée</th>
+          <th>Durée Buy Back</th>
+          <th>% Buy Back</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= simple_form_for @delivery do |f| %>
+        <tr>
+          <td><%= f.date_field :date_facturation, label: false %></td>
+          <td><%= f.input :montant, label: false %></td>
+          <td><%= f.input :entitee, label: false %></td>
+          <td><%= f.input :duree_buy_back, label: false %></td>
+          <td><%= f.input :pourcentage_buy_back, label: false %></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button>
+    <% end %>
+  </div>
+</div>
