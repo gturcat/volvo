@@ -20,7 +20,7 @@
           <td><%= f.text_field :envoiOF, label: false %></td>
           <td><%= f.date_field :date_limit_modif_config, label: false %></td>
           <td><%= f.text_field :reception_oc, label: false %></td>
-          <td><%= f.text_field :dispo_fr, label: false %></td>
+          <td><%= f.input :dispo_fr, as: :boolean, label: false %></td>
           <td><%= f.date_field :CDD, label: false %></td>
         </tr>
       </tbody>
@@ -48,7 +48,7 @@
           <td><%= f.date_field :date_depart_usine, label: false %></td>
           <td><%= f.text_field :lieu_arrivee_partenaire_volvo, label: false %></td>
           <td><%= f.date_field :date_arrivee_partenaire_volvo, label: false %></td>
-          <td><%= f.text_field :partenaire_prevenu, label: false %></td>
+          <td><%= f.input:partenaire_prevenu, as: :boolean, label: false %></td>
         </tr>
       </tbody>
     </table>

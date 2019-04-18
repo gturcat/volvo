@@ -1,97 +1,104 @@
-<div class="tab">
-  <div class="panel panel-default">
-    <!-- Default panel contents-->
-    <div class="panel-heading">Commande</div>
-    <!-- Table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Client</th>
-          <th>Date BdC</th>
-          <th>N°BdC</th>
-          <th>Vendeur</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @order.client %></td>
-          <td><%= @order.date %></td>
-          <td><%= @order.numero_bon_de_commande %></td>
-          <td><%= @order.sales_advisor[:name] %></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container">
+  <div class="tab">
+    <div class="panel panel-default">
+      <!-- Default panel contents-->
+      <div class="panel-heading">Commande</div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Date BdC</th>
+            <th>N°BdC</th>
+            <th>Vendeur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @order.client %></td>
+            <td><%= @order.date %></td>
+            <td><%= @order.numero_bon_de_commande %></td>
+            <td><%= @order.sales_advisor[:name] %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-<div class="tab">
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Bus liés à la commande</div>
-    <!-- Table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Order Book</th>
-          <th>Couleur Exterieure</th>
-          <th>Delai Bon de commande</th>
-          <th>Status 1</th>
-          <th>Status 2</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= simple_form_for @bus, url: order_path(@order[:id]), method: :get do |f| %>
-        <tr>
-          <td><%= f.association :description, label: false %></td>
-          <%= f.simple_fields_for :lines do |lines_form| %>
-          <%= lines_form.hidden_field :order_id, :value => @order.id %>
-          <td><%= lines_form.association :order_book, label: false %></td>
-          <td><%= lines_form.text_field :couleur_ext_vehicule %></td>
-          <td><%= lines_form.date_field :date_livraison_bdc %></td>
+  <div class="tab">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Bus liés à la commande</div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Order Book</th>
+            <th>Couleur Exterieure</th>
+            <th>Delai Bon de commande</th>
+            <th>garantie</th>
+            <th>telematique</th>
+            <th>Status 1</th>
+            <th>Status 2</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= simple_form_for @bus, url: order_path(@order[:id]), method: :get do |f| %>
+          <tr>
+            <td><%= f.association :description, label: false %></td>
+            <%= f.simple_fields_for :lines do |lines_form| %>
+            <%= lines_form.hidden_field :order_id, :value => @order.id %>
+            <td><%= lines_form.association :order_book, label: false %></td>
+            <td><%= lines_form.text_field :couleur_ext_vehicule %></td>
+            <td><%= lines_form.date_field :date_livraison_bdc %></td>
+            <td><%= lines_form.text_field :mention_garantie %></td>
+            <td><%= lines_form.text_field :mention_telematique %></td>
+            <% end %>
+            <td><%= f.input :status1, collection: ["client", "indisponible", "disponible"], label: false %></td>
+            <td><%= f.input :status2, collection: [ 'A commander',
+              'Config usine à valider',
+              'En commande',
+              'Annulé',
+              'En Stock SE35',
+              'Stock VO',
+              'En stock VTFL',
+              'Démo SE35',
+              'Démo FR05',
+              'Facturé VN',
+              'Facturé VTFL',
+              'VO à rentrer',
+              'Facturé VO',
+            'Facturé VO (ex Demo)'], label: false  %></td>
+            <td>
+              <button type="submit" class="btn btn-primary">
+              <i class="fas fa-plus-circle"></i>
+              </button>
+            </td>
+          </tr>
           <% end %>
-          <td><%= f.input :status1, collection: ["client", "indisponible", "disponible"], label: false %></td>
-          <td><%= f.input :status2, collection: [ 'A commander',
-            'Config usine à valider',
-            'En commande',
-            'Annulé',
-            'En Stock SE35',
-            'Stock VO',
-            'En stock VTFL',
-            'Démo SE35',
-            'Démo FR05',
-            'Facturé VN',
-            'Facturé VTFL',
-            'VO à rentrer',
-            'Facturé VO',
-          'Facturé VO (ex Demo)'], label: false  %></td>
-          <td>
-            <button type="submit" class="btn btn-primary">
-            <i class="fas fa-plus-circle"></i>
-            </button>
-          </td>
-        </tr>
-        <% end %>
-        <% @buses.each  do | bus| %>
-        <tr>
-          <td><%= bus.description[:name] %></td>
-          <td><%= bus.lines.last.order_book[:name] %></td>
-          <td><%= bus.lines.last[:couleur_ext_vehicule] %></td>
-          <td><%= bus.lines.last[:date_livraison_bdc] %></td>
-          <td><%= bus.status1 %></td>
-          <td><%= bus.status2 %></td>
-          <td>
-            <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
-                  <i class="far fa-edit"></i>
-                  <% end %>
-
-            <%= link_to bus_path(bus.id), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
+          <% @buses.each  do | bus| %>
+          <tr>
+            <td><%= bus.description[:name] %></td>
+            <td><%= bus.lines.last.order_book[:name] %></td>
+            <td><%= bus.lines.last[:couleur_ext_vehicule] %></td>
+            <td><%= bus.lines.last[:date_livraison_bdc] %></td>
+            <td><%= bus.lines.last[:mention_garantie] %></td>
+            <td><%= bus.lines.last[:mention_telematique] %></td>
+            <td><%= bus.status1 %></td>
+            <td><%= bus.status2 %></td>
+            <td>
+              <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
+              <i class="far fa-edit"></i>
+              <% end %>
+              <%= link_to bus_path(bus.id), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
               <i class="fas fa-minus-circle"></i>
             <% end %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= link_to "Fin de la commande", orders_path, class: "btn btn-primary" %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "Fin de la commande", orders_path, class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
