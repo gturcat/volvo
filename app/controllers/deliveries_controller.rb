@@ -10,7 +10,6 @@ class DeliveriesController < ApplicationController
     session[:delivery_id] = @delivery.id
   end
 
-
   def edit
     @delivery = Delivery.find(params[:id])
   end
