@@ -7,6 +7,7 @@ class BusesController < ApplicationController
   end
 
   def show
+    session[:delivery_id] = nil
     @bus = Bus.find(params[:id])
     session[:bus_id] = @bus.id
 

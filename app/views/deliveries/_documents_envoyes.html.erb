@@ -1,0 +1,83 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Document</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bon de commande</td>
+          <td>
+            <%if @delivery.documents.where(:name => "Bon de commande").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "Bon de commande").take, :name => 'Bon de commande'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'Bon de commande'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'Bon de commande'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Offre Configuration avec plan d'implatation</td>
+          <td>
+            <%if @delivery.documents.where(:name => "offre config").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "offre config").take, :name => 'offre config'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'offre config'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'offre config'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Information Peinture</td>
+          <td>
+            <%if @delivery.documents.where(:name => "Information Peinture").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "Information Peinture").take, :name => 'Information Peinture'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'Information Peinture'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'Information Peinture'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Information Pneus</td>
+          <td>
+            <%if @delivery.documents.where(:name => "Information Pneus").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "Information Pneus").take, :name => 'Information Pneus'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'Information Pneus'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'Information Pneus'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Plan VOSP</td>
+          <td>
+            <%if @delivery.documents.where(:name => "Plan VOSP").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "info peinture").take, :name => 'Plan VOSP'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'Plan VOSP'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'Plan VOSP'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Fiche RCR</td>
+          <td>
+            <%if @delivery.documents.where(:name => "Fiche RCR").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "Fiche RCR").take, :name => 'Fiche RCR'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'Fiche RCR'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'Fiche RCR'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
