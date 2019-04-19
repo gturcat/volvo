@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :orders
   resources :factory_orders, only: [:show, :edit, :update]
   resources :documents, only: [:new, :create, :show, :edit, :update]
-  resources :deliveries, only: [:show, :edit, :update]
+  resources :deliveries, only: [:show, :edit, :update, :index]
   resources :lines, only: [:edit, :update]
 end
