@@ -1,4 +1,8 @@
 class DeliveriesController < ApplicationController
+  def index
+    @deliveries = Delivery.all
+  end
+
   def edit
     @delivery = Delivery.find(params[:id])
   end
