@@ -12,11 +12,13 @@
       <li><a href="#section-7">Livraison Effective</a></li>
       <li><a href="#section-8">Cloture Dossier ADV</a></li>
       <li><a href="#section-12">Reprise</a></li>
+      <%= link_to "Information véhicule", bus_path(@delivery.bus.id)%>
     </ul>
   </div>
   <div>
     <div class="add-padding-left" id="section-1">
       <h5>Documents envoyés</h5>
+      <%= render "documents_envoyes" %>
     </div>
     <div class="add-padding-left" id="section-2">
       <h5>Convoyage</h5>

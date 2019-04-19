@@ -1,1 +1,47 @@
+<div class="main-container">
+  <div class="navigation" id="sidebar">
+    <ul>
+      <li><a href="#section-1">Preparation Livraison</a></li>
+  </div>
 
+  <div>
+    <div class="add-padding-left" id="section-1">
+      <div class="tab">
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading"></div>
+          <!-- Table -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Mois de livraison</th>
+                <th>Date de Livrison</th>
+                <th>Heure de Livraison</th>
+                <th>Client</th>
+                <th>Chassis</th>
+                <th>RCR</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @deliveries.each  do | delivery | %>
+              <tr>
+                <td><%= delivery.date_livraison %></td>
+                <td><%= delivery.date_livraison %></td>
+                <td><%= delivery.heure_livraison %></td>
+                <td><%= delivery.bus.orders.last[:client]%></td>
+                <td><%= delivery.bus.numero_chassis%></td>
+                <td><%= delivery.bus.orders.last.sales_advisor.name%></td>
+                <td><%= link_to delivery_path(delivery[:id]), class: "btn btn-warning" do %>
+                  <i class="far fa-edit"></i>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

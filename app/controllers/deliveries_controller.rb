@@ -4,7 +4,10 @@ class DeliveriesController < ApplicationController
     @deliveries = Delivery.all
   end
 
+  def show
+    session[:bus_id] = nil
     @delivery = Delivery.find(params[:id])
+    session[:delivery_id] = @delivery.id
   end
 
   def edit
