@@ -4,10 +4,8 @@ class DeliveriesController < ApplicationController
     @deliveries = Delivery.all
   end
 
-  def show
     @delivery = Delivery.find(params[:id])
   end
-
 
   def edit
     @delivery = Delivery.find(params[:id])
