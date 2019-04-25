@@ -1,0 +1,25 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>lieu</th>
+          <th>Date du relevé</th>
+        </tr>
+      </thead>
+<% @bus.ferries.each  do | ferry| %>
+      <tbody>
+        <tr>
+          <td><%= ferry.arrivee %></td>
+          <td><%= ferry.date_convoyage %></td>
+        </tr>
+      </tbody>
+       <% end %>
+    </table>
+  </div>
+</div>
+
+<%= link_to "Convoyer ce bus", new_bus_ferry_path(@bus.id), class: "btn btn-primary" %>

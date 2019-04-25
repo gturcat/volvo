@@ -22,12 +22,16 @@
     </div>
     <div class="add-padding-left" id="section-2">
       <h5>Convoyage</h5>
+      <%= render "emplacement" %>
     </div>
     <div class="add-padding-left" id="section-3">
       <h5>Financement</h5>
+      <%= render "financement" %>
     </div>
     <div class="add-padding-left" id="section-4">
       <h5>Travaux</h5>
+      <%= render "travaux" %>
+      <%= link_to "Ajouter travaux", new_work_path, class: "btn btn-primary" %>
     </div>
     <div class="add-padding-left" id="section-5">
       <h5>Divers</h5>
