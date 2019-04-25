@@ -1,8 +1,5 @@
 class FactoryOrdersController < ApplicationController
 
-  def show
-  end
-
   def edit
     @factory_order = FactoryOrder.find(params[:id])
   end

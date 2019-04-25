@@ -3,7 +3,6 @@ class FerriesController < ApplicationController
     @ferries = Ferry.all
   end
 
-
   def new
   @ferry = Ferry.new
   @bus = Bus.find(params[:bus_id])
@@ -44,7 +43,14 @@ class FerriesController < ApplicationController
   private
 
   def ferry_params
-    params.require(:ferry).permit(:depart, :arrivee, :date_convoyage, :site, :note, :numero_bdc)
+    params.require(:ferry).permit(
+      :depart,
+      :arrivee,
+      :date_convoyage,
+      :site,
+      :note,
+      :numero_bdc
+      )
   end
 
 end

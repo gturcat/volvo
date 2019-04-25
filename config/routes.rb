@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'works/index'
+  get 'works/new'
+  get 'works/create'
+  get 'works/show'
   get 'lines/edit'
   get 'lines/update'
   get 'deliveries/edit'
@@ -15,4 +19,5 @@ Rails.application.routes.draw do
   resources :documents, only: [:new, :create, :show, :edit, :update]
   resources :deliveries, only: [:index, :show, :edit, :update]
   resources :lines, only: [:edit, :update]
+  resources :works, only: [:new, :create, :edit, :update, :show]
 end
