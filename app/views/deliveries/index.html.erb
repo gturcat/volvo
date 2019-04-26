@@ -26,12 +26,12 @@
             <tbody>
               <% @deliveries.each  do | delivery | %>
               <tr>
+                <td><%= delivery.date_livraison  %></td>
                 <td><%= delivery.date_livraison %></td>
-                <td><%= delivery.date_livraison %></td>
-                <td><%= delivery.heure_livraison %></td>
-                <td><%= delivery.bus.orders.last[:client]%></td>
+                <td><%= delivery.heure_livraison   %></td>
+                <td><%= delivery.bus.orders.last[:client] if delivery.bus.orders.last.present? %></td>
                 <td><%= delivery.bus.numero_chassis%></td>
-                <td><%= delivery.bus.orders.last.sales_advisor.name%></td>
+                <td><%= delivery.bus.orders.last.sales_advisor.name if delivery.bus.orders.last.present?%></td>
                 <td><%= link_to delivery_path(delivery[:id]), class: "btn btn-warning" do %>
                   <i class="far fa-edit"></i>
                   <% end %>
