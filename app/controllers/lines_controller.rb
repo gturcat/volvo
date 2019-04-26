@@ -9,6 +9,17 @@ class LinesController < ApplicationController
     redirect_to bus_path(@line.bus)
   end
 
+  def destroy
+    @line = Line.find(params[:id])
+    @order = @line.order
+    @bus = @line.bus
+    @bus.status1 = "disponible"
+    @bus.save
+    @line.delete
+    redirect_to order_path(@order)
+  end
+
+
   private
 
   def line_params

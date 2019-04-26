@@ -2,8 +2,8 @@ class BusesController < ApplicationController
   def index
     @descriptions = Description.all
     @types = Type.all
-    @buses = Bus.all
     @orders = Order.all
+    @buses = Bus.all
   end
 
   def show
