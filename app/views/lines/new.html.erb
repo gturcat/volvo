@@ -1,0 +1,15 @@
+<div class="container">
+<%=@bus.id %>
+
+<%= simple_form_for [@order, @line], method: :post do |f| %>
+  <%= f.input :bus_id, :input_html => { value: @bus.id}, as: :hidden %>
+  <%= f.association :order_book %>
+  <%= f.input :date_livraison_bdc, as: :date, html5: true   %>
+  <%= f.input :couleur_ext_vehicule %>
+  <%= f.input :mention_garantie %>
+  <%= f.input :mention_telematique %>
+  <button type="submit" class="btn btn-primary">
+                  <i class="far fa-edit"></i>
+<% end %>
+</div>
+

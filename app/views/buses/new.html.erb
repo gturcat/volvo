@@ -49,17 +49,6 @@
               </td>
             </tr>
             <% end %>
-            <% @buses.each  do | bus| %>
-            <tr>
-              <td><%= bus.status1 %></td>
-              <td><%= bus.status2 %></td>
-              <td><%= bus.description[:name] %></td>
-              <td><%= bus.type[:name] %></td>
-              <td><%= bus.ch_cb %></td>
-              <td><%= bus.sept_neuf %></td>
-              <td>edit</td>
-            </tr>
-            <% end %>
           </tbody>
         </table>
       </table>

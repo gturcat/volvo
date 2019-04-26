@@ -22,7 +22,7 @@
                   <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>
                   <td><%= bus.status1 %></td>
                   <td><%= bus.status2 %></td>
-                  <td><%= link_to order_path(@order, bus[:id]), class: "btn btn-warning" do %>
+                  <td><%= link_to new_order_line_path(@order, bus.id), class: "btn btn-warning" do %>
                     <i class="far fa-edit"></i>
                     <% end %>
                   </td>

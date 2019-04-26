@@ -28,9 +28,9 @@ class OrdersController < ApplicationController
     @q = Bus.ransack(params[:q])
     @buses = @q.result.where(status1: "disponible").includes(:description)
     @orders = Order.all
-    @bus.lines.build
-    create_new_bus if params[:bus].present?
-    associate if params[:format].present?
+    #@bus.lines.build
+    #create_new_bus if params[:bus].present?
+    #associate if params[:format].present?
   end
 
   def edit
@@ -44,9 +44,13 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-     @order = Order.find(params[:id])
-     @order.destroy
-     redirect_to orders_path
+    @order = Order.find(params[:id])
+    @order.buses.each do |bus|
+      bus.status1 = "disponible"
+      bus.save
+    end
+    @order.destroy
+    redirect_to orders_path
   end
 
 private
@@ -78,28 +82,26 @@ private
     )
   end
 
-  def create_new_bus
-    @bus = Bus.new(bus_params)
-    if @bus.save
-      redirect_to order_path(@order[:id])
-    else
-      render :show
-    end
-  end
+  # def create_new_bus
+  #   @bus = Bus.new(bus_params)
+  #   if @bus.save
+  #     redirect_to order_path(@order[:id])
+  #   else
+  #     render :show
+  #   end
+  # end
 
-  def associate
-    @bus = Bus.find(params[:format])
-    @line = @bus.lines.build
-    @line.order = @order
-    @bus.status1 = "indisponible"
-    @bus.save
-    if @line.save
-      redirect_to order_path(@order[:id])
-    else
-      render :show
-    end
-
-  end
-
+  # def associate
+  #   @bus = Bus.find(params[:format])
+  #   @line = @bus.lines.build
+  #   @line.order = @order
+  #   @bus.status1 = "indisponible"
+  #   @bus.save
+  #   if @line.save
+  #     redirect_to order_path(@order[:id])
+  #   else
+  #     render :show
+  #   end
+  # end
 end
 

@@ -30,8 +30,12 @@
   <%= f.submit  %>
 <% end %>
 
-<% if params[:q].present? %>
+<% if params[:q].present? && @buses.length>0  %>
+<%= @buses.length %>
 <%= render 'list_bus' %>
+<% elsif params[:q].present? && @buses.length==0 %>
+<%= render 'no_bus' %>
+
 <% end %>
 
   <div class="tab">
@@ -68,7 +72,7 @@
               <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
               <i class="far fa-edit"></i>
               <% end %>
-              <% if @bus.lines.present? %>
+              <% if bus.lines.present? %>
               <%= link_to line_path(bus.lines.last), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
               <i class="fas fa-minus-circle"></i>
             <% end %>
