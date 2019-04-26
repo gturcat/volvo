@@ -1,0 +1,45 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nature des travaux</th>
+          <th>Date demande préparation livraison</th>
+          <th>Devis</th>
+          <th>facture</th>
+          <th>Montant facture</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @delivery.works.each do |work| %>
+        <tr>
+
+          <%= simple_form_for work do |f| %>
+          <td><%=f.input :nature_travaux,label: false %></td>
+          <td><%=f.date_field :demande_preparation, label: false, hint:false %></td>
+          <td>
+              <%= f.input :devis, as: :file, label: false if !work.devis.present? %>
+              <%if work.devis.present? %>
+              <i class="far fa-eye btn btn-primary"></i>
+              <i class="far fa-edit btn btn-warning"></i>
+              <% end %>
+          </td>
+          <td><%= f.input :facture_travaux, as: :file, label: false if !work.facture_travaux.present? %>
+              <%if work.facture_travaux.present? %>
+              <i class="far fa-eye btn btn-primary"></i>
+              <i class="far fa-edit btn btn-warning"></i>
+              <% end %></td>
+              <td><%=f.input :facture_montant, label: false %></td>
+            <td><button type="submit" class="btn btn-primary">
+                  <i class="far fa-save"></i>
+            <% end %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

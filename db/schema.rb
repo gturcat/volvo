@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_19_154156) do
+ActiveRecord::Schema.define(version: 2019_04_25_101900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,14 @@ ActiveRecord::Schema.define(version: 2019_04_19_154156) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "description"
+    t.bigint "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id"], name: "index_tasks_on_work_id"
+  end
+
   create_table "types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -184,6 +192,22 @@ ActiveRecord::Schema.define(version: 2019_04_19_154156) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "works", force: :cascade do |t|
+    t.string "nature_travaux"
+    t.date "demande_preparation"
+    t.string "devis_travaux"
+    t.string "bon_de_commande_travaux"
+    t.date "date_previsionnelle_fin_travaux"
+    t.string "facture_travaux"
+    t.string "facture_montant"
+    t.bigint "delivery_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "files"
+    t.string "devis"
+    t.index ["delivery_id"], name: "index_works_on_delivery_id"
+  end
+
   add_foreign_key "buses", "descriptions"
   add_foreign_key "buses", "types"
   add_foreign_key "deliveries", "buses"
@@ -193,4 +217,6 @@ ActiveRecord::Schema.define(version: 2019_04_19_154156) do
   add_foreign_key "ferries", "buses"
   add_foreign_key "lines", "buses"
   add_foreign_key "lines", "order_books"
+  add_foreign_key "tasks", "works"
+  add_foreign_key "works", "deliveries"
 end

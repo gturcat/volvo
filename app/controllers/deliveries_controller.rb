@@ -7,6 +7,7 @@ class DeliveriesController < ApplicationController
   def show
     session[:bus_id] = nil
     @delivery = Delivery.find(params[:id])
+    @bus = @delivery.bus
     session[:delivery_id] = @delivery.id
   end
 
