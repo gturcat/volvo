@@ -17,7 +17,10 @@ gem 'webpacker'
 gem "cocoon"
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
+gem 'ransack'
+gem 'where_exists'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

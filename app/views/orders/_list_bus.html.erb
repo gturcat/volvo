@@ -1,16 +1,4 @@
-<div class="main-container">
-  <div class="navigation" id="sidebar">
-    <ul>
-      <li><a href="#section-1">Commande Client</a></li>
-    </div>
-    <div>
-
-<td><%= link_to new_bus_path(), class: "btn btn-warning" do %>
-                    ajouter un bus en stock Volvo Bus
-                    <% end %>
-
-      <div class="add-padding-left" id="section-1">
-        <div class="tab">
+     <div class="tab">
           <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading"></div>
@@ -19,7 +7,6 @@
               <thead>
                 <tr>
                   <th>Description</th>
-                  <th>Order Book</th>
                   <th>Couleur Exterieure</th>
                   <th>Client</th>
                   <th>Status 1</th>
@@ -31,15 +18,11 @@
                 <% @buses.each  do | bus| %>
                 <tr>
                   <td><%= bus.description[:name] %></td>
-                  <td><% if bus.lines.last.present? %>
-                      <%= bus.lines.last.order_book[:name] if bus.lines.last.order_book.present?%>
-                        <% end %>
-                      </td>
                   <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.last.present? %></td>
                   <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>
                   <td><%= bus.status1 %></td>
                   <td><%= bus.status2 %></td>
-                  <td><%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
+                  <td><%= link_to new_order_line_path(@order, bus.id), class: "btn btn-warning" do %>
                     <i class="far fa-edit"></i>
                     <% end %>
                   </td>
@@ -49,6 +32,3 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>
-  </div>

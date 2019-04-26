@@ -2,8 +2,8 @@ class BusesController < ApplicationController
   def index
     @descriptions = Description.all
     @types = Type.all
-    @buses = Bus.all
     @orders = Order.all
+    @buses = Bus.all
   end
 
   def show
@@ -40,7 +40,7 @@ class BusesController < ApplicationController
   def create
      @bus = Bus.new(bus_params)
      if @bus.save
-      redirect_to buses_new_path
+      redirect_to buses_path
      else
      render :new
    end
