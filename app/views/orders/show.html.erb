@@ -29,6 +29,17 @@
       <!-- Default panel contents -->
       <div class="panel-heading">Bus liés à la commande</div>
       <!-- Table -->
+
+      <%= form_tag buses_path, method: :get do %>
+      <%=  :query,
+      params[:query],
+      class: "research",
+      placeholder: "type"
+      %>
+      <span> <%=  button_tag( :class => "background_loop") do %> <i class="fa fa-search searchIcon"></i>
+      <% end %> </span>
+      <% end %>
+
       <table class="table">
         <thead>
           <tr>

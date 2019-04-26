@@ -22,7 +22,7 @@
   <div>
     <div class="add-padding-left" id="section-1">
       <h5>Commande Client</h5>
-      <%= render "order" %>
+      <%= render "order" if @bus.orders.present?%>
     </div>
     <div class="add-padding-left" id="section-2">
       <h5>Information Véhicule</h5>
@@ -65,11 +65,11 @@
     </div>
      <div class="add-padding-left" id="section-11">
       <h5>Garantie</h5>
-      <%= render "garantie"%>
+      <%= render "garantie" if @bus.lines.present?%>
     </div>
      <div class="add-padding-left" id="section-12">
       <h5>Telematique</h5>
-      <%= render "telematique"%>
+      <%= render "telematique" if @bus.lines.present?%>
     </div>
   </div>
 </div>
