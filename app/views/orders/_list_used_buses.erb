@@ -1,0 +1,36 @@
+<div class="tab">
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"></div>
+            <!-- Table -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Immatriculation</th>
+                  <th>Couleur Exterieure</th>
+                  <th>Client</th>
+                  <th>Status 1</th>
+                  <th>Status 2</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @used_buses.each  do | bus| %>
+                <tr>
+                  <td><%= bus.description[:name] %></td>
+                  <td><%= bus.immatriculation %> </td>
+                  <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.last.present? %></td>
+                  <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>
+                  <td><%= bus.status1 %></td>
+                  <td><%= bus.status2 %></td>
+                  <td><%= link_to new_order_line_path(@order, bus.id), class: "btn btn-warning" do %>
+                    <i class="far fa-edit"></i>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>

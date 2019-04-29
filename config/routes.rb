@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :ferries, only: [:new, :create]
   end
   resources :orders do
-      resources :lines, only: [:new, :create]
+    resources :lines, only: [:new, :create] do
+      resources :buses, only: [:new]
+    end
   end
 
   resources :factory_orders, only: [:show, :edit, :update]

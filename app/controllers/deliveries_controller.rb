@@ -1,7 +1,7 @@
 class DeliveriesController < ApplicationController
 
   def index
-    @deliveries = Delivery.all
+    @deliveries = Delivery.joins(:bus).where("buses.status1 = 'indisponible'")
   end
 
   def show

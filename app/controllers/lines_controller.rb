@@ -25,20 +25,19 @@ class LinesController < ApplicationController
     @line = Line.new
   end
 
-def create
-  @order = Order.find(params[:order_id])
-  @line = Line.new(line_params)
-  @bus = @line.bus
-  @bus.status1 = "indisponible"
-  @bus.save
-  @line.order = @order
-  if @line.save
-    redirect_to order_path(@order)
-  else
-    render :new
+  def create
+    @order = Order.find(params[:order_id])
+    @line = Line.new(line_params)
+    @bus = @line.bus
+    @bus.status1 = "indisponible"
+    @bus.save
+    @line.order = @order
+    if @line.save
+      redirect_to order_path(@order)
+    else
+      render :new
+    end
   end
-end
-
 
   private
 
@@ -52,7 +51,8 @@ end
       :mention_telematique,
       :garantie_pep_tool,
       :telematique_demandee,
-      :date_livraison_bdc
+      :date_livraison_bdc,
+      :type_commande
     )
   end
 end

@@ -30,60 +30,28 @@
   <%= f.submit  %>
 <% end %>
 
-<% if params[:q].present? && @buses.length>0  %>
+<% if params[:q]!=nil && @buses.length>0  %>
 <%= @buses.length %>
-<%= render 'list_bus' %>
+<%= render 'list_buses' %>
 <% elsif params[:q].present? && @buses.length==0 %>
 <%= render 'no_bus' %>
-
 <% end %>
 
-  <div class="tab">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Bus liés à la commande</div>
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Order Book</th>
-            <th>Couleur Exterieure</th>
-            <th>Delai Bon de commande</th>
-            <th>garantie</th>
-            <th>telematique</th>
-            <th>Status 1</th>
-            <th>Status 2</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @order.buses.each  do | bus| %>
-          <tr>
-            <td><%= bus.description[:name] %></td>
-            <td><%= bus.lines.last.order_book[:name] if bus.lines.last.order_book.present?  %></td>
-            <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.present? %></td>
-            <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
-            <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>
-            <td><%= bus.lines.last[:mention_telematique] if bus.lines.present? %></td>
-            <td><%= bus.status1 %></td>
-            <td><%= bus.status2 %></td>
-            <td>
-              <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
-              <i class="far fa-edit"></i>
-              <% end %>
-              <% if bus.lines.present? %>
-              <%= link_to line_path(bus.lines.last), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
-              <i class="fas fa-minus-circle"></i>
-            <% end %>
-          <% end %>
-        </td>
+<%= render 'busencommande' %>
+<br>
+<h5>reprises</h5>
 
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= link_to "Fin de la commande", orders_path, class: "btn btn-primary" %>
-    </div>
-  </div>
+<%= search_form_for @q, url: order_path(@order), html: { method: :get } do |f| %>
+  <%= f.search_field :immatriculation_cont %>
+  <%= f.submit  %>
+<% end %>
+
+<% if params[:q]!=nil && @used_buses.length>0  %>
+<%= @used_buses.length %>
+<%= render 'list_used_buses' %>
+<% elsif params[:q].present? && @used_buses.length==0 %>
+<%= render 'no_used_bus' %>
+<% end %>
+<br>
+<%= link_to "Fin de la commande", orders_path, class: "btn btn-primary" %>
 </div>

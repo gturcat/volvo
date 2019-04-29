@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_101900) do
+ActiveRecord::Schema.define(version: 2019_04_29_190617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2019_04_25_101900) do
     t.bigint "order_book_id"
     t.boolean "garantie_pep_tool"
     t.string "telematique_demandee"
+    t.string "type_commande"
     t.index ["bus_id"], name: "index_lines_on_bus_id"
     t.index ["order_book_id"], name: "index_lines_on_order_book_id"
     t.index ["order_id"], name: "index_lines_on_order_id"
