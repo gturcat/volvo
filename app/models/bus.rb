@@ -10,4 +10,5 @@ class Bus < ApplicationRecord
   accepts_nested_attributes_for :ferries
   has_many :deliveries, dependent: :destroy
   accepts_nested_attributes_for :deliveries
+  has_many :trades, dependent: :destroy
 end

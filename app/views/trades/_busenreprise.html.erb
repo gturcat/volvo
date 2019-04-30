@@ -1,0 +1,30 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Bus liés à la commande</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Status 1</th>
+          <th>Status 2</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @traded_bus.description[:name] %></td>
+          <td><%= @traded_bus.status1 %></td>
+          <td><%= @traded_bus.status2 %></td>
+          <td>
+            <%= link_to bus_path(@line.bus), class: "btn btn-warning" do %>
+            <i class="far fa-edit"></i>
+            <% end %>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

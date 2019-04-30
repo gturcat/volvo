@@ -1,0 +1,31 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Reprise</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Status 1</th>
+          <th>Status 2</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.lines.each  do | line| %>
+        <tr>
+          <td><%= line.trade.last.bus.description[:name] %></td>
+          <td><%= line.trade.last.bus.status1 %></td>
+          <td><%= line.trade.last.bus.status2 %></td>
+          <td>
+            <%= link_to bus_path(line.trade.last.bus), class: "btn btn-warning" do %>
+            <i class="far fa-edit"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
