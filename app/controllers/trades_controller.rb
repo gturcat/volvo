@@ -13,6 +13,9 @@ class TradesController < ApplicationController
 
   def create
     @trade = Trade.new(trade_params)
+    @bus = @trade.bus
+    @bus.status1 = "stock VO"
+    @bus.save
     if @trade.save
       redirect_to order_path(@trade.line.order)
      else
