@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_100552) do
+ActiveRecord::Schema.define(version: 2019_04_30_134848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_100552) do
     t.bigint "order_book_id"
     t.boolean "garantie_pep_tool"
     t.string "telematique_demandee"
+    t.boolean "reprise"
     t.index ["bus_id"], name: "index_lines_on_bus_id"
     t.index ["order_book_id"], name: "index_lines_on_order_book_id"
     t.index ["order_id"], name: "index_lines_on_order_id"
@@ -172,6 +173,30 @@ ActiveRecord::Schema.define(version: 2019_04_30_100552) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["work_id"], name: "index_tasks_on_work_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.string "prix_achat"
+    t.date "date_rentree_bdc"
+    t.date "date_rentree"
+    t.time "heure_rentree"
+    t.string "fiche_RCR"
+    t.string "demande_cession"
+    t.string "cerfa"
+    t.string "ci_barre"
+    t.string "controle_technique"
+    t.string "certif_non_gage"
+    t.string "coc"
+    t.string "attestation_amenagement"
+    t.string "lieu_conservation_papier"
+    t.string "travaux_previsionnels"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "bus_id"
+    t.bigint "line_id"
+    t.index ["bus_id"], name: "index_trades_on_bus_id"
+    t.index ["line_id"], name: "index_trades_on_line_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -218,5 +243,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_100552) do
   add_foreign_key "lines", "buses"
   add_foreign_key "lines", "order_books"
   add_foreign_key "tasks", "works"
+  add_foreign_key "trades", "buses"
+  add_foreign_key "trades", "lines"
   add_foreign_key "works", "deliveries"
 end

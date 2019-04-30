@@ -8,8 +8,11 @@ Rails.application.routes.draw do
     resources :ferries, only: [:new, :create]
   end
   resources :orders do
-    resources :lines, only: [:new, :create] do
+    resources :buses do
+      resources :lines, only: [:new, :create] do
+        resources :trades, only: [:new, :create]
       resources :buses, only: [:new]
+      end
     end
   end
 

@@ -21,19 +21,19 @@ class LinesController < ApplicationController
 
   def new
     @order = Order.find(params[:order_id])
-    @bus = Bus.find(params[:format])
+    @bus = Bus.find(params[:bus_id])
     @line = Line.new
   end
 
   def create
-    @order = Order.find(params[:order_id])
     @line = Line.new(line_params)
+    @line.order = Order.find(params[:order_id])
+    @order = @line.order
     @bus = @line.bus
     @bus.status1 = "indisponible"
     @bus.save
-    @line.order = @order
     if @line.save
-      redirect_to order_path(@order)
+      @line.reprise ? (redirect_to new_order_bus_line_trade_path(@order, @bus, @line)) : (redirect_to order_path(@order))
     else
       render :new
     end
@@ -52,6 +52,8 @@ class LinesController < ApplicationController
       :garantie_pep_tool,
       :telematique_demandee,
       :date_livraison_bdc,
+      :reprise,
+      :order_id
     )
   end
 end
