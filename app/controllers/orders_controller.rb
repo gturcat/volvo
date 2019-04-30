@@ -22,15 +22,17 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @ordered_buses = @order.buses.joins(:lines)
+    session[:order_id] = @order.id
     @bus = Bus.new
     @descriptions = Description.all
     @types = Type.all
+    @buses =[]
     @q = Bus.ransack(params[:q])
-    @buses = @q.result.where(status1: "disponible").includes(:description)
+    if params[:q].present?
+      cherche_stock if params[:q][:description_name_cont].present?
+    end
     @orders = Order.all
-    #@bus.lines.build
-    #create_new_bus if params[:bus].present?
-    #associate if params[:format].present?
   end
 
   def edit
@@ -53,7 +55,11 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
-private
+  private
+
+  def cherche_stock
+    @buses = @q.result.where(status1: "disponible").includes(:description)
+  end
 
   def order_params
     params.require(:order).permit(
