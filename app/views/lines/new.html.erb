@@ -1,8 +1,6 @@
 <div class="container">
-<% if @bus.status1 != "client" %>
   <%= simple_form_for [@order, @line], method: :post do |f| %>
     <%= f.input :bus_id, :input_html => { value: @bus.id}, as: :hidden %>
-    <%= f.input :type_commande, :input_html => { value: "vente"}, as: :hidden %>
     <%= f.association :order_book %>
     <%= f.input :date_livraison_bdc, as: :date, html5: true   %>
     <%= f.input :couleur_ext_vehicule %>
@@ -11,8 +9,5 @@
     <button type="submit" class="btn btn-primary">
                     <i class="far fa-edit"></i>
   <% end %>
-<% elsif @bus.status1 == "client" %>
-  insérer ici le formulaire de reprise de bus d'occasion
-<% end %>
 </div>
 

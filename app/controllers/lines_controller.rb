@@ -52,7 +52,6 @@ class LinesController < ApplicationController
       :garantie_pep_tool,
       :telematique_demandee,
       :date_livraison_bdc,
-      :type_commande
     )
   end
 end

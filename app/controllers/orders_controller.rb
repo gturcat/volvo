@@ -22,17 +22,15 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @ordered_buses = @order.buses.joins(:lines).where("lines.type_commande= 'vente'")
+    @ordered_buses = @order.buses.joins(:lines)
     session[:order_id] = @order.id
     @bus = Bus.new
     @descriptions = Description.all
     @types = Type.all
     @buses =[]
-    @used_buses =[]
     @q = Bus.ransack(params[:q])
     if params[:q].present?
       cherche_stock if params[:q][:description_name_cont].present?
-      cherche_si_immat_connue if params[:q][:immatriculation_cont].present?
     end
     @orders = Order.all
   end
@@ -61,10 +59,6 @@ class OrdersController < ApplicationController
 
   def cherche_stock
     @buses = @q.result.where(status1: "disponible").includes(:description)
-  end
-
-  def cherche_si_immat_connue
-    @used_buses = @q.result.where(status1: "client")
   end
 
   def order_params
