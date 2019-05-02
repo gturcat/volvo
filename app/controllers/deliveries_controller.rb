@@ -10,7 +10,7 @@ class DeliveriesController < ApplicationController
     @bus = @delivery.bus
     session[:delivery_id] = @delivery.id
     @trade = @bus.orders.last.trade.last
-    @traded_bus = @bus.orders.last.trade.last.bus
+    @traded_bus = @bus.orders.last.trade.last.bus if @trade.present?
   end
 
   def edit
