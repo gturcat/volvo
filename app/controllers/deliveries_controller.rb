@@ -9,6 +9,8 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
     @bus = @delivery.bus
     session[:delivery_id] = @delivery.id
+    @trade = @bus.orders.last.trade.last
+    @traded_bus = @bus.orders.last.trade.last.bus
   end
 
   def edit
