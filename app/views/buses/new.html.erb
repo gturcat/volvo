@@ -1,57 +1,81 @@
-<div class="main-container">
-  <div class="navigation" id="sidebar">
-  </div>
+<div class="container">
+  <% if !@order.present? %>
+    <h5>Rentrer un bus en stock</h5>
+    <%= simple_form_for @bus do |f| %>
+      <%= f.input :status1, collection: ["client", "indisponible", "disponible"]%>
+      <%= f.input :status2, collection: [ 'A commander',
+                  'Config usine à valider',
+                  'En commande',
+                  'Annulé',
+                  'En Stock SE35',
+                  'Stock VO',
+                  'En stock VTFL',
+                  'Démo SE35',
+                  'Démo FR05',
+                  'Facturé VN',
+                  'Facturé VTFL',
+                  'VO à rentrer',
+                  'Facturé VO',
+                'Facturé VO (ex Demo)'] %>
+      <%= f.input :description_id, collection: @descriptions %>
+      <%= f.input :type_id, collection: @types%>
+      <%= f.input :ch_cb, collection: ["CB","CH"] %>
+      <%= f.input :sept_neuf, collection: ["7","9"] %>
+      <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
+    <% end %>
+  <% end %>
 
-  <div class="main-container"></div>
-    <div class="tab">
-      <div class="panel panel-default">
-        <!-- Default panel contents
-        <div class="panel-heading">Bus en stock</div>-->
-        <!-- Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Status 1</th>
-              <th>Status 2</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>CB / CH</th>
-              <th>7 / 9</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= simple_form_for @bus do |f| %>
-            <tr>
-              <td><%= f.input :status1, collection: ["client", "indisponible", "disponible"], label: false %></td>
-              <td><%= f.input :status2, collection: [ 'A commander',
-                'Config usine à valider',
-                'En commande',
-                'Annulé',
-                'En Stock SE35',
-                'Stock VO',
-                'En stock VTFL',
-                'Démo SE35',
-                'Démo FR05',
-                'Facturé VN',
-                'Facturé VTFL',
-                'VO à rentrer',
-                'Facturé VO',
-              'Facturé VO (ex Demo)'], label: false  %></td>
-              <td><%= f.input :description_id, collection: @descriptions, label: false %></td>
-              <td><%= f.input :type_id, collection: @types, label: false %></td>
-              <td><%= f.input :ch_cb, collection: ["CB","CH"], label: false %></td>
-              <td> <%= f.input :sept_neuf, collection: ["7","9"], label: false %></td>
-              <td>
-                <button type="submit" class="btn btn-primary">
-                coucou
-                </button>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </table>
-    </div>
-  </div>
+<% if @order.present? && !@ordered_bus.present?  %>
+  <h5>Commander ce bus pour le client :<%=@order.client %></h5>
+      <%= simple_form_for [@order,@bus] do |f| %>
+      <%= f.input :status1, collection: ["client", "indisponible", "disponible"]%>
+      <%= f.input :status2, collection: [ 'A commander',
+                  'Config usine à valider',
+                  'En commande',
+                  'Annulé',
+                  'En Stock SE35',
+                  'Stock VO',
+                  'En stock VTFL',
+                  'Démo SE35',
+                  'Démo FR05',
+                  'Facturé VN',
+                  'Facturé VTFL',
+                  'VO à rentrer',
+                  'Facturé VO',
+                'Facturé VO (ex Demo)'] %>
+      <%= f.input :description_id, collection: @descriptions %>
+      <%= f.input :type_id, collection: @types%>
+      <%= f.input :ch_cb, collection: ["CB","CH"] %>
+      <%= f.input :sept_neuf, collection: ["7","9"] %>
+      <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
+    <% end %>
+  <% end %>
+
+<% if @ordered_bus.present? %>
+  <h5>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.description.name %> pour le client :<%=@order.client %></h5>
+      <%= simple_form_for [@order,@ordered_bus,@line,@bus] do |f| %>
+      <%= f.input :status1, collection: ["client", "indisponible", "disponible"]%>
+      <%= f.input :status2, collection: [ 'A commander',
+                  'Config usine à valider',
+                  'En commande',
+                  'Annulé',
+                  'En Stock SE35',
+                  'Stock VO',
+                  'En stock VTFL',
+                  'Démo SE35',
+                  'Démo FR05',
+                  'Facturé VN',
+                  'Facturé VTFL',
+                  'VO à rentrer',
+                  'Facturé VO',
+                'Facturé VO (ex Demo)'] %>
+      <%= f.input :description_id, collection: @descriptions %>
+      <%= f.input :type_id, collection: @types%>
+      <%= f.input :ch_cb, collection: ["CB","CH"] %>
+      <%= f.input :sept_neuf, collection: ["7","9"] %>
+      <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
+    <% end %>
+  <% end %>
+
+
 </div>

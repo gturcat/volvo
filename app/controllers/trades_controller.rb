@@ -1,5 +1,6 @@
 class TradesController < ApplicationController
   def new
+    @ordered_bus = Bus.find(params[:bus_id])
     @q = Bus.ransack(params[:q])
     search_used_bus
     @order = Order.find(params[:order_id])

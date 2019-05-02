@@ -1,21 +1,20 @@
 <div class="container">
 <!-- recherche d'un bus présent dans la base -->
 <% if !@traded_bus.present? %>
-<h5>Rechercher le bus à reprendre dans la base</h5>
+<h5>Rechercher le bus à reprendre dans la base par son immatriculation</h5>
   <%= search_form_for @q, url: new_order_bus_line_trade_path(@order,@line.bus, @line), html: { method: :get } do |f| %>
     <%= f.search_field :immatriculation_cont %>
     <%= f.submit  %>
   <% end %>
 <% end %>
-<!-- affichage des bus a reprendre -->
+<!-- affichage des bus de la base compatible d'une reprise -->
 <% if params[:q]!=nil && @used_buses.length>0  %>
 <%= @used_buses.length %>
 <%= render 'list_used_buses' %>
 <% elsif params[:q].present? && @used_buses.length==0 %>
-<!-- si pas de bus dans la base, demande de creation d'un bus -->
+<!-- si pas de bus dans la base, demande de creation d'un bus d'occasion à mettre dans la base -->
 <%= render 'no_used_bus' %>
 <% end %>
-
 
 
 <!-- affichage du bus concerné par la reprise -->

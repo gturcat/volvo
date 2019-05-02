@@ -35,19 +35,34 @@ class BusesController < ApplicationController
     @bus = Bus.new
     @descriptions = Description.all
     @types = Type.all
-
-    @buses = Bus.all
-    @orders = Order.all
+    @order = Order.find(params[:order_id]) if params[:order_id].present?
+    @ordered_bus = Bus.find(params[:bus_id]) if params[:bus_id].present?
+    @line = Line.find(params[:line_id]) if params[:line_id].present?
+    #@buses = Bus.all
+    #@orders = Order.all
   end
 
   def create
-    @order = Order.find(session[:order_id]) if session[:order_id].present?
-    session[:order_id] = nil
     @bus = Bus.new(bus_params)
-    @bus.status2 = "A commander" if @order.present? # statu2 force à "a commander" car bus indisponible en stock
-    if @bus.save
-      redirect_to buses_path(@bus) if !@order.present?
-      redirect_to new_order_line_path(@order, @bus.id) if @order.present? # ajoute ce bus à la commande
+    @order = Order.find(params[:order_id]) if params[:order_id].present?
+    @ordered_bus = Bus.find(params[:bus_id]) if params[:bus_id].present?
+    @line = Line.find(params[:line_id]) if params[:line_id].present?
+    if @order.present? && !@ordered_bus.present?
+      @bus.status2 = "A commander"  # status2 force à "a commander" car bus indisponible en stock
+      if @bus.save
+        redirect_to new_order_bus_line_path(@order, @bus.id)
+      else
+        render :new
+      end
+    elsif @order.present? && @ordered_bus.present?
+      @bus.status2 = "VO à rentrer" # status2 force à "En stock VO " car le bus crée est un VO repris
+      if @bus.save
+        redirect_to new_order_bus_line_trade_path(@order, @ordered_bus, @line, @bus.id)
+      else
+        render :new
+      end
+    elsif @bus.save
+      redirect_to buses_path(@bus)
     else
       render :new
     end
