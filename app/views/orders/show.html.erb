@@ -25,6 +25,7 @@
     </div>
   </div>
 
+<h6>Rechercher un bus par sa description</h6>
 <%= search_form_for @q, url: order_path(@order), html: { method: :get } do |f| %>
   <%= f.search_field :description_name_cont %>
   <%= f.submit  %>

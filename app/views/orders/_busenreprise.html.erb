@@ -7,8 +7,10 @@
       <thead>
         <tr>
           <th>Description</th>
-          <th>Status 1</th>
+          <th>Immatriculation</th>
           <th>Status 2</th>
+          <th>Prix de rachat</th>
+          <th>Bus lié à la reprise</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -16,8 +18,10 @@
         <% @order.lines.each  do | line| %>
         <tr>
           <td><%= line.trade.last.bus.description[:name] %></td>
-          <td><%= line.trade.last.bus.status1 %></td>
+          <td><%= line.trade.last.bus.immatriculation %></td>
           <td><%= line.trade.last.bus.status2 %></td>
+          <td><%= line.trade.last.prix_achat %></td>
+          <td><%= line.bus.description.name %></td>
           <td>
             <%= link_to bus_path(line.trade.last.bus), class: "btn btn-warning" do %>
             <i class="far fa-edit"></i>

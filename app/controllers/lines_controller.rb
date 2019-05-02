@@ -14,6 +14,7 @@ class LinesController < ApplicationController
     @order = @line.order
     @bus = @line.bus
     @bus.status1 = "disponible"
+    delete_trade if @bus.lines.last.trade.last.present?
     @bus.save
     @line.delete
     redirect_to order_path(@order)
@@ -40,6 +41,13 @@ class LinesController < ApplicationController
   end
 
   private
+
+  def delete_trade
+    trade = @bus.lines.last.trade.last
+    bus = trade.bus
+    bus.delete
+    trade.delete
+  end
 
   def line_params
     params.require(:line).permit(

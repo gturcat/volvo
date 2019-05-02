@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :buses do
       resources :lines, only: [:new, :create] do
         resources :trades, only: [:new, :create]
-      resources :buses, only: [:new]
+        resources :buses, only: [:new, :create]
       end
     end
   end

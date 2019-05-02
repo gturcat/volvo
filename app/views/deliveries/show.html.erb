@@ -4,59 +4,65 @@
       <br>
       <li><h5>Livraison en cours</h5></a></li>
       <li><a href="#section-1">Documents envoyés</a></li>
-      <li><a href="#section-2">Convoyage</a></li>
-      <li><a href="#section-3">Financement</a></li>
-      <li><a href="#section-4">Livraison au client</a></li>
-      <li><a href="#section-5">Travaux</a></li>
-      <li><a href="#section-6">Divers</a></li>
-      <li><a href="#section-7">Immatriculation</a></li>
-      <li><a href="#section-8">Livraison/Facturation</a></li>
-      <li><a href="#section-9">Livraison Effective</a></li>
-      <li><a href="#section-10">Cloture Dossier ADV</a></li>
-      <li><a href="#section-11">Reprise</a></li>
+      <li><a href="#section-2">Documents envoyés</a></li>
+      <li><a href="#section-3">Convoyage</a></li>
+      <li><a href="#section-4">Financement</a></li>
+      <li><a href="#section-5">Livraison au client</a></li>
+      <li><a href="#section-6">Travaux</a></li>
+      <li><a href="#section-7">Divers</a></li>
+      <li><a href="#section-8">Immatriculation</a></li>
+      <li><a href="#section-9">Livraison/Facturation</a></li>
+      <li><a href="#section-10">Livraison Effective</a></li>
+      <li><a href="#section-11">Cloture Dossier ADV</a></li>
+      <li><a href="#section-12">Reprise</a></li>
       <%= link_to "Information véhicule", bus_path(@delivery.bus.id)%>
     </ul>
   </div>
   <div>
     <div class="add-padding-left" id="section-1">
+      <h5>Commande client en cours</h5>
+      <%= render "order" %>
+    </div>
+    <div class="add-padding-left" id="section-2">
       <h5>Documents envoyés</h5>
       <%= render "documents_envoyes" %>
     </div>
-    <div class="add-padding-left" id="section-2">
+    <div class="add-padding-left" id="section-3">
       <h5>Convoyage</h5>
       <%= render "emplacement" %>
     </div>
-    <div class="add-padding-left" id="section-3">
+    <div class="add-padding-left" id="section-4">
       <h5>Financement</h5>
       <%= render "financement" %>
     </div>
-    <div class="add-padding-left" id="section-4">
+    <div class="add-padding-left" id="section-5">
       <h5>Travaux</h5>
       <%= render "travaux" %>
       <%= link_to "Ajouter travaux", new_work_path, class: "btn btn-primary" %>
     </div>
-    <div class="add-padding-left" id="section-5">
+    <div class="add-padding-left" id="section-6">
       <h5>Livraison au client</h5>
       <%= render "maj_livraison_client" if @bus.deliveries.last.id.present? %>
     </div>
-    <div class="add-padding-left" id="section-6">
+    <div class="add-padding-left" id="section-7">
       <h5>Divers</h5>
     </div>
-    <div class="add-padding-left" id="section-7">
+    <div class="add-padding-left" id="section-8">
       <h5>Immatriculation</h5>
     </div>
-    <div class="add-padding-left" id="section-8">
+    <div class="add-padding-left" id="section-9">
       <h5>Livraison/Facturation</h5>
       <%= render "livraison_facturation"%>
     </div>
-    <div class="add-padding-left" id="section-9">
+    <div class="add-padding-left" id="section-10">
       <h5>Livraison Effective</h5>
     </div>
-    <div class="add-padding-left" id="section-10">
+    <div class="add-padding-left" id="section-11">
       <h5>Cloture Dossier ADV</h5>
     </div>
-    <div class="add-padding-left" id="section-11">
+    <div class="add-padding-left" id="section-12">
       <h5>Reprise</h5>
+       <%= render "reprise" if @traded_bus.present? %>
     </div>
   </div>
 </div>
