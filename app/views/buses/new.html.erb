@@ -19,34 +19,18 @@
                 'Facturé VO (ex Demo)'] %>
       <%= f.input :description_id, collection: @descriptions %>
       <%= f.input :type_id, collection: @types%>
-      <%= f.input :ch_cb, collection: ["CB","CH"] %>
-      <%= f.input :sept_neuf, collection: ["7","9"] %>
+      <%= f.input :ch_cb, collection: ["CB","CH"], as: :radio_buttons %>
+      <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
       <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
     <% end %>
   <% end %>
 
 <% if @order.present? && !@ordered_bus.present?  %>
-  <h5>Commander ce bus pour le client :<%=@order.client %></h5>
       <%= simple_form_for [@order,@bus] do |f| %>
-      <%= f.input :status1, collection: ["client", "indisponible", "disponible"]%>
-      <%= f.input :status2, collection: [ 'A commander',
-                  'Config usine à valider',
-                  'En commande',
-                  'Annulé',
-                  'En Stock SE35',
-                  'Stock VO',
-                  'En stock VTFL',
-                  'Démo SE35',
-                  'Démo FR05',
-                  'Facturé VN',
-                  'Facturé VTFL',
-                  'VO à rentrer',
-                  'Facturé VO',
-                'Facturé VO (ex Demo)'] %>
       <%= f.input :description_id, collection: @descriptions %>
       <%= f.input :type_id, collection: @types%>
-      <%= f.input :ch_cb, collection: ["CB","CH"] %>
-      <%= f.input :sept_neuf, collection: ["7","9"] %>
+      <%= f.input :ch_cb, collection: ["CB","CH"], as: :radio_buttons %>
+      <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
       <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
     <% end %>
   <% end %>
@@ -54,12 +38,11 @@
 <% if @ordered_bus.present? %>
   <h5>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.description.name %> pour le client :<%=@order.client %></h5>
       <%= simple_form_for [@order,@ordered_bus,@line,@bus] do |f| %>
-      <%= f.input :status1, collection: ["client", "indisponible", "disponible"]%>
       <%= f.input :immatriculation%>
       <%= f.input :description_id, collection: @descriptions %>
       <%= f.input :type_id, collection: @types%>
-      <%= f.input :ch_cb, collection: ["CB","CH"] %>
-      <%= f.input :sept_neuf, collection: ["7","9"] %>
+      <%= f.input :ch_cb, collection: ["CB","CH"],as: :radio_buttons %>
+      <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
       <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
     <% end %>
   <% end %>

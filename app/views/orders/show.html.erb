@@ -32,7 +32,6 @@
 <% end %>
 
 <% if params[:q]!=nil && @buses.length>0  %>
-<%= @buses.length %>
 <%= render 'list_buses' %>
 <% elsif params[:q].present? && @buses.length==0 %>
 <%= render 'no_bus' %>
