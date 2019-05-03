@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @ordered_buses = @order.buses.joins(:lines)
+    @ordered_buses = @order.buses
     session[:order_id] = @order.id
     @bus = Bus.new
     @descriptions = Description.all
