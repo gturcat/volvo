@@ -133,6 +133,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    railroady (1.5.3)
     rails (5.2.0)
       actioncable (= 5.2.0)
       actionmailer (= 5.2.0)
@@ -244,6 +245,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  railroady
   rails (= 5.2.0)
   ransack
   redis

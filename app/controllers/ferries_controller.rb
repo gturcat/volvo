@@ -13,7 +13,7 @@ class FerriesController < ApplicationController
     @bus = Bus.find(params[:bus_id])
     @ferry.bus = @bus
     if @ferry.save
-      redirect_to bus_path(@ferry.bus[:id])
+      redirect_to delivery_path(@ferry.bus.deliveries.last)
     else
       render :new
     end
