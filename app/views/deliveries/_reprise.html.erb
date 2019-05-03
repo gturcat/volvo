@@ -13,8 +13,8 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @traded_bus.immatriculation %></td>
-            <td><%= @trade.prix_achat %></td>
+            <td><%= @traded_bus.immatriculation if @traded_bus.present? %></td>
+            <td><%= @trade.prix_achat if @trade.present? %></td>
           </tr>
         </tbody>
       </table>

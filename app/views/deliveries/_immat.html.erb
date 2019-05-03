@@ -1,0 +1,128 @@
+<div class="tab">
+
+  <div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents-->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date de demande d'immatriculation encoyée à CCH</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+             <%= simple_form_for @delivery do |f| %>
+            <td><%= f.input :date_demande_immat_envoye, as: :date, html5: true, label: false %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Document</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !@bus.immatriculation.present? %>
+        <tr>
+          <td>Attestation Amenagement</td>
+          <td>
+            <%if @delivery.documents.where(:name => "Attestaion Amenagement").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "Attestaion Amenagement").take, :name => 'Attestaion Amenagement'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'Attestaion Amenagement'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'Attestaion Amenagement'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+
+
+          <td>C.O.C</td>
+          <td>
+            <%if @delivery.documents.where(:name => "C.O.C").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "C.O.C").take, :name => 'C.O.C'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'C.O.C'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'C.O.C'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+
+          <td>C.P.I</td>
+          <td>
+            <%if @delivery.documents.where(:name => "C.P.I").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "C.P.I").take, :name => 'C.P.I'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'C.P.I'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'C.P.I'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+        <% end %>
+
+        <% if @bus.immatriculation.present? %>
+          <td>CERFA Chamgement de titulaire</td>
+          <td>
+            <%if @delivery.documents.where(:name => "CERFA Chamgement de titulaire").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "CERFA Chamgement de titulaire").take, :name => 'CERFA Chamgement de titulaire'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'CERFA Chamgement de titulaire'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'CERFA Chamgement de titulaire'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+
+          <td>CERFA Cesssion</td>
+          <td>
+            <%if @delivery.documents.where(:name => "CERFA Cesssion").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(:name => "CERFA Cesssion").take, :name => 'CERFA Cesssion'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => 'CERFA Cesssion'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => 'CERFA Cesssion'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents-->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date de transmission des documents à la DF, au partenaire Volvo etc...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+             <%= simple_form_for @delivery do |f| %>
+            <td><%= f.input :transmision_PV_DF_RCR, as: :date, html5: true, label: false %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

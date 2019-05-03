@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_134848) do
+ActiveRecord::Schema.define(version: 2019_05_03_105848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2019_04_30_134848) do
     t.string "entitee"
     t.string "pourcentage_buy_back"
     t.integer "duree_buy_back"
+    t.boolean "demande_immat_envoye_cch"
+    t.date "date_demande_immat_envoye"
+    t.string "attestation_amenagement"
+    t.string "coc"
+    t.string "cpi"
+    t.date "transmision_PV_DF_RCR"
+    t.date "demande_changement_titulaire_cession"
+    t.string "cerfa_changement_titulaire"
+    t.string "cerfa_cession"
+    t.string "mail_original_ci"
     t.index ["bus_id"], name: "index_deliveries_on_bus_id"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end

@@ -76,7 +76,8 @@ class LinesController < ApplicationController
       :telematique_demandee,
       :date_livraison_bdc,
       :reprise,
-      :order_id
+      :order_id,
+      :financement_type
     )
   end
 end
