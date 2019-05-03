@@ -47,15 +47,47 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
-    @order.buses.each do |bus|
-      bus.status1 = "disponible"
-      bus.save
-    end
-    @order.destroy
+    # efface toutes les reprises
+    erase_all_trade
+    # le bus commandé est rendu disponible pour une autre commande
+    set_bus_to_available
+    erase_all_line
+    @order.save #ligne pas inutile mais je ne comprends pas pourquoi
+    @order.delete
     redirect_to orders_path
   end
 
   private
+
+  def erase_all_trade
+    @order.trade.each do |trade|
+      #le bus repris est rendu au client
+      bus = trade.bus
+      bus.status1 = "client"
+      bus.status2 = ""
+      bus.save
+      trade.delete
+    end
+  end
+
+  def set_bus_to_available
+    @order.buses.each do |bus|
+      bus.status1 = "disponible"
+      bus.save
+    end
+  end
+
+  def erase_all_line
+    @order.lines.each do |line|
+      # efface le bus si commandé pour l'occasion
+      if line.bus.status2 == "A commander"
+        bus_to_delete = line.bus
+        line.delete
+        bus_to_delete.deliveries.delete
+        bus_to_delete.delete
+      end
+    end
+  end
 
   def cherche_stock
     @buses = @q.result.where(status1: "disponible").includes(:description)

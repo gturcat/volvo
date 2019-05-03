@@ -12,11 +12,27 @@ class LinesController < ApplicationController
   def destroy
     @line = Line.find(params[:id])
     @order = @line.order
+
+    # efface toutes les reprises
+    @line.trade.each do |trade|
+      #le bus repris est rendu au client
+      bus = trade.bus
+      bus.status1 = "client"
+      bus.status2 = ""
+      bus.save
+      trade.delete
+    end
+
+    # le bus commandé est rendu disponible pour une autre commande
     @bus = @line.bus
     @bus.status1 = "disponible"
-    delete_trade if @bus.lines.last.trade.last.present?
     @bus.save
     @line.delete
+    # efface le bus si commandé pour l'occasion
+    if @bus.status2 == "A commander"
+      @bus.deliveries.last.delete
+      @bus.delete
+    end
     redirect_to order_path(@order)
   end
 
@@ -43,7 +59,6 @@ class LinesController < ApplicationController
   private
 
   def delete_trade
-    trade = @bus.lines.last.trade.last
     bus = trade.bus
     bus.delete
     trade.delete
