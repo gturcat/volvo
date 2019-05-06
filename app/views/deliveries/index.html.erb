@@ -9,8 +9,6 @@
         <thead>
           <tr>
             <th>Mois de livraison</th>
-            <th>Date de Livrison</th>
-            <th>Heure de Livraison</th>
             <th>Client</th>
             <th>Chassis</th>
             <th>RCR</th>
@@ -20,9 +18,7 @@
         <tbody>
           <% @deliveries.each  do | delivery | %>
           <tr>
-            <td><%= delivery.date_livraison.strftime('%B-%y') if delivery.date_livraison.present?%></td>
-            <td><%= delivery.date_livraison.strftime('%d-%m') if delivery.date_livraison.present?%></td>
-            <td><%= delivery.heure_livraison.strftime('%H:%M')if delivery.heure_livraison.present?%></td>
+            <td><%= delivery.bus.lines.last.date_livraison_bdc.strftime('%B-%y') if delivery.bus.lines.last.date_livraison_bdc.present? %></td>
             <td><%= delivery.bus.orders.last[:client] if delivery.bus.orders.last.present? %></td>
             <td><%= delivery.bus.numero_chassis%></td>
             <td><%= delivery.bus.orders.last.sales_advisor.name if delivery.bus.orders.last.present?%></td>

@@ -62,6 +62,9 @@ class OrdersController < ApplicationController
   def erase_all_trade
     @order.trade.each do |trade|
       #le bus repris est rendu au client
+      trade.documents.each do |document|
+        document.delete
+      end
       bus = trade.bus
       bus.status1 = "client"
       bus.status2 = ""
@@ -83,7 +86,9 @@ class OrdersController < ApplicationController
       if line.bus.status2 == "A commander"
         bus_to_delete = line.bus
         line.delete
-        bus_to_delete.deliveries.delete
+        bus_to_delete.deliveries.each do |delivery|
+          delivery.delete
+        end
         bus_to_delete.delete
       end
     end

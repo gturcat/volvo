@@ -25,7 +25,8 @@
     </div>
   </div>
 
-<h6>Rechercher un bus par sa description</h6>
+<h6>Rechercher un bus en stock par sa description</h6>
+<p>Il est possible de commander plusieurs Bus sur la même commande en effectuant une nouvelle recherche</p>
 <%= search_form_for @q, url: order_path(@order), html: { method: :get } do |f| %>
   <%= f.search_field :description_name_cont %>
   <%= f.submit  %>
@@ -36,8 +37,8 @@
 <% elsif params[:q].present? && @buses.length==0 %>
 <%= render 'no_bus' %>
 <% end %>
-
-<%= render 'busencommande' %>
+<br>
+<%= render 'busencommande'%>
 
 <!-- affichage du bus concerné par la reprise -->
 <%= render 'busenreprise' if @order.trade.present? %>
