@@ -11,6 +11,7 @@ class DeliveriesController < ApplicationController
     session[:delivery_id] = @delivery.id
     @trade = @bus.orders.last.trade.last
     @traded_bus = @bus.orders.last.trade.last.bus if @trade.present?
+    @documents_facturation = ["Facture"]
   end
 
   def edit

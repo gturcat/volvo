@@ -10,6 +10,7 @@
           <th>Kilometrage</th>
           <th>Date du relevé du Kilometrage</th>
           <th>Numero Immat.</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -19,12 +20,13 @@
           <td><%= f.text_field :kilometrage, label: false %></td>
           <td><%= f.date_field :date_kilometrage, label: false %></td>
           <td><%= f.text_field :immatriculation, label: false %></td>
+          <td><button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button></td>
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">
-    <i class="far fa-save"></i>
-    </button>
+
     <% end %>
   </div>
 </div>

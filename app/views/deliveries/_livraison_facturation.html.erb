@@ -11,6 +11,7 @@
           <th>Entitée</th>
           <th>Durée Buy Back</th>
           <th>% Buy Back</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -21,12 +22,44 @@
           <td><%= f.input :entitee, label: false %></td>
           <td><%= f.input :duree_buy_back, label: false %></td>
           <td><%= f.input :pourcentage_buy_back, label: false %></td>
+          <td><button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i></td>
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">
-    <i class="far fa-save"></i>
+
     </button>
     <% end %>
+  </div>
+</div>
+
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Document de facturation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@documents_facturation.each do |document|  %>
+        <tr>
+          <td><%= document %></td>
+          <td>
+            <%if @delivery.documents.where(name: "#{document}").take.present?  %>
+            <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => "#{document}"), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <% else %>
+            <%=link_to new_document_path(:name => "#{document}"), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <% end %>
+          </td>
+        </tr>
+         <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

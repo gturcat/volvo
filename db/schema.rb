@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_105848) do
+ActiveRecord::Schema.define(version: 2019_05_06_131739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,8 +93,10 @@ ActiveRecord::Schema.define(version: 2019_05_03_105848) do
     t.datetime "updated_at", null: false
     t.bigint "factory_order_id"
     t.bigint "delivery_id"
+    t.bigint "trade_id"
     t.index ["delivery_id"], name: "index_documents_on_delivery_id"
     t.index ["factory_order_id"], name: "index_documents_on_factory_order_id"
+    t.index ["trade_id"], name: "index_documents_on_trade_id"
   end
 
   create_table "factory_orders", force: :cascade do |t|
@@ -190,14 +192,6 @@ ActiveRecord::Schema.define(version: 2019_05_03_105848) do
     t.date "date_rentree_bdc"
     t.date "date_rentree"
     t.time "heure_rentree"
-    t.string "fiche_RCR"
-    t.string "demande_cession"
-    t.string "cerfa"
-    t.string "ci_barre"
-    t.string "controle_technique"
-    t.string "certif_non_gage"
-    t.string "coc"
-    t.string "attestation_amenagement"
     t.string "lieu_conservation_papier"
     t.string "travaux_previsionnels"
     t.string "note"
@@ -205,6 +199,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_105848) do
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
     t.bigint "line_id"
+    t.boolean "status"
     t.index ["bus_id"], name: "index_trades_on_bus_id"
     t.index ["line_id"], name: "index_trades_on_line_id"
   end
@@ -248,6 +243,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_105848) do
   add_foreign_key "deliveries", "buses"
   add_foreign_key "documents", "deliveries"
   add_foreign_key "documents", "factory_orders"
+  add_foreign_key "documents", "trades"
   add_foreign_key "factory_orders", "buses"
   add_foreign_key "ferries", "buses"
   add_foreign_key "lines", "buses"

@@ -10,6 +10,7 @@
           <th>Designation Configuration</th>
           <th>BO N°</th>
           <th>N°Chassis</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -19,12 +20,13 @@
           <td><%= f.input :designation_configuration, label: false %></td>
           <td><%= f.input :bo_number, label: false %></td>
           <td><%= f.input :numero_chassis, label: false %></td>
+          <td><button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button></td>
         </tr>
         </tbody>
       </table>
-      <button type="submit" class="btn btn-primary">
-            <i class="far fa-save"></i>
-            </button>
+
             <% end %>
     </div>
   </div>

@@ -14,6 +14,7 @@ class TradesController < ApplicationController
 
   def create
     @trade = Trade.new(trade_params)
+    @trade.status = true
     @bus = @trade.bus
     @bus.status2 = "VO à rentrer"
     @bus.status1 = "Client"
@@ -26,15 +27,32 @@ class TradesController < ApplicationController
   end
 
   def update
+    @trade = Trade.find(params[:id])
+    @trade = Trade.update(trade_params)
+    redirect_to trade_path(@trade)
   end
 
   def destroy
   end
 
   def show
+    session[:bus_id] = nil
+    @trade = Trade.find(params[:id])
+    @client_name = @trade.line.order.client
+    session[:trade_id] = @trade.id
+    @bus = @trade.bus
+    @documents_for_trade = ["fiche R.C.R",
+                            "CERFA Cession",
+                            "DA ",
+                            "C.I original barrée",
+                            "Controle Technique",
+                            "Cerfificat de non gage",
+                            "C.O.C",
+                            "Attestation Amenagemenet"]
   end
 
   def index
+    @trades = Trade.all.where(status: true)
   end
 
   private
@@ -49,7 +67,10 @@ class TradesController < ApplicationController
       :prix_achat,
       :order_id,
       :line_id,
-      :bus_id
+      :bus_id,
+      :date_rentree,
+      :heure_rentree,
+      :status
     )
   end
 

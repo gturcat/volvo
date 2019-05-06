@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:index, :show, :edit, :update]
   resources :lines, only: [:edit, :update, :destroy]
   resources :works, only: [:new, :create, :edit, :update, :show]
-  resources :trades, only: [:index]
+  resources :trades, only: [:index, :show, :edit, :update]
 end
