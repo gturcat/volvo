@@ -8,6 +8,7 @@
         <tr>
           <th>Mention Garantie du Bdc</th>
           <th>Enregistrée dans PEP Tool</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -15,12 +16,13 @@
         <tr>
           <td><%= f.input :mention_garantie, label: false %></td>
           <td><%= f.input :garantie_pep_tool, as: :boolean, label: false %></td>
+          <td><button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button></td>
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">
-    <i class="far fa-save"></i>
-    </button>
+
     <% end %>
   </div>
 </div>

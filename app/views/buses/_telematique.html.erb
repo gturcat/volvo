@@ -8,6 +8,7 @@
         <tr>
           <th>Mention telematique du Bdc</th>
           <th>Email envoyé</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -15,12 +16,13 @@
         <tr>
           <td><%= f.input :mention_telematique, label: false %></td>
           <td><%= f.input :telematique_demandee, label: false %></td>
+          <td> <button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button></td>
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">
-    <i class="far fa-save"></i>
-    </button>
+
     <% end %>
   </div>
 </div>

@@ -9,15 +9,25 @@
         <thead>
           <tr>
             <th>Date de demande d'immatriculation encoyée à CCH</th>
+            <th>Date de transmission des documents à la DF, au partenaire Volvo etc...</th>
+            <th>action</th>
           </tr>
         </thead>
         <tbody>
+          <%= simple_form_for @delivery do |f| %>
           <tr>
-             <%= simple_form_for @delivery do |f| %>
-            <td><%= f.input :date_demande_immat_envoye, as: :date, html5: true, label: false %></td>
-          </tr>
-          <% end %>
+            <td><%= f.input :date_demande_immat_envoye, as: :date, html5: true, label: false %>
+            </td>
+            <td>
+              <%= f.input :transmision_PV_DF_RCR, as: :date, html5: true, label: false %>
+              </td>
+          <td> <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+          </button>
+          </td>
+        </tr>
         </tbody>
+        <% end %>
       </table>
     </div>
   </div>
@@ -29,7 +39,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Document</th>
+          <th>Documents Immatriculation</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -104,25 +114,3 @@
     </table>
   </div>
 </div>
-
-  <div class="tab">
-  <div class="panel panel-default">
-    <!-- Default panel contents-->
-    <div class="panel-heading"></div>
-    <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Date de transmission des documents à la DF, au partenaire Volvo etc...</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-             <%= simple_form_for @delivery do |f| %>
-            <td><%= f.input :transmision_PV_DF_RCR, as: :date, html5: true, label: false %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>

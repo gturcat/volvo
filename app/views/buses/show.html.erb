@@ -14,6 +14,9 @@
       <% if @bus.status1 == "indisponible" %>
       <%= link_to "Information Livraison", delivery_path(@bus.deliveries.last)%>
       <% end %>
+      <% if @bus.status2 == "VO à rentrer" %>
+      <%= link_to "VO à rentrer", trade_path(@bus.trades.last)%>
+      <% end %>
     </ul>
   </div>
 
