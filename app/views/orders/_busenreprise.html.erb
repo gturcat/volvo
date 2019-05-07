@@ -8,26 +8,28 @@
         <tr>
           <th>Description</th>
           <th>Immatriculation</th>
-          <th>Status 2</th>
+          <th>Statut 2</th>
           <th>Prix de rachat</th>
           <th>Bus lié à la reprise</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% @order.lines.each  do | line| %>
+        <% @order.lines.each  do |line| %>
+          <% if line.trade.present? %>
         <tr>
-          <td><%= line.trade.last.bus.description[:name] %></td>
-          <td><%= line.trade.last.bus.immatriculation %></td>
-          <td><%= line.trade.last.bus.status2 %></td>
-          <td><%= line.trade.last.prix_achat %></td>
+          <td><%= line.trade.bus.description[:name]  %></td>
+          <td><%= line.trade.bus.immatriculation %></td>
+          <td><%= line.trade.bus.statut2 %></td>
+          <td><%= line.trade.prix_achat %></td>
           <td><%= line.bus.description.name %></td>
           <td>
-            <%= link_to bus_path(line.trade.last.bus), class: "btn btn-warning" do %>
+            <%= link_to bus_path(line.trade.bus), class: "btn btn-warning" do %>
             <i class="far fa-edit"></i>
             <% end %>
           </td>
         </tr>
+        <% end %>
         <% end %>
       </tbody>
     </table>

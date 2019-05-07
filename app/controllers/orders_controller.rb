@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.statut = true
     if @order.save
       redirect_to order_path(@order[:id])
     else
@@ -30,7 +31,7 @@ class OrdersController < ApplicationController
     @buses =[]
     @q = Bus.ransack(params[:q])
     if params[:q].present?
-      cherche_stock if params[:q][:description_name_cont].present?
+      search_stock if params[:q][:description_name_cont].present?
     end
     @orders = Order.all
   end
@@ -52,7 +53,7 @@ class OrdersController < ApplicationController
     # le bus commandé est rendu disponible pour une autre commande
     set_bus_to_available
     erase_all_line
-    @order.save #ligne pas inutile mais je ne comprends pas pourquoi
+    @order.save
     @order.delete
     redirect_to orders_path
   end
@@ -60,14 +61,14 @@ class OrdersController < ApplicationController
   private
 
   def erase_all_trade
-    @order.trade.each do |trade|
+    @order.trades.each do |trade|
       #le bus repris est rendu au client
       trade.documents.each do |document|
         document.delete
       end
       bus = trade.bus
-      bus.status1 = "client"
-      bus.status2 = ""
+      bus.statut1 = "client"
+      bus.statut2 = ""
       bus.save
       trade.delete
     end
@@ -75,7 +76,7 @@ class OrdersController < ApplicationController
 
   def set_bus_to_available
     @order.buses.each do |bus|
-      bus.status1 = "disponible"
+      bus.statut1 = "disponible"
       bus.save
     end
   end
@@ -83,19 +84,18 @@ class OrdersController < ApplicationController
   def erase_all_line
     @order.lines.each do |line|
       # efface le bus si commandé pour l'occasion
-      if line.bus.status2 == "A commander"
+      if line.bus.statut2 == "A commander"
         bus_to_delete = line.bus
+        delivery_to_delete = line.delivery
         line.delete
-        bus_to_delete.deliveries.each do |delivery|
-          delivery.delete
         end
-        bus_to_delete.delete
-      end
+        bus_to_delete.delete if bus_to_delete.present?
+        delivery_to_delete.delete if delivery_to_delete.present?
     end
   end
 
-  def cherche_stock
-    @buses = @q.result.where(status1: "disponible").includes(:description)
+  def search_stock
+    @buses = @q.result.where(statut1: "disponible").includes(:description)
   end
 
   def order_params
@@ -110,8 +110,8 @@ class OrdersController < ApplicationController
   def bus_params
     params.require(:bus).permit(
       :description_id,
-      :status1,
-      :status2,
+      :statut1,
+      :statut2,
       lines_attributes: [
         :id,
         :couleur_ext_vehicule,
@@ -138,7 +138,7 @@ class OrdersController < ApplicationController
   #   @bus = Bus.find(params[:format])
   #   @line = @bus.lines.build
   #   @line.order = @order
-  #   @bus.status1 = "indisponible"
+  #   @bus.statut1 = "indisponible"
   #   @bus.save
   #   if @line.save
   #     redirect_to order_path(@order[:id])

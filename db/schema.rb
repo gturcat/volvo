@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_131739) do
+ActiveRecord::Schema.define(version: 2019_05_07_112313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2019_05_06_131739) do
     t.integer "kilometrage"
     t.date "date_kilometrage"
     t.string "immatriculation"
-    t.string "status1"
-    t.string "status2"
+    t.string "statut1"
+    t.string "statut2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "type_id"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_05_06_131739) do
     t.date "cdoc_envoye"
     t.string "enregistrement_cm"
     t.string "enregistrement_vda"
-    t.bigint "bus_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "place_id"
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(version: 2019_05_06_131739) do
     t.string "cerfa_changement_titulaire"
     t.string "cerfa_cession"
     t.string "mail_original_ci"
-    t.index ["bus_id"], name: "index_deliveries_on_bus_id"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
@@ -145,7 +143,9 @@ ActiveRecord::Schema.define(version: 2019_05_06_131739) do
     t.boolean "garantie_pep_tool"
     t.string "telematique_demandee"
     t.boolean "reprise"
+    t.bigint "delivery_id"
     t.index ["bus_id"], name: "index_lines_on_bus_id"
+    t.index ["delivery_id"], name: "index_lines_on_delivery_id"
     t.index ["order_book_id"], name: "index_lines_on_order_book_id"
     t.index ["order_id"], name: "index_lines_on_order_id"
   end
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_131739) do
     t.bigint "sales_advisor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "statut"
     t.index ["sales_advisor_id"], name: "index_orders_on_sales_advisor_id"
   end
 
@@ -240,13 +241,13 @@ ActiveRecord::Schema.define(version: 2019_05_06_131739) do
 
   add_foreign_key "buses", "descriptions"
   add_foreign_key "buses", "types"
-  add_foreign_key "deliveries", "buses"
   add_foreign_key "documents", "deliveries"
   add_foreign_key "documents", "factory_orders"
   add_foreign_key "documents", "trades"
   add_foreign_key "factory_orders", "buses"
   add_foreign_key "ferries", "buses"
   add_foreign_key "lines", "buses"
+  add_foreign_key "lines", "deliveries"
   add_foreign_key "lines", "order_books"
   add_foreign_key "tasks", "works"
   add_foreign_key "trades", "buses"

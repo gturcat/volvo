@@ -15,18 +15,18 @@
       <li><a href="#section-10">Livraison Effective</a></li>
       <li><a href="#section-11">Cloture Dossier ADV</a></li>
       <li><a href="#section-12">Reprise</a></li>
-      <%= link_to "Information véhicule", bus_path(@delivery.bus.id)%>
+      <%= link_to "Information véhicule", bus_path(@delivery.line.bus)%>
     </ul>
   </div>
 
   <div>
     <div class="add-padding-left" id="section-1">
       <h5>Commande client en cours</h5>
-      <%= render "order" %>
+      <%= render "./buses/order" %>
     </div>
     <div class="add-padding-left" id="section-2">
       <h5>Livraison au client</h5>
-      <%= render "maj_livraison_client" if @bus.deliveries.last.id.present? %>
+      <%= render "maj_livraison_client" %>
     </div>
     <div class="add-padding-left" id="section-3">
       <h5>Documents envoyés</h5>

@@ -17,8 +17,8 @@
       <tbody>
         <%= simple_form_for @bus do |f| %>
         <tr>
-          <td><%= f.input :status1, collection: ["client", "indisponible", "disponible"], label: false %></td>
-          <td><%= f.input :status2, collection: [ 'A commander',
+          <td><%= f.input :statut1, collection: ["client", "indisponible", "disponible"], label: false %></td>
+          <td><%= f.input :statut2, collection: [ 'A commander',
             'Config usine à valider',
             'En commande',
             'Annulé',
