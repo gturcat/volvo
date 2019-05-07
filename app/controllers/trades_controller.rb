@@ -10,14 +10,16 @@ class TradesController < ApplicationController
   end
 
   def edit
+    @trade = Trade.find(params[:id])
+    raise
   end
 
   def create
     @trade = Trade.new(trade_params)
     @trade.status = true
     @bus = @trade.bus
-    @bus.status2 = "VO à rentrer"
-    @bus.status1 = "Client"
+    @bus.statut2 = "VO à rentrer"
+    @bus.statut1 = "Client"
     @bus.save
     if @trade.save
       redirect_to order_path(@trade.line.order)
@@ -37,6 +39,8 @@ class TradesController < ApplicationController
 
   def show
     session[:bus_id] = nil
+    session[:order_id] = nil
+    session[:delivery_id] = nil
     @trade = Trade.find(params[:id])
     @client_name = @trade.line.order.client
     session[:trade_id] = @trade.id
@@ -58,7 +62,7 @@ class TradesController < ApplicationController
   private
 
   def search_used_bus
-    @used_buses = @q.result.where(status1: "client")
+    @used_buses = @q.result.where(statut1: "client")
   end
 
   def trade_params

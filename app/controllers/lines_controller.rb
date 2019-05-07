@@ -12,26 +12,31 @@ class LinesController < ApplicationController
   def destroy
     @line = Line.find(params[:id])
     @order = @line.order
+    # efface la livraison
+    delivery_to_delete = @line.delivery
+    @line.delivery = nil
+    @line.save
 
-    # efface toutes les reprises
-    @line.trade.each do |trade|
+    # efface toutes l'eventuelle reprise
+    trade = @line.trade
       #le bus repris est rendu au client
-      bus = trade.bus
-      bus.status1 = "client"
-      bus.status2 = ""
-      bus.save
+    if trade.present?
+      traded_bus = trade.bus
+      traded_bus.statut1 = "client"
+      traded_bus.statut2 = ""
+      traded_bus.save
       trade.delete
     end
 
     # le bus commandé est rendu disponible pour une autre commande
-    @bus = @line.bus
-    @bus.status1 = "disponible"
-    @bus.save
+    bus = @line.bus
+    bus.statut1 = "disponible"
+    bus.save
     @line.delete
+    delivery_to_delete.delete
     # efface le bus si commandé pour l'occasion
-    if @bus.status2 == "A commander"
-      @bus.deliveries.last.delete
-      @bus.delete
+    if bus.statut2 == "A commander"
+      bus.delete
     end
     redirect_to order_path(@order)
   end
@@ -47,8 +52,12 @@ class LinesController < ApplicationController
     @line.order = Order.find(params[:order_id])
     @order = @line.order
     @bus = @line.bus
-    @bus.status1 = "indisponible"
+    @bus.statut1 = "indisponible"
     @bus.save
+    #creation de la livraison correspondante
+    @delivery = Delivery.new
+    @delivery.save
+    @line.delivery_id = @delivery.id
     if @line.save
       @line.reprise ? (redirect_to new_order_bus_line_trade_path(@order, @bus, @line)) : (redirect_to order_path(@order))
     else
@@ -59,8 +68,8 @@ class LinesController < ApplicationController
   private
 
   def delete_trade
-    bus = trade.bus
-    bus.delete
+    traded_bus = trade.bus
+    traded_bus.delete
     trade.delete
   end
 
@@ -77,7 +86,8 @@ class LinesController < ApplicationController
       :date_livraison_bdc,
       :reprise,
       :order_id,
-      :financement_type
+      :financement_type,
+      :delivery_id
     )
   end
 end

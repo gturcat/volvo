@@ -17,12 +17,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @bus.lines.last[:date_livraison_bdc] if @bus.lines.last.present? %></td>
-            <td><%= @bus.orders.last[:client] if @bus.orders.last.present? %></td>
-            <td><%= @bus.orders.last[:numero_bon_de_commande] if @bus.orders.last.present? %></td>
-            <td><%= @bus.lines.last.order_book[:name] if @bus.lines.last.order_book.present? %></td>
-            <td><%= @bus.orders.last.sales_advisor[:name] if @bus.orders.last.sales_advisor.present? %></td>
-            <td><%= @bus.orders.last.date if @bus.orders.last.date.present? %></td>
+            <td><%= @line.date_livraison_bdc if @order.present? %></td>
+            <td><%= @order.client if @order.present? %></td>
+            <td><%= @order.numero_bon_de_commande if @order.present? %></td>
+            <td><%= @line.order_book.name if @line.order_book.present? %></td>
+            <td><%= @order.sales_advisor.name if @order.sales_advisor.present? %></td>
+            <td><%= @order.date if @order.date.present? %></td>
           </tr>
         </tbody>
       </table>

@@ -1,16 +1,20 @@
 class DeliveriesController < ApplicationController
 
   def index
-    @deliveries = Delivery.joins(:bus).where("buses.status1 = 'indisponible'")
+    @deliveries = Delivery.all
   end
 
   def show
     session[:bus_id] = nil
+    session[:trade_id] = nil
+    session[:order_id] = nil
     @delivery = Delivery.find(params[:id])
-    @bus = @delivery.bus
+    @line = @delivery.line
+    @bus = @line.bus
+    @order = @line.order
     session[:delivery_id] = @delivery.id
-    @trade = @bus.orders.last.trade.last
-    @traded_bus = @bus.orders.last.trade.last.bus if @trade.present?
+    @trade = @order.trades.last
+    @traded_bus = @trade.bus if @trade.present?
     @documents_facturation = ["Facture"]
   end
 
@@ -21,7 +25,7 @@ class DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     @delivery.update(delivery_params)
-    redirect_to bus_path(@delivery.bus)
+    redirect_to delivery_path(@delivery)
   end
 
   private

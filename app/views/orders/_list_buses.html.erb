@@ -7,8 +7,8 @@
               <thead>
                 <tr>
                   <th>Description</th>
-                  <th>Couleur Exterieure</th>
-                  <th>Client</th>
+                  <th></th>
+                  <th></th>
                   <th>Status 1</th>
                   <th>Status 2</th>
                   <th>Action</th>
@@ -18,10 +18,10 @@
                 <% @buses.each  do | bus| %>
                 <tr>
                   <td><%= bus.description[:name] %></td>
-                  <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.last.present? %></td>
-                  <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>
-                  <td><%= bus.status1 %></td>
-                  <td><%= bus.status2 %></td>
+                  <td></td>
+                  <td></td>
+                  <td><%= bus.statut1 %></td>
+                  <td><%= bus.statut2 %></td>
                   <td><%= link_to new_order_bus_line_path(@order, bus), class: "btn btn-warning" do %>
                     <i class="fas fa-cart-plus"></i>
                     <% end %>

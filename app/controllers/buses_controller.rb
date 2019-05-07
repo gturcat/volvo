@@ -4,22 +4,16 @@ class BusesController < ApplicationController
     @descriptions = Description.all
     @types = Type.all
     @orders = Order.all
-    @buses = Bus.where("buses.status1 != 'client' ")
+    @buses = Bus.all
+    #@buses = Bus.where("buses.statut1 != 'Client' ")
   end
 
   def show
     session[:delivery_id] = nil
     session[:order_id] = nil
+    session[:trade_id] = nil
     @bus = Bus.find(params[:id])
     session[:bus_id] = @bus.id
-
-    if @bus.deliveries.last.present?
-      @delivery = @bus.deliveries.last
-    else
-      @bus.deliveries.build
-      @delivery = @bus.deliveries.last
-      @delivery.save
-    end
 
     if @bus.factory_orders.last.present?
       @factory_order = @bus.factory_orders.last
@@ -27,8 +21,10 @@ class BusesController < ApplicationController
       @bus.factory_orders.build
     end
 
-      @bus.ferries.build
-      @line = @bus.lines.last
+    @bus.ferries.build
+    @order = @bus.orders.where("orders.statut = true").take
+    @line = @order.buses.where(id = @bus_id).take.lines.last if @order.present?
+    @delivery = Delivery.find(@line.delivery_id) if @order.present?
   end
 
   def new
@@ -48,14 +44,14 @@ class BusesController < ApplicationController
     @ordered_bus = Bus.find(params[:bus_id]) if params[:bus_id].present?
     @line = Line.find(params[:line_id]) if params[:line_id].present?
     if @order.present? && !@ordered_bus.present?
-      @bus.status2 = "A commander"  # status2 force à "a commander" car bus indisponible en stock
+      @bus.statut2 = "A commander"  # statut2 force à "a commander" car bus indisponible en stock
       if @bus.save
         redirect_to new_order_bus_line_path(@order, @bus.id)
       else
         render :new
       end
     elsif @order.present? && @ordered_bus.present?
-      @bus.status2 = "VO à rentrer" # status2 force à "En stock VO " car le bus crée est un VO repris
+      @bus.statut2 = "VO à rentrer" # statut2 force à "En stock VO " car le bus crée est un VO repris
       if @bus.save
         redirect_to new_order_bus_line_trade_path(@order, @ordered_bus, @line, @bus.id)
       else
@@ -89,8 +85,8 @@ end
 
   def bus_params
     params.require(:bus).permit(
-      :status1,
-      :status2,
+      :statut1,
+      :statut2,
       :description_id,
       :type_id,
       :ch_cb,
@@ -126,13 +122,6 @@ end
           :site,
           :numero_bdc,
           :note
-          ],
-        deliveries_attributes: [
-          :id,
-          :lieu_prepa,
-          :place_id,
-          :date_livraison,
-          :heure_livraison,
         ]
      )
   end
