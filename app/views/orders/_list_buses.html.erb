@@ -7,9 +7,9 @@
               <thead>
                 <tr>
                   <th>Description</th>
-                  <th></th>
-                  <th></th>
-                  <th>Status 1</th>
+                  <th>CB / CH</th>
+                  <th>7 / 9 </th>
+                  <th>n° de chassis</th>
                   <th>Status 2</th>
                   <th>Action</th>
                 </tr>
@@ -17,10 +17,10 @@
               <tbody>
                 <% @buses.each  do | bus| %>
                 <tr>
-                  <td><%= bus.description[:name] %></td>
-                  <td></td>
-                  <td></td>
-                  <td><%= bus.statut1 %></td>
+                  <td><%= bus.description.name %></td>
+                  <td><%= bus.ch_cb  %></td>
+                  <td><%= bus.sept_neuf %></td>
+                  <td><%= bus.numero_chassis %></td>
                   <td><%= bus.statut2 %></td>
                   <td><%= link_to new_order_bus_line_path(@order, bus), class: "btn btn-warning" do %>
                     <i class="fas fa-cart-plus"></i>

@@ -6,23 +6,24 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Description</th>
-          <th>Status 1</th>
-          <th>Status 2</th>
-          <th>Actions</th>
+          <th>Denomination Commerciale</th>
+          <th>Type</th>
+          <th>CB / CH</th>
+          <th>7 / 9 </th>
+          <th>N° de Chassis</th>
+          <th>Statut 1</th>
+          <th>Statut 2</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= @traded_bus.description[:name] %></td>
-          <td><%= @traded_bus.statut1 %></td>
-          <td><%= @traded_bus.statut2 %></td>
-          <td>
-            <%= link_to bus_path(@line.bus), class: "btn btn-warning" do %>
-            <i class="far fa-edit"></i>
-            <% end %>
-
-          </td>
+            <td><%= @traded_bus.description.name %></td>
+            <td><%= @traded_bus.type.name %></td>
+            <td><%= @traded_bus.ch_cb %></td>
+            <td> <%= @traded_bus.sept_neuf %></td>
+            <td> <%= @traded_bus.numero_chassis %></td>
+            <td><%= @traded_bus.statut1 %></td>
+            <td><%= @traded_bus.statut2 %></td>
         </tr>
       </tbody>
     </table>
