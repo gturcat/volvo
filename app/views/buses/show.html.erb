@@ -14,8 +14,8 @@
       <% if @bus.statut1 == "indisponible" %>
       <%= link_to "Information Livraison", delivery_path(@delivery)%>
       <% end %>
-      <% if @bus.statut2 == "VO à rentrer" %>
-      <%= link_to "VO à rentrer", trade_path(@delivery)%>
+      <% if @active_trade %>
+      <%= link_to "VO à rentrer", trade_path(@active_trade)%>
       <% end %>
     </ul>
   </div>

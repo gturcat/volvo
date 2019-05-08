@@ -25,6 +25,7 @@ class BusesController < ApplicationController
     @order = @bus.orders.where("orders.statut = true").take
     @line = @order.buses.where(id = @bus_id).take.lines.last if @order.present?
     @delivery = Delivery.find(@line.delivery_id) if @order.present?
+    @active_trade = @bus.trades.where("status = true").take
   end
 
   def new
@@ -51,7 +52,8 @@ class BusesController < ApplicationController
         render :new
       end
     elsif @order.present? && @ordered_bus.present?
-      @bus.statut2 = "VO à rentrer" # statut2 force à "En stock VO " car le bus crée est un VO repris
+      @bus.statut1 = "Client" # statut2 forcé à "client " car le bus crée est un VO à reprendre et appartient toujours à son client
+
       if @bus.save
         redirect_to new_order_bus_line_trade_path(@order, @ordered_bus, @line, @bus.id)
       else
