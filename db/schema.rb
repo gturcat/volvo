@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_112313) do
+ActiveRecord::Schema.define(version: 2019_05_09_074215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 2019_05_07_112313) do
     t.string "ch_cb"
     t.string "sept_neuf"
     t.bigint "description_id"
+    t.string "option_contremarque"
+    t.string "option_commercial"
+    t.date "date_option"
+    t.string "prix_mini"
+    t.string "version"
+    t.string "implantation"
     t.index ["description_id"], name: "index_buses_on_description_id"
     t.index ["type_id"], name: "index_buses_on_type_id"
   end

@@ -16,10 +16,10 @@
       <tbody>
         <%= simple_form_for @bus do |f| %>
         <tr>
-          <td><%= f.date_field :date_debut_garantie, label: false %></td>
-          <td><%= f.text_field :kilometrage, label: false %></td>
-          <td><%= f.date_field :date_kilometrage, label: false %></td>
-          <td><%= f.text_field :immatriculation, label: false %></td>
+          <td><%= f.input :date_debut_garantie, as: :date, html5: true, label: false %></td>
+          <td><%= f.input :kilometrage, label: false %></td>
+          <td><%= f.input :date_kilometrage, as: :date, html5: true, label: false %></td>
+          <td><%= f.input :immatriculation, label: false %></td>
           <td><button type="submit" class="btn btn-primary">
     <i class="far fa-save"></i>
     </button></td>

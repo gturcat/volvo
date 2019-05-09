@@ -101,7 +101,13 @@ end
       :kilometrage,
       :date_kilometrage,
       :immatriculation,
-        factory_orders_attributes: [
+      :option_contremarque,
+      :option_commercial,
+      :date_option,
+      :prix_mini,
+      :version,
+      :implantation,
+      factory_orders_attributes: [
         :id,
         :envoiOF,
         :date_limit_modif_config,
