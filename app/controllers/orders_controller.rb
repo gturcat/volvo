@@ -83,14 +83,12 @@ class OrdersController < ApplicationController
 
   def erase_all_line
     @order.lines.each do |line|
-      # efface le bus si commandé pour l'occasion
-      if line.bus.statut2 == "A commander"
-        bus_to_delete = line.bus
-        delivery_to_delete = line.delivery
-        line.delete
-        end
-        bus_to_delete.delete if bus_to_delete.present?
-        delivery_to_delete.delete if delivery_to_delete.present?
+      delivery = line.delivery
+      # efface le bus si commandé uniquement pour cette commande
+      bus_to_delete = line.bus if line.bus.statut2 == "A commander"
+      line.delete
+      delivery.delete
+      bus_to_delete.delete if bus_to_delete.present?
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_112313) do
+ActiveRecord::Schema.define(version: 2019_05_09_200150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 2019_05_07_112313) do
     t.string "ch_cb"
     t.string "sept_neuf"
     t.bigint "description_id"
+    t.string "option_contremarque"
+    t.string "option_commercial"
+    t.date "date_option"
+    t.string "prix_mini"
+    t.string "version"
+    t.string "implantation"
     t.index ["description_id"], name: "index_buses_on_description_id"
     t.index ["type_id"], name: "index_buses_on_type_id"
   end
@@ -40,22 +46,9 @@ ActiveRecord::Schema.define(version: 2019_05_07_112313) do
     t.string "lieu_prepa"
     t.date "date_livraison"
     t.time "heure_livraison"
-    t.string "bon_de_commande"
-    t.string "plan_implantation"
-    t.string "info_peinture"
-    t.string "info_pneu"
-    t.string "plan_vocp_exl"
-    t.string "fiche_rcr"
     t.string "email_entree_bdc"
     t.string "email_entree_bdc_date"
-    t.string "photos"
-    t.string "bl_recu"
-    t.string "attestation_ead"
-    t.string "attestation_limiteur_vitesse"
-    t.string "dcok_recu"
     t.date "cdoc_envoye"
-    t.string "enregistrement_cm"
-    t.string "enregistrement_vda"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "place_id"
@@ -75,6 +68,8 @@ ActiveRecord::Schema.define(version: 2019_05_07_112313) do
     t.string "cerfa_changement_titulaire"
     t.string "cerfa_cession"
     t.string "mail_original_ci"
+    t.boolean "enregistrement_cm"
+    t.boolean "enregistrement_vda"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 

@@ -1,36 +1,36 @@
 <div class="tab">
-
   <div class="tab">
-  <div class="panel panel-default">
-    <!-- Default panel contents-->
-    <div class="panel-heading"></div>
-    <!-- Table -->
+    <div class="panel panel-default">
+      <!-- Default panel contents-->
+      <div class="panel-heading"></div>
+      <!-- Table -->
       <table class="table">
         <thead>
           <tr>
-            <th>Date de demande d'immatriculation encoyée à CCH</th>
-            <th>Date de transmission des documents à la DF, au partenaire Volvo etc...</th>
+            <th>Enregistrement CM</th>
+            <th>Enregsitrement VDA+</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <%= simple_form_for @delivery do |f| %>
           <tr>
-            <td><%= f.input :date_demande_immat_envoye, as: :date, html5: true, label: false %>
+            <td><%= f.input :enregistrement_cm, as: :boolean, label: false %>
             </td>
             <td>
-              <%= f.input :transmision_PV_DF_RCR, as: :date, html5: true, label: false %>
-              </td>
-          <td> <button type="submit" class="btn btn-primary">
-            <i class="far fa-save"></i>
-          </button>
-          </td>
-        </tr>
+              <%= f.input :enregistrement_vda, as: :boolean, label: false %>
+            </td>
+            <td> <button type="submit" class="btn btn-primary">
+              <i class="far fa-save"></i>
+              </button>
+            </td>
+          </tr>
         </tbody>
         <% end %>
       </table>
     </div>
   </div>
+</div>
 
   <div class="panel panel-default">
     <!-- Default panel contents -->
@@ -39,12 +39,12 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Documents Immatriculation <%= @bus.immatriculation %> </th>
+          <th>Documents Envoyés</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <%@documents_immatriculation.each do |document|  %>
+        <%@documents_livraison_effective.each do |document|  %>
         <tr>
           <td><%= document %></td>
           <td>
@@ -56,8 +56,7 @@
             <% end %>
           </td>
         </tr>
-         <% end %>
+        <% end %>
       </tbody>
     </table>
   </div>
-</div>

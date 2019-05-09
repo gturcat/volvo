@@ -1,0 +1,36 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Option Contremarque</th>
+          <th>Option Commercial</th>
+          <th>Date Option</th>
+          <th>Prix mini(renta 12%, sauf 8600 6%)</th>
+          <th>Version</th>
+          <th>Implantation</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= simple_form_for @bus do |f| %>
+        <tr>
+          <td><%= f.input :option_contremarque, label: false %></td>
+          <td><%= f.input :option_commercial, label: false %></td>
+          <td><%= f.input :date_option, as: :date, html5: true, label: false %></td>
+          <td><%= f.input :prix_mini, label: false %></td>
+          <td><%= f.input :version, label: false %></td>
+          <td><%= f.input :implantation, label: false %></td>
+          <td><button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+    </button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <% end %>
+  </div>
+</div>
