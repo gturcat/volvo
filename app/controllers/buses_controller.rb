@@ -23,7 +23,7 @@ class BusesController < ApplicationController
 
     @bus.ferries.build
     @order = @bus.orders.where("orders.statut = true").take
-    @line = @order.buses.where(id = @bus_id).take.lines.last if @order.present?
+    @line = @order.lines.where(bus_id: @bus.id).take if @order.present?
     @delivery = Delivery.find(@line.delivery_id) if @order.present?
     @active_trade = @bus.trades.where("status = true").take
   end

@@ -16,6 +16,17 @@ class DeliveriesController < ApplicationController
     @trade = @order.trades.last
     @traded_bus = @trade.bus if @trade.present?
     @documents_facturation = ["Facture"]
+    if !@bus.immatriculation.present?
+      @documents_immatriculation = ["Attestation Amenagement",
+                                    "C.O.C",
+                                    "C.P.I"
+                                    ]
+    elsif @bus.immatriculation.present?
+      @documents_immatriculation = ["CERFA Chamgement de titulaire",
+                                    "CERFA Cesssion",
+                                    "C.P.I"
+                                    ]
+    end
   end
 
   def edit
@@ -41,7 +52,9 @@ class DeliveriesController < ApplicationController
       :montant,
       :entitee,
       :duree_buy_back,
-      :pourcentage_buy_back
+      :pourcentage_buy_back,
+      :date_demande_immat_envoye,
+      :transmision_PV_DF_RCR
     )
   end
 end
