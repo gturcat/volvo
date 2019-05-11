@@ -5,7 +5,7 @@ class BusesController < ApplicationController
     @types = Type.all
     @orders = Order.all
     @buses = Bus.all
-    #@buses = Bus.where("buses.statut1 != 'Client' ")
+    #@buses = Bus.where("buses.statut1 != 'client' ")
   end
 
   def show
@@ -52,7 +52,7 @@ class BusesController < ApplicationController
         render :new
       end
     elsif @order.present? && @ordered_bus.present?
-      @bus.statut1 = "Client" # statut2 forcé à "client " car le bus crée est un VO à reprendre et appartient toujours à son client
+      @bus.statut1 = "client" # statut2 forcé à "client " car le bus crée est un VO à reprendre et appartient toujours à son client
 
       if @bus.save
         redirect_to new_order_bus_line_trade_path(@order, @ordered_bus, @line, @bus.id)

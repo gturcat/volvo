@@ -1,5 +1,13 @@
 <div class  ="container">
   <h2>Livraisons en cours</h2>
+
+  <%= search_form_for @q, url: deliveries_path(), html: { method: :get } do |f| %>
+  <%= f.check_box :statut_true, label: 'Livraison en cours' %>
+  <%= f.check_box :statut_false, label: 'Livraison en cours' %>
+  <%= f.submit  %>
+  <% end %>
+
+  <% if params[:q]!=nil && @deliveries.length>0  %>
   <div class="tab">
     <div class="panel panel-default">
       <!-- Default panel contents -->
@@ -33,3 +41,7 @@
     </div>
   </div>
 </div>
+
+<% elsif params[:q].present? && @deliveries.length==0 %>
+pas de livraison
+<% end %>

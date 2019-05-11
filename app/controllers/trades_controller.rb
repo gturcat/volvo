@@ -19,7 +19,7 @@ class TradesController < ApplicationController
     @trade.status = true
     @bus = @trade.bus
     @bus.statut2 = "VO à rentrer"
-    @bus.statut1 = "Client"
+    @bus.statut1 = "client"
     @bus.save
     if @trade.save
       redirect_to order_path(@trade.line.order)
