@@ -1,10 +1,11 @@
 class DeliveriesController < ApplicationController
   def index
+    @deliveries = Delivery.where(statut: nil)
     @q = Delivery.ransack(params[:q])
     if params[:q].present?
-      search_delivery if params[:q][:statut_true].present?
+       params[:q][:statut_true] == "1" ? search_delivery : @deliveries = Delivery.where(statut: nil)
     else
-      @deliveries = Delivery.all
+      return @deliveries = Delivery.where(statut: nil)
     end
   end
 
@@ -39,6 +40,7 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
+
     @delivery = Delivery.find(params[:id])
   end
 

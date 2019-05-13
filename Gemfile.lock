@@ -50,6 +50,7 @@ GEM
     bindex (0.7.0)
     bootsnap (1.4.3)
       msgpack (~> 1.0)
+    bootstrap-switch-rails (3.0.2)
     builder (3.2.3)
     byebug (11.0.1)
     carrierwave (1.3.1)
@@ -232,6 +233,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
+  bootstrap-switch-rails (~> 3.0.0)
   carrierwave (~> 1.2)
   cloudinary (~> 1.9.1)
   cocoon
