@@ -20,7 +20,6 @@ gem 'carrierwave', '~> 1.2'
 gem 'ransack'
 gem 'where_exists'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
-gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 
 group :development do

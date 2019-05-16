@@ -1,12 +1,6 @@
 class DeliveriesController < ApplicationController
   def index
     @deliveries = Delivery.where(statut: nil)
-    @q = Delivery.ransack(params[:q])
-    if params[:q].present?
-       params[:q][:statut_true] == "1" ? search_delivery : @deliveries = Delivery.where(statut: nil)
-    else
-      return @deliveries = Delivery.where(statut: nil)
-    end
   end
 
   def close
@@ -51,10 +45,6 @@ class DeliveriesController < ApplicationController
   end
 
   private
-
-  def search_delivery
-    @deliveries = @q.result
-  end
 
 
   def set_documents

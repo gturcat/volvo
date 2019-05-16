@@ -1,15 +1,6 @@
 <div class  ="container">
   <h2>Livraisons</h2>
 
-<input type="checkbox" checked data-toggle="toggle">
-
-  <%= search_form_for @q, url: deliveries_path(), html: { method: :get } do |f| %>
-  <%= f.check_box :statut_true, label: 'Livraions finalisées' %>
-  <button type="submit" type="checkbox" checked data-toggle="toggle">
-                  Afficher les livraisons cloturées
-           </button>
-  <% end %>
-
   <div class="tab">
     <div class="panel panel-default">
       <!-- Default panel contents -->
