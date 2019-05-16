@@ -3,6 +3,10 @@ class DeliveriesController < ApplicationController
     @deliveries = Delivery.where(statut: true)
   end
 
+  def archive
+    @deliveries = Delivery.where(statut: false)
+  end
+
   def close
     @delivery = Delivery.find(params[:id])
     @line = @delivery.line

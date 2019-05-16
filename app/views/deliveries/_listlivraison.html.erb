@@ -1,0 +1,32 @@
+<div class="tab">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"></div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Mois de livraison</th>
+            <th>Client</th>
+            <th>Chassis</th>
+            <th>RCR</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @deliveries.each  do | delivery | %>
+          <tr>
+            <td><%= delivery.line.date_livraison_bdc.present? ? delivery.line.date_livraison_bdc.strftime('%B-%y') : (delivery.date_livraison.strftime('%B-%y') if delivery.date_livraison.present?) %></td>
+            <td><%= delivery.line.order.client %></td>
+            <td><%= delivery.line.bus.numero_chassis%></td>
+            <td><%= delivery.line.order.sales_advisor.name %></td>
+            <td><%= link_to delivery_path(delivery[:id]), class: "btn btn-warning" do %>
+              <i class="far fa-edit"></i>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
