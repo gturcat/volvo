@@ -1,0 +1,13 @@
+<div class = "wrapper">
+  <ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Preparation Livraisons", deliveries_path, class: "tab-underlined " %>
+  </li>
+  <li>
+    <%= link_to "Archives", archive_deliveries_path, class: "tab-underlined active" %>
+  </li>
+</ul>
+</div>
+<div class  ="container">
+<%= render "listlivraison" %>
+</div>
