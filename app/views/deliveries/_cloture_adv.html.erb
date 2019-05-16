@@ -1,0 +1,73 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"></div>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Documents Envoyés</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents_cloture_adv.each do |document| %>
+      <tr>
+        <td><%= document %> </td>
+        <td>
+          <% if @delivery.documents.where(name: "#{document}").take.present?  %>
+          <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+          <%= link_to new_document_path(:name => "#{document}"), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+          <% else %>
+          <%=link_to new_document_path(:name => "#{document}"), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="tab">
+  <div class="tab">
+    <div class="panel panel-default">
+      <!-- Default panel contents-->
+      <div class="panel-heading"></div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Transmission du Bulletin de livraison au Controlling</th>
+            <% if @bus.immatriculation.present? %>
+            <th>Documents Originaux à envoyer au client avec AR :<br />
+                CI Barré avec tampon Volvo et Signature <br />+ si possible COC ET ATT. AMÉN.
+                (NB : CI : GARDER LA PARTIE DÉTACHABLE)</th>
+            <th>Double des clés envoyé en client</th>
+            <% end %>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= simple_form_for @delivery do |f| %>
+          <tr>
+            <td><%= f.input :transmission_bl_controlling, as: :boolean, label: false %>
+            </td>
+            <% if @bus.immatriculation.present? %>
+            <td>
+              <%= f.input :envoi_double_cle, as: :boolean, label: false %></td>
+              <td>
+              <%= f.input :doc_originaux_envoyés_client,as: :boolean, label: false %>
+            </td>
+            <% end %>
+            <td> <button type="submit" class="btn btn-primary">
+              <i class="far fa-save"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+

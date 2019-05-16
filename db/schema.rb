@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_200150) do
+ActiveRecord::Schema.define(version: 2019_05_10_094955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,10 @@ ActiveRecord::Schema.define(version: 2019_05_09_200150) do
     t.string "mail_original_ci"
     t.boolean "enregistrement_cm"
     t.boolean "enregistrement_vda"
+    t.boolean "envoi_double_cle"
+    t.boolean "transmission_bl_controlling"
+    t.boolean "doc_originaux_envoyés_client"
+    t.boolean "statut"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
