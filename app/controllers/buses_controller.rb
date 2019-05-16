@@ -4,8 +4,7 @@ class BusesController < ApplicationController
     @descriptions = Description.all
     @types = Type.all
     @orders = Order.all
-    @buses = Bus.all
-    #@buses = Bus.where("buses.statut1 != 'client' ")
+    @buses = Bus.where("buses.statut1 != 'client' ")
   end
 
   def show

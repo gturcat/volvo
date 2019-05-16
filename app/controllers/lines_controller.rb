@@ -56,6 +56,7 @@ class LinesController < ApplicationController
     @bus.save
     #creation de la livraison correspondante
     @delivery = Delivery.new
+    @delivery.statut = true
     @delivery.save
     @line.delivery_id = @delivery.id
     if @line.save
