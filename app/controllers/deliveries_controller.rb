@@ -1,13 +1,13 @@
 class DeliveriesController < ApplicationController
   def index
-    @deliveries = Delivery.where(statut: nil)
+    @deliveries = Delivery.where(statut: true)
   end
 
   def close
     @delivery = Delivery.find(params[:id])
     @line = @delivery.line
     @bus = @line.bus
-    @delivery.statut = true
+    @delivery.statut = false
     @delivery.save
     @bus.statut1 = "client"
     @bus.statut2 = nil

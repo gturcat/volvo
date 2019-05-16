@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def index
     @descriptions = Description.all
     @types = Type.all
-    @orders = Order.all
+    @orders = Order.where(statut: true)
   end
 
   def create
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     if params[:q].present?
       search_stock if params[:q][:description_name_cont].present?
     end
-    @orders = Order.all
+    @order_to_close = true if order_to_close?
   end
 
   def edit
@@ -59,6 +59,20 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def order_to_close?
+    answer = true
+    answer = false if !@ordered_buses.present?
+    @ordered_buses.each do |bus|
+      answer = false if bus.statut1 != "client"
+    end
+    @order.lines.each  do |line|
+      if line.trade.present?
+      answer = false if line.trade.status = false # le status d'un trade est passé a false quand la reprise est cloturée
+      end
+    end
+    return answer
+  end
 
   def erase_all_trade
     @order.trades.each do |trade|
@@ -101,7 +115,8 @@ class OrdersController < ApplicationController
       :client,
       :numero_bon_de_commande,
       :date,
-      :sales_advisor_id
+      :sales_advisor_id,
+      :statut
     )
   end
 
