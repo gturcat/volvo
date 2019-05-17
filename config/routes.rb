@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :ferries, only: [:index, :show, :edit, :update, :destroy]
   resources :buses do
+    collection do
+      get 'archive'
+    end
     resources :ferries, only: [:new, :create]
   end
   resources :orders do
