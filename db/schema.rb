@@ -70,6 +70,10 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.string "mail_original_ci"
     t.boolean "enregistrement_cm"
     t.boolean "enregistrement_vda"
+    t.boolean "envoi_double_cle"
+    t.boolean "transmission_bl_controlling"
+    t.boolean "doc_originaux_envoyés_client"
+    t.boolean "statut"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
