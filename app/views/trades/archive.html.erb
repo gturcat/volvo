@@ -1,0 +1,14 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Reprises en cours", trades_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Reprises effectués", archive_trades_path, class: "tab-underlined active " %>
+  </li>
+</ul>
+</div>
+
+<div class="container">
+<%= render 'list_trades'  %>
+</div>

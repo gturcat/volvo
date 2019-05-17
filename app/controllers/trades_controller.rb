@@ -59,6 +59,10 @@ class TradesController < ApplicationController
     @trades = Trade.all.where(status: true)
   end
 
+  def archive
+    @trades = Trade.all.where(status: false)
+  end
+
   private
 
   def search_used_bus
