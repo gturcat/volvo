@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     member do
       get 'close'
     end
+    collection do
+      get 'archive'
+    end
   end
   resources :lines, only: [:edit, :update, :destroy]
   resources :works, only: [:new, :create, :edit, :update, :show]
