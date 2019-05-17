@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_10_094955) do
+ActiveRecord::Schema.define(version: 2019_05_16_160050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,17 @@ ActiveRecord::Schema.define(version: 2019_05_10_094955) do
     t.index ["trade_id"], name: "index_documents_on_trade_id"
   end
 
+  create_table "employee_partners", force: :cascade do |t|
+    t.string "nom"
+    t.string "tel"
+    t.string "email"
+    t.string "role"
+    t.bigint "partner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_employee_partners_on_partner_id"
+  end
+
   create_table "factory_orders", force: :cascade do |t|
     t.string "envoiOF"
     t.date "date_limit_modif_config"
@@ -110,7 +121,9 @@ ActiveRecord::Schema.define(version: 2019_05_10_094955) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
+    t.bigint "partner_id"
     t.index ["bus_id"], name: "index_factory_orders_on_bus_id"
+    t.index ["partner_id"], name: "index_factory_orders_on_partner_id"
   end
 
   create_table "ferries", force: :cascade do |t|
@@ -164,6 +177,16 @@ ActiveRecord::Schema.define(version: 2019_05_10_094955) do
     t.datetime "updated_at", null: false
     t.boolean "statut"
     t.index ["sales_advisor_id"], name: "index_orders_on_sales_advisor_id"
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "nom"
+    t.string "place"
+    t.string "dpt"
+    t.string "adresse"
+    t.string "tel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -243,6 +266,7 @@ ActiveRecord::Schema.define(version: 2019_05_10_094955) do
   add_foreign_key "documents", "deliveries"
   add_foreign_key "documents", "factory_orders"
   add_foreign_key "documents", "trades"
+  add_foreign_key "employee_partners", "partners"
   add_foreign_key "factory_orders", "buses"
   add_foreign_key "ferries", "buses"
   add_foreign_key "lines", "buses"

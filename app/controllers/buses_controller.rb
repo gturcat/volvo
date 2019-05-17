@@ -20,6 +20,8 @@ class BusesController < ApplicationController
       @bus.factory_orders.build
     end
 
+
+
     @bus.ferries.build
     @order = @bus.orders.where("orders.statut = true").take
     @line = @order.lines.where(bus_id: @bus.id).take if @order.present?
@@ -75,12 +77,16 @@ class BusesController < ApplicationController
     redirect_to bus_path(@bus)
   end
 
-def destroy
-  @bus = Bus.find(params[:id])
-  id = @bus.orders.last.id
-  @bus.destroy
-  redirect_to order_path(id)
-end
+  def destroy
+    @bus = Bus.find(params[:id])
+    id = @bus.orders.last.id
+    @bus.destroy
+    redirect_to order_path(id)
+  end
+
+  def archive
+    @buses = @buses = Bus.where("buses.statut1 = 'client' ")
+  end
 
   private
 

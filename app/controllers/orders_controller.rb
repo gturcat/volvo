@@ -58,6 +58,12 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def archive
+    @descriptions = Description.all
+    @types = Type.all
+    @orders = Order.where(statut: false)
+  end
+
   private
 
   def order_to_close?

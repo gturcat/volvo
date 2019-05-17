@@ -1,36 +1,14 @@
-<div class="container">
-
-<h2>Reprises Véhicule d'occasion en cours</h2>
-<div class="tab">
-  <div class="panel panel-default">
-    <!-- Default panel contents-->
-    <div class="panel-heading">
-    <!-- Table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Date de rentrée</th>
-          <th>Description</th>
-          <th>Immatriculation</th>
-          <th>Prix de rachat</th>
-          <th>action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @trades.each do |trade| %>
-        <tr>
-          <td><%= trade.date_rentree_bdc %></td>
-          <td><%= trade.bus.description.name %></td>
-          <td><%= trade.bus.immatriculation %></td>
-          <td><%= trade.prix_achat%></td>
-          <td>
-            <%= link_to trade_path(trade[:id]), class: "btn btn-primary" do %>
-          <i class="far fa-eye"></i><% end %>
-            </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Reprises en cours", trades_path, class: "tab-underlined active" %>
+  </li>
+  <li>
+    <%= link_to "Reprises effectués", archive_trades_path, class: "tab-underlined  " %>
+  </li>
+</ul>
 </div>
+
+<div class="container">
+<%= render 'list_trades'  %>
 </div>
