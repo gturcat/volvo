@@ -20,6 +20,8 @@ class BusesController < ApplicationController
       @bus.factory_orders.build
     end
 
+
+
     @bus.ferries.build
     @order = @bus.orders.where("orders.statut = true").take
     @line = @order.lines.where(bus_id: @bus.id).take if @order.present?
