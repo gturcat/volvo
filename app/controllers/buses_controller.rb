@@ -75,12 +75,16 @@ class BusesController < ApplicationController
     redirect_to bus_path(@bus)
   end
 
-def destroy
-  @bus = Bus.find(params[:id])
-  id = @bus.orders.last.id
-  @bus.destroy
-  redirect_to order_path(id)
-end
+  def destroy
+    @bus = Bus.find(params[:id])
+    id = @bus.orders.last.id
+    @bus.destroy
+    redirect_to order_path(id)
+  end
+
+  def archive
+    @buses = @buses = Bus.where("buses.statut1 = 'client' ")
+  end
 
   private
 

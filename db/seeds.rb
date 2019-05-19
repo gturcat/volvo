@@ -82,6 +82,7 @@ User.destroy_all
 puts 'destroy all user'
 puts 'creating one user'
 User.create(email: 'gturcat@me.com', password: '123456')
+User.create(email: 'claudia@wiese.com', password: '123456')
 
 
 Place.destroy_all
