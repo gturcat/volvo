@@ -12,66 +12,19 @@
         </tr>
       </thead>
       <tbody>
-
+        <%@documents_factory_delivery.each do |document|  %>
         <tr>
-          <td>VRC</td>
+          <td><%= document %></td>
           <td>
-            <%if @bus.factory_orders.last.documents.where(:name => "VCR").take.present?  %>
-
-              <%= link_to document_path(@bus.factory_orders.last.documents.where(:name => "VCR").take, :name => 'VCR'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-
-              <%= link_to new_document_path(:name => 'VCR'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-
+            <%if @bus.factory_orders.last.documents.where(name: "#{document}").take.present?  %>
+            <%= link_to document_path(@bus.factory_orders.last.documents.where(name: "#{document}").take, :name => "#{document}"), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to new_document_path(:name => "#{document}"), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
             <% else %>
-              <%=link_to new_document_path(:name => 'VCR'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
-            <% end %>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Document de transport</td>
-          <td>
-            <%if @bus.factory_orders.last.documents.where(:name => "document de transport").take.present?  %>
-
-              <%= link_to document_path(@bus.factory_orders.last.documents.where(:name => "document de transport").take, :name => 'document de transport'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-
-              <%= link_to new_document_path(:name => 'document de transport'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-
-            <% else %>
-              <%=link_to new_document_path(:name => 'document de transport'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+            <%=link_to new_document_path(:name => "#{document}"), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
             <% end %>
           </td>
-
-          <tr>
-            <td>Delivery Note</td>
-          <td>
-            <%if @bus.factory_orders.last.documents.where(:name => "Delivery Note").take.present?  %>
-
-              <%= link_to document_path(@bus.factory_orders.last.documents.where(:name => "document de transport").take, :name => 'Delivery Note'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-
-              <%= link_to new_document_path(:name => 'Delivery Note'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-
-            <% else %>
-              <%=link_to new_document_path(:name => 'Delivery Note'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
-            <% end %>
-            </td>
         </tr>
-
-        <tr>
-            <td>Photo</td>
-          <td>
-            <%if @bus.factory_orders.last.documents.where(:name => "photo").take.present?  %>
-
-              <%= link_to document_path(@bus.factory_orders.last.documents.where(:name => "document de transport").take, :name => 'photo'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-
-              <%= link_to new_document_path(:name => 'photo'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-
-            <% else %>
-              <%=link_to new_document_path(:name => 'photo'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
-            <% end %>
-            </td>
-        </tr>
-
+        <% end %>
       </tbody>
     </table>
   </div>
