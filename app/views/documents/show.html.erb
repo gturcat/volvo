@@ -1,10 +1,15 @@
 <div class="container">
   <h3><%= @document.name%></h3>
+  <div class="link_to_retour">
+    <%= link_to "Retour", :back %>
+  </div>
+  <div>
+    <%= link_to("Download", cl_private_download_url(@document.pdf.file.public_id, :pdf, :attachment => true)) %>
+  </div>
 </div>
-<div class="link_to_retour">
-<%= link_to "Retour", :back %>
-</div>
-</div>
-<%= cl_image_tag(@document.pdf, :sign_url=>true, :type=>"private", :format => :png) %>
+<div class="viewer">
+<% for page in 1...(@pages+1) %>
+  <%= cl_image_tag(@document.pdf, :sign_url=>true, :type=>"private", :format => :png, :page=> page) %>
+  <% end %>
 </div>
 
