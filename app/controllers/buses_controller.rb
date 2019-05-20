@@ -11,6 +11,7 @@ class BusesController < ApplicationController
     session[:delivery_id] = nil
     session[:order_id] = nil
     session[:trade_id] = nil
+    set_documents
     @bus = Bus.find(params[:id])
     session[:bus_id] = @bus.id
 
@@ -88,6 +89,15 @@ class BusesController < ApplicationController
 
   private
 
+  def set_documents
+    @documents_factory_delivery = [
+      "VCR",
+      "Document de transport",
+      "Delivery Note",
+      "Photo livraison usine"
+    ]
+  end
+
   def bus_params
     params.require(:bus).permit(
       :statut1,
@@ -124,15 +134,15 @@ class BusesController < ApplicationController
         :date_arrivee_partenaire_volvo,
         :partenaire_prevenu
         ],
-        ferries_attributes: [
-          :id,
-          :date_convoyage,
-          :depart,
-          :arrivee,
-          :sens,
-          :site,
-          :numero_bdc,
-          :note
+      ferries_attributes: [
+        :id,
+        :date_convoyage,
+        :depart,
+        :arrivee,
+        :sens,
+        :site,
+        :numero_bdc,
+        :note
         ]
      )
   end

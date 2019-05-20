@@ -13,7 +13,7 @@
       <li><a href="#section-8">Garantie</a></li>
       <li><a href="#section-12">Telematique</a></li>
       <% if @delivery.present? %>
-      <%= link_to "Information Livraison", delivery_path(@delivery)%>
+      <%= link_to "Informations Livraison", delivery_path(@delivery)%>
       <% end %>
       <% if @active_trade %>
       <%= link_to "VO à rentrer", trade_path(@active_trade)%>
