@@ -7,6 +7,7 @@ class DocumentsController < ApplicationController
   @document = @bus.factory_orders.last.documents.where(name: params[:name]).take if @bus.present?
   @document = @delivery.documents.where(name: params[:name]).take if @delivery.present?
   @document = @trade.documents.where(name: params[:name]).take if @trade.present?
+  @pages = Cloudinary::Api.resource(@document.pdf.file.public_id,:type=>"private", :pages => true)["pages"]
   end
 
   def new
