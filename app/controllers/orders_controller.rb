@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :erase_all_trade, :set_bus_to_available, :erase_all_line, only: [:destroy]
 
   def index
     @descriptions = Description.all
@@ -47,10 +48,10 @@ class OrdersController < ApplicationController
 
   def destroy
     # efface toutes les reprises
-    erase_all_trade
+    #erase_all_trade
     # le bus commandé est rendu disponible pour une autre commande
-    set_bus_to_available
-    erase_all_line
+    #set_bus_to_available
+    #erase_all_line
     @order.save
     @order.delete
     redirect_to orders_path
@@ -114,8 +115,12 @@ class OrdersController < ApplicationController
         document.delete
       end
       delivery.delete
-      bus_to_delete.factory_orders.last.documents.each do |document|
-        document.delete
+      if bus_to_delete.factory_orders.last.present?
+        bus_to_delete.factory_orders.last.documents.each do |document|
+          document.delete
+        end
+        factory_order = line.bus.factory_orders.last
+        factory_order.delete
       end
       bus_to_delete.delete if bus_to_delete.present?
     end
