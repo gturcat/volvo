@@ -82,8 +82,6 @@ class LinesController < ApplicationController
       :couleur_ext_vehicule,
       :mention_garantie,
       :mention_telematique,
-      :garantie_pep_tool,
-      :telematique_demandee,
       :date_livraison_bdc,
       :reprise,
       :order_id,

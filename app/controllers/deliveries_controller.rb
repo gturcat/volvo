@@ -8,15 +8,20 @@ class DeliveriesController < ApplicationController
   end
 
   def close
-    @delivery = Delivery.find(params[:id])
-    @line = @delivery.line
-    @bus = @line.bus
-    @delivery.statut = false
-    @delivery.save
-    @bus.statut1 = "client"
-    @bus.statut2 = nil
-    @bus.save
+    if ready_to_close?
+      @delivery = Delivery.find(params[:id])
+      @line = @delivery.line
+      @bus = @line.bus
+      @delivery.statut = false
+      @delivery.save
+      @bus.statut1 = "client"
+      @bus.statut2 = nil
+      @bus.mention_garantie = @line.mention_garantie if !@bus.mention_garantie.present?
+      @bus.save
+      redirect_to delivery_path(@delivery)
+  else
     redirect_to delivery_path(@delivery)
+    end
   end
 
   def show
@@ -38,7 +43,6 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
-
     @delivery = Delivery.find(params[:id])
   end
 
@@ -90,13 +94,13 @@ class DeliveriesController < ApplicationController
   def ready_to_close?
     answer = false
     if @bus.immatriculation.present? # si VO
-      answer = @delivery.enregistrement_vda && @delivery.enregistrement_cm && @delivery.transmission_bl_controlling && @delivery.doc_originaux_envoyés_client && @delivery.envoi_double_cle
+      answer = true if  @delivery.enregistrement_vda.present? && @delivery.enregistrement_cm.present? && @delivery.transmission_bl_controlling.present? && @delivery.doc_originaux_envoyés_client.present? && @delivery.envoi_double_cle.present?
     end
     if !@bus.immatriculation.present? # si VN
-      answer = @delivery.enregistrement_vda && @delivery.enregistrement_cm && @delivery.transmission_bl_controlling
+      answer = true if  @delivery.enregistrement_vda.present? && @delivery.enregistrement_cm.present? && @delivery.transmission_bl_controlling.present?
     end
     all_documents_present? if answer
-    return all_documents_present?
+    return (all_documents_present? && answer)
   end
 
   def all_documents_present?
@@ -126,7 +130,9 @@ class DeliveriesController < ApplicationController
       :enregistrement_cm,
       :transmission_bl_controlling,
       :envoi_double_cle,
-      :doc_originaux_envoyés_client
+      :doc_originaux_envoyés_client,
+      :garantie_pep_tool,
+      :telematique_demandee
     )
   end
 end

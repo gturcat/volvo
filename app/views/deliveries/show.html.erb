@@ -22,15 +22,15 @@
   <div>
 
     <div class="add-padding-left" id="section-0">
-      <% if @ready_to_close && @delivery.statut == true %>
+      <% if @delivery.statut == true && @ready_to_close %>
         <%= link_to "Clore cette livraison", close_delivery_path(@delivery)%>
-      <% elsif @ready_to_close && @delivery.statut == false %>
+      <% elsif @delivery.statut == false %>
         <div class="status_bar">Ce bus a été livré à son client</div>
         <% end %>
     </div>
 
     <div class="add-padding-left" id="section-1">
-      <h5>Commande client en cours</h5>
+      <h5>Commande client</h5>
       <%= render "./buses/order" %>
     </div>
     <div class="add-padding-left" id="section-2">

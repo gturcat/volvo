@@ -11,6 +11,7 @@
             <th>Date de rentrée prévue sur le bon de commande</th>
             <th>Date exacte de rentrée</th>
             <th>Heure exacte de rentrée</th>
+            <th>action</th>
           </tr>
         </thead>
         <tbody>
@@ -21,12 +22,13 @@
             <%= simple_form_for @trade do |f| %>
             <td> <%= f.input :date_rentree, as: :date, html5: true, label: false %></td>
             <td><%= f.input :heure_rentree, label: false %> </td>
+            <td><button type="submit" class="btn btn-primary">
+      <i class="far fa-edit"></i>
+      <% end %></td>
           </tr>
         </tbody>
       </table>
-      <button type="submit" class="btn btn-primary">
-      <i class="far fa-edit"></i>
-      <% end %>
+
     </div>
   </div>
 </div>

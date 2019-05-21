@@ -38,5 +38,8 @@ Rails.application.routes.draw do
     collection do
       get 'archive'
     end
+    member do
+      get 'close'
+    end
   end
 end
