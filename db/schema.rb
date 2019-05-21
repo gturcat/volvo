@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_160050) do
+ActiveRecord::Schema.define(version: 2019_05_21_150630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.string "prix_mini"
     t.string "version"
     t.string "implantation"
+    t.string "mention_garantie"
     t.index ["description_id"], name: "index_buses_on_description_id"
     t.index ["type_id"], name: "index_buses_on_type_id"
   end
@@ -74,6 +75,8 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.boolean "transmission_bl_controlling"
     t.boolean "doc_originaux_envoyés_client"
     t.boolean "statut"
+    t.boolean "garantie_pep_tool"
+    t.boolean "telematique_demandee"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
@@ -152,8 +155,6 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
     t.bigint "order_book_id"
-    t.boolean "garantie_pep_tool"
-    t.string "telematique_demandee"
     t.boolean "reprise"
     t.bigint "delivery_id"
     t.index ["bus_id"], name: "index_lines_on_bus_id"

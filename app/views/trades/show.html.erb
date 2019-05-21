@@ -2,31 +2,27 @@
   <div class="navigation" id="sidebar">
     <ul>
       <li><h5>Reprise en cours</h5></a></li>
+
       <li><a href="#section-1">Information de reprise</a></li>
-      <li><a href="#section-2">Documents de reprise</a></li>
-      <li><a href="#section-12">Cloturer cette reprise</a></li>
+      <li><a href="#section-12">Documents de reprise</a></li>
       <%= link_to "Information véhicule", bus_path(@trade.bus)%>
     </ul>
   </div>
   <div>
-    <% if !@trade.status %>
-    Cette Reprise a été cloturée
-    <% end %>
+      <div class="add-padding-left" id="section-0">
+      <% if @trade.status == true %>
+        <%= link_to "Clore cette reprise", close_trade_path(@trade)%>
+      <% elsif @trade.status == false %>
+        <div class="status_bar">La reprise de ce bus est cloturée</div>
+        <% end %>
+    </div>
     <div class="add-padding-left" id="section-1">
       <h5>Information de reprise</h5>
       <%= render "info" %>
     </div>
-    <div class="add-padding-left" id="section-2">
+    <div class="add-padding-left" id="section-12">
       <h5>Documents de reprise</h5>
       <%= render "document" %>
-    </div>
-    <div class="add-padding-left" id="section-12">
-      <h5>Cloturer cette reprise</h5>
-    <%= simple_form_for @trade do |f| %>
-    <%= f.input :status, :input_html => { value: false}, as: :hidden  %>
-    <button type="submit" class="btn btn-primary" %>
-      Cloturer cette reprise
-      <% end %>
     </div>
   </div>
 </div>

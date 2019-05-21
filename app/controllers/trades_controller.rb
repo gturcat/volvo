@@ -11,7 +11,6 @@ class TradesController < ApplicationController
 
   def edit
     @trade = Trade.find(params[:id])
-    raise
   end
 
   def create
@@ -63,6 +62,17 @@ class TradesController < ApplicationController
     @trades = Trade.all.where(status: false)
   end
 
+  def close
+    @trade = Trade.find(params[:id])
+    @bus = @trade.bus
+    @trade.status = false
+    @bus.statut1 = "disponible"
+    @bus.statut2 = "Stock VO"
+    @bus.save
+    @trade.save
+    redirect_to trade_path(@trade)
+  end
+
   private
 
   def search_used_bus
@@ -78,7 +88,6 @@ class TradesController < ApplicationController
       :bus_id,
       :date_rentree,
       :heure_rentree,
-      :status
     )
   end
 
