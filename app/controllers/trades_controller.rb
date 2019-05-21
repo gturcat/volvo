@@ -64,7 +64,11 @@ class TradesController < ApplicationController
 
   def close
     @trade = Trade.find(params[:id])
+    @bus = @trade.bus
     @trade.status = false
+    @bus.statut1 = "disponible"
+    @bus.statut2 = "Stock VO"
+    @bus.save
     @trade.save
     redirect_to trade_path(@trade)
   end

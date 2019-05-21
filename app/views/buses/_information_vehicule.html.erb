@@ -1,0 +1,34 @@
+<div class="tab">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"></div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Denomination Commerciale</th>
+            <th>Type</th>
+            <th>CB / CH</th>
+            <th>7 / 9 </th>
+            <th>N° de Chassis</th>
+            <th>immatriculation</th>
+            <th>Statut 1</th>
+            <th>Statut 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @bus.description.name %></td>
+            <td><%= @bus.type.name %></td>
+            <td><%= @bus.ch_cb %></td>
+            <td> <%= @bus.sept_neuf %></td>
+            <td> <%= @bus.numero_chassis %></td>
+            <td><%= @bus.immatriculation %></td>
+            <td><%= @bus.statut1 %></td>
+            <td><%= @bus.statut2 %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+

@@ -6,19 +6,13 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Status 1</th>
           <th>Status 2</th>
-          <th>Description</th>
-          <th>Type</th>
-          <th>CB / CH</th>
-          <th>7 / 9</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <%= simple_form_for @bus do |f| %>
         <tr>
-          <td><%= f.input :statut1, collection: ["client", "indisponible", "disponible"], label: false %></td>
           <td><%= f.input :statut2, collection: [ 'A commander',
             'Config usine à valider',
             'En commande',
@@ -33,10 +27,6 @@
             'VO à rentrer',
             'Facturé VO',
           'Facturé VO (ex Demo)'], label: false  %></td>
-          <td><%= f.association :description, label: false %></td>
-          <td><%= f.association :type, label: false %></td>
-          <td><%= f.input :ch_cb, collection: ["CB","CH"], label: false %></td>
-          <td> <%= f.input :sept_neuf, collection: ["7","9"], label: false %></td>
           <td><button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button></td><% end %>
