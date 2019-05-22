@@ -48,12 +48,13 @@
         <tr>
           <td><%= document %></td>
           <td>
-            <%if @delivery.documents.where(name: "#{document}").take.present?  %>
-            <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-            <%= link_to new_document_path(:name => "#{document}"), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-            <% else %>
-            <%=link_to new_document_path(:name => "#{document}"), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
-            <% end %>
+         <% if @delivery.documents.where(name: "#{document}").take.present?  %>
+          <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+          <%= link_to new_document_path(:name => "#{document}"), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+          <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), method: :delete, class:"btn btn-danger" do %><i class="far fa-eye"></i><% end %>
+          <% else %>
+          <%=link_to new_document_path(:name => "#{document}"), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
+          <% end %>
           </td>
         </tr>
          <% end %>

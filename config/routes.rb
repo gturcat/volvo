@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :factory_orders, only: [:show, :edit, :update]
-  resources :documents, only: [:new, :create, :show, :edit, :update]
+  resources :documents, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :deliveries, only: [:index, :show, :edit, :update] do
     member do
       get 'close'

@@ -29,9 +29,8 @@ class LinesController < ApplicationController
     end
 
     # efface l'enventuelle formation
-    training = @line.trainig
-    traning.delete
-    end
+    training = @line.training
+    training.delete if training.present?
 
     # le bus commandé est rendu disponible pour une autre commande
     bus = @line.bus

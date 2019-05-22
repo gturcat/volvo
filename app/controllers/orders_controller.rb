@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :erase_all_trade, :set_bus_to_available, :erase_all_line, only: [:destroy]
+  before_action :erase_all_training, :erase_all_trade, :set_bus_to_available, :erase_all_line, only: [:destroy]
 
   def index
     @descriptions = Description.all
@@ -98,6 +98,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def erase_all_training
+    @order.trainings.each do |training|
+      training.delete
+    end
+  end
+
   def set_bus_to_available
     @order.buses.each do |bus|
       bus.statut1 = "disponible"
@@ -112,15 +118,21 @@ class OrdersController < ApplicationController
       bus_to_delete = line.bus if line.bus.statut2 == "A commander"
       line.delete
       delivery.documents.each do |document|
+        public_id = document.pdf.file.public_id
+        Cloudinary::Api.delete_resources([public_id], :type => :private)
         document.delete
       end
       delivery.delete
-      if bus_to_delete.factory_orders.last.present?
-        bus_to_delete.factory_orders.last.documents.each do |document|
-          document.delete
+      if bus_to_delete.present?
+        if bus_to_delete.factory_orders.last.present?
+          bus_to_delete.factory_orders.last.documents.each do |document|
+            public_id = document.pdf.file.public_id
+            Cloudinary::Api.delete_resources([public_id], :type => :private)
+            document.delete
+          end
+          factory_order = line.bus.factory_orders.last
+          factory_order.delete
         end
-        factory_order = line.bus.factory_orders.last
-        factory_order.delete
       end
       bus_to_delete.delete if bus_to_delete.present?
     end
