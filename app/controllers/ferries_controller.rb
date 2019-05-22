@@ -11,9 +11,12 @@ class FerriesController < ApplicationController
   def create
     @ferry = Ferry.new(ferry_params)
     @bus = Bus.find(params[:bus_id])
+    @order = @bus.orders.where("orders.statut = true").take
+    @line = @order.lines.where(bus_id: @bus.id).take if @order.present?
+    @delivery = Delivery.find(@line.delivery_id) if @order.present?
     @ferry.bus = @bus
     if @ferry.save
-      redirect_to delivery_path(@ferry.bus.deliveries.last)
+      redirect_to delivery_path(@delivery)
     else
       render :new
     end
@@ -49,7 +52,8 @@ class FerriesController < ApplicationController
       :date_convoyage,
       :site,
       :note,
-      :numero_bdc
+      :numero_bdc,
+      :sens
       )
   end
 

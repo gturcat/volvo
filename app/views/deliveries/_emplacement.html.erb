@@ -6,14 +6,18 @@
     <table class="table">
       <thead>
         <tr>
-          <th>lieu</th>
-          <th>Date du relevé</th>
+          <th>Départ</th>
+          <th>Arrivée</th>
+          <th>Sens</th>
+          <th>Date</th>
         </tr>
       </thead>
 <% @bus.ferries.each  do | ferry| %>
       <tbody>
         <tr>
+          <td><%= ferry.depart %></td>
           <td><%= ferry.arrivee %></td>
+          <td><%= ferry.sens %></td>
           <td><%= ferry.date_convoyage %></td>
         </tr>
       </tbody>

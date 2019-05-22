@@ -1,19 +1,58 @@
-<div class="container">
-  <%= simple_form_for [@order, @bus, @line], url:order_bus_lines_path, method: :post do |f| %>
-    <%= f.input :bus_id, :input_html => { value: @bus.id}, as: :hidden %>
-    <%= f.association :order_book %>
-    <%= f.input :date_livraison_bdc, as: :date, html5: true   %>
-    <%= f.input :financement_type,
-                collection: [ "Comptant",
-                              "Crédit bail",
-                              "Crédit classique"],
-                as: :radio_buttons %>
-    <%= f.input :couleur_ext_vehicule %>
-    <%= f.input :mention_garantie %>
-    <%= f.input :mention_telematique %>
-    <%= f.input :reprise, as: :boolean, checked_value: true, unchecked_value: false %>
-    <button type="submit" class="btn btn-primary">
-                    <i class="far fa-edit"></i>
-  <% end %>
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined active" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined  " %>
+  </li>
+</ul>
 </div>
 
+<div class="form-container">
+  <%= simple_form_for [@order, @bus, @line], url:order_bus_lines_path, method: :post do |f| %>
+  <%= f.input :bus_id, :input_html => { value: @bus.id}, as: :hidden %>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <%= f.association :order_book %>
+    </div>
+     <div class="col-sm-6 col-xs-12">
+      <%= f.input :date_livraison_bdc, as: :date, html5: true   %>
+    </div>
+  </div>
+  <div class="row">
+<div class="col-sm-6 col-xs-12">
+      <%= f.input :financement_type,
+      collection: [ "Comptant",
+      "Crédit bail",
+      "Crédit classique"],
+      as: :radio_buttons %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <%= f.input :couleur_ext_vehicule %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <%= f.input :mention_garantie %>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      <%= f.input :mention_telematique %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+  <%= f.input :reprise, as: :boolean, checked_value: true, unchecked_value: false %>
+  </div>
+    <div class="col-sm-6 col-xs-12">
+  <button type="submit" class="btn btn-primary">
+  <i class="far fa-edit"></i>
+  <% end %>
+   </div>
+  </div>
+</div>
