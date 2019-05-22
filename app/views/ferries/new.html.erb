@@ -1,9 +1,26 @@
-<div class="container">
+<div class = "wrapper">
+  <ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Preparation Livraisons", deliveries_path, class: "tab-underlined active " %>
+  </li>
+  <li>
+    <%= link_to "Archives", archive_deliveries_path, class: "tab-underlined " %>
+  </li>
+</ul>
+</div>
+
+<div class="form-container">
 <%= simple_form_for [@bus, @ferry] do |f| %>
   <%= f.input :date_convoyage, as: :date, html5: true %>
+ <div class="row">
+      <div class="col-sm-6 col-xs-12">
   <%= f.input :depart %>
+      </div>
+      <div class="col-sm-6 col-xs-12">
   <%= f.input :arrivee %>
-  <%= f.input :sens %>
+      </div>
+  </div>
+  <%= f.input :sens, collection: [ 'Aller', 'Retour'], as: :radio_buttons %>
   <%= f.input :site %>
   <%= f.input :numero_bdc %>
   <%= f.input :note, as: :text %>
