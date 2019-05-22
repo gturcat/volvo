@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_150630) do
+ActiveRecord::Schema.define(version: 2019_05_22_151614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,19 @@ ActiveRecord::Schema.define(version: 2019_05_21_150630) do
     t.index ["line_id"], name: "index_trades_on_line_id"
   end
 
+  create_table "trainings", force: :cascade do |t|
+    t.date "date"
+    t.string "lieu"
+    t.string "formateur"
+    t.string "numero_bcd"
+    t.string "info_transmise"
+    t.bigint "line_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "statut"
+    t.index ["line_id"], name: "index_trainings_on_line_id"
+  end
+
   create_table "types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -276,5 +289,6 @@ ActiveRecord::Schema.define(version: 2019_05_21_150630) do
   add_foreign_key "tasks", "works"
   add_foreign_key "trades", "buses"
   add_foreign_key "trades", "lines"
+  add_foreign_key "trainings", "lines"
   add_foreign_key "works", "deliveries"
 end

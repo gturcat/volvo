@@ -17,6 +17,7 @@
             <%if @delivery.documents.where(:name => "Financement").take.present?  %>
             <%= link_to document_path(@delivery.documents.where(:name => "Financement").take, :name => 'Financement'), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
             <%= link_to new_document_path(:name => 'Financement'), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), method: :delete, class:"btn btn-danger" do %><i class="far fa-eye"></i><% end %>
             <% else %>
             <%=link_to new_document_path(:name => 'Financement'), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
             <% end %>

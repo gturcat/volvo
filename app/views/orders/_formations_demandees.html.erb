@@ -1,0 +1,35 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Formations</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lieu</th>
+          <th>Formateur</th>
+          <th>Bus lié à la formation</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.lines.each  do |line| %>
+          <% if line.training.present? %>
+        <tr>
+          <td><%= line.training.date  %></td>
+          <td><%= line.training.lieu %></td>
+          <td><%= line.training.formateur %></td>
+          <td><%= line.bus.description.name %></td>
+          <td>
+            <%= link_to training_path(line.training), method: :delete,  class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
+            <i class="fas fa-minus-circle"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
