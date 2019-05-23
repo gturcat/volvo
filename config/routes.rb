@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
   resources :lines, only: [:edit, :update, :destroy]
   resources :works, only: [:new, :create, :edit, :update, :show]
-  resources :trades, only: [:index, :show, :edit, :update] do
+  resources :trades, only: [:index, :show, :edit, :update, :destroy] do
     collection do
       get 'archive'
     end

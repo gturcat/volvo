@@ -34,6 +34,13 @@ class TradesController < ApplicationController
   end
 
   def destroy
+    @trade = Trade.find(params[:id])
+    @bus = @trade.bus
+    @bus.statut2 = ""
+    @bus.statut1 = "client"
+    @bus.save
+    @trade.delete
+    redirect_to order_path(@trade.line.order)
   end
 
   def show
