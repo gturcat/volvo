@@ -56,6 +56,7 @@ class DeliveriesController < ApplicationController
 
 
   def set_documents
+    @documents_financement = ["Justificatif financement"]
     @documents_livraison_effective = [
                                     "C.D.O.K",
                                     "Bulletion de livraison",
