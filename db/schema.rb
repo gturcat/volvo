@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_151614) do
+ActiveRecord::Schema.define(version: 2019_05_23_132514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_151614) do
     t.boolean "statut"
     t.boolean "garantie_pep_tool"
     t.boolean "telematique_demandee"
+    t.text "note"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 

@@ -32,3 +32,31 @@
   </div>
 </div>
   <%= render './shared/documents', object: @documents_immatriculation, locals: { title: "Documents Immatriculation  #{@bus.immatriculation}", model: @delivery }  %>
+  <div class="tab">
+  <div class="tab">
+    <div class="panel panel-default">
+      <!-- Default panel contents-->
+      <div class="panel-heading"></div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Note</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= simple_form_for @delivery do |f| %>
+          <tr>
+            <td><%= f.input :note, label: false %>
+            <td> <button type="submit" class="btn btn-primary">
+              <i class="far fa-save"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
