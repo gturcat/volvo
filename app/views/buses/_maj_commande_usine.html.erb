@@ -1,4 +1,4 @@
-<%= simple_form_for @factory_order do |f| %>
+<%= simple_form_for [@factory_order] do |f| %>
 <div class="tab">
   <div class="panel panel-default">
     <!-- Default panel contents
@@ -39,7 +39,7 @@
           <th>Date Départ Usine</th>
           <th>lieu Arrivée chez Partenaire Volvo</th>
           <th>Date Arrivée chez partenaire Volvo</th>
-          <th>Partenaire Volvo Prevenu</th>
+          <th>Email Partenaire Volvo</th>
         </tr>
       </thead>
       <tbody>
@@ -48,7 +48,11 @@
           <td><%= f.date_field :date_depart_usine, label: false %></td>
           <td><%= f.text_field :lieu_arrivee_partenaire_volvo, label: false %></td>
           <td><%= f.date_field :date_arrivee_partenaire_volvo, label: false %></td>
-          <td><%= f.input:partenaire_prevenu, as: :boolean, label: false %></td>
+           <%= f.simple_fields_for :partners do |part| %>
+            <%= part.simple_fields_for :employee_partners do |e| %>
+            <td><%= e.input :email, collection: EmployeePartner.all.map {|emp| emp.email} %></td>
+            <%end%>
+          <%end%>
         </tr>
       </tbody>
     </table>
