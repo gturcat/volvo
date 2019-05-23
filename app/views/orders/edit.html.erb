@@ -1,0 +1,23 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined active" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined  " %>
+  </li>
+</ul>
+</div>
+<div class="form-container">
+<%= simple_form_for @order do |f| %>
+  <%= f.input :client %>
+  <%= f.input :numero_bon_de_commande %>
+  <%= f.input :date, as: :date, html5: true  %>
+  <%= f.association :sales_advisor%>
+  <button type="submit" class="btn btn-primary">
+                  Creer cette commande</i>
+<% end %>
+</div>
