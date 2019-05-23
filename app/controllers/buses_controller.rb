@@ -17,7 +17,7 @@ class BusesController < ApplicationController
     if @bus.factory_orders.last.present?
       @factory_order = @bus.factory_orders.last
     else
-      @bus.factory_orders.build
+      @factory_order = @bus.factory_orders.build
     end
 
     @bus.ferries.build
