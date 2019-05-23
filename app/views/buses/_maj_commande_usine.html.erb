@@ -50,7 +50,7 @@
           <td><%= f.date_field :date_arrivee_partenaire_volvo, label: false %></td>
            <%= f.simple_fields_for :partners do |part| %>
             <%= part.simple_fields_for :employee_partners do |e| %>
-            <td><%= e.input :email, collection: EmployeePartner.all.map {|emp| emp.email} %></td>
+            <td><%= e.input :email, collection: EmployeePartner.all.map {|emp| emp.email}, label: false  %></td>
             <%end%>
           <%end%>
         </tr>

@@ -1,5 +1,46 @@
-<h1>Partner#confirm</h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/partner_mailer/confirm.html.erb
-</p>
+<p>Bonjour <%= @partner.nom %>,</p>
+
+<p> Vous venez de commander un nouveau bus à notre usine Volvo Bus: </p>
+
+<table>
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dénomination Commerciale: </td>
+      <td><%= @factory_order.bus.description.name %></td>
+    </tr>
+     <td>Type: </td>
+     <td><%=@factory_order.bus.type.name%></td>
+   </tr>
+   <tr>
+     <td>CB / CH: </td>
+     <td><%= @factory_order.bus.ch_cb %></td>
+   </tr>
+    <tr>
+     <td>Sept / Neuf: </td>
+     <td><%= @factory_order.bus.sept_neuf %></td>
+   </tr>
+    <tr>
+     <td>Lieu de départ de l'usine: </td>
+     <td><%= @factory_order.lieu_depart_usine%></td>
+   </tr>
+    <tr>
+     <td>Date de départ:</td>
+     <td><%= @factory_order.date_depart_usine %></td>
+   </tr><tr>
+     <td>Lieu d'arrivée:</td>
+     <td><%= @factory_order.lieu_arrivee_partenaire_volvo %></td>
+   </tr>
+   <tr>
+     <td>Date d'arrivée:</td>
+     <td><%= @factory_order.date_arrivee_partenaire_volvo %></td>
+   </tr>
+  </tbody>
+</table>
+
+<p>Bien cordialement,</p>
+<p>Votre Équipe Volvo Bus</p>

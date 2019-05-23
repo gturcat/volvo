@@ -5,11 +5,13 @@ class PartnerMailer < ApplicationMailer
   #
   #   en.partner_mailer.confirm.subject
   #
-  def confirm(mail)
+  def confirm(mail, factory_order, partner)
+    @factory_order = factory_order
     @email = mail
+    @partner = partner
     mail(
       to:      @email,
-      subject:  "Confirmation of your factory order"
+      subject:  "Confirmation de votre commande"
     )
   end
 end

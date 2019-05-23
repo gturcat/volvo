@@ -21,7 +21,6 @@ gem 'ransack'
 gem 'where_exists'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 
-
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'railroady'
@@ -35,3 +34,5 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
 end
+
+gem 'letter_opener', group: :development

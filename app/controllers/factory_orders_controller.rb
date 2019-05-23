@@ -8,7 +8,8 @@ class FactoryOrdersController < ApplicationController
     @factory_order = FactoryOrder.find(params[:id])
     @employee = EmployeePartner.find_by(email: params["factory_order"]["partners"]["employee_partners"]["email"])
     @mail = @employee.email
-    PartnerMailer.confirm(@mail).deliver_now
+    @partner = @employee.partner
+    PartnerMailer.confirm(@mail, @factory_order, @partner).deliver_now
     redirect_to bus_path(@factory_order.bus)
   end
 
