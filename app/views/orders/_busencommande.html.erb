@@ -12,7 +12,6 @@
           <th>Delai Bon de commande</th>
           <th>Garantie</th>
           <th>Télématique</th>
-          <th>Status 1</th>
           <th>Status 2</th>
           <th>Actions</th>
         </tr>
@@ -26,12 +25,15 @@
           <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:mention_telematique] if bus.lines.present? %></td>
-          <td><%= bus.statut1 %></td>
           <td><%= bus.statut2 %></td>
           <td>
             <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
-            <i class="far fa-edit"></i>
-            <% end %>
+            <i class="far fa-edit"></i><% end %>
+
+             <%= link_to new_order_bus_line_trade_path(@order, bus[:id], @order.lines.where(bus_id: bus[:id]).take), class: "btn btn-primary" do %><i class="fas fa-bus"></i><% end %>
+
+            <%= link_to new_order_bus_line_training_path(@order, bus[:id], @order.lines.where(bus_id: bus[:id]).take), class: "btn btn-primary" do %><i class="fas fa-graduation-cap"></i><% end %>
+
             <% if bus.lines.present? %>
             <%= link_to line_path(bus.lines.last), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
             <i class="fas fa-minus-circle"></i>

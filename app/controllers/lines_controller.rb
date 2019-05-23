@@ -17,7 +17,9 @@ class LinesController < ApplicationController
     @line.delivery = nil
     @line.save
 
-    # efface toutes l'eventuelle reprise
+
+
+    # efface l'eventuelle reprise
     trade = @line.trade
       #le bus repris est rendu au client
     if trade.present?
@@ -28,6 +30,10 @@ class LinesController < ApplicationController
       trade.delete
     end
 
+    # efface l'enventuelle formation
+    training = @line.training
+    training.delete if training.present?
+
     # le bus commandé est rendu disponible pour une autre commande
     bus = @line.bus
     bus.statut1 = "disponible"
@@ -36,6 +42,8 @@ class LinesController < ApplicationController
     delivery_to_delete.delete
     # efface le bus si commandé pour l'occasion
     if bus.statut2 == "A commander"
+      factory_order = bus.factory_orders.last
+      factory_order.delete
       bus.delete
     end
     redirect_to order_path(@order)
@@ -55,12 +63,12 @@ class LinesController < ApplicationController
     @bus.statut1 = "indisponible"
     @bus.save
     #creation de la livraison correspondante
-    @delivery = Delivery.new
-    @delivery.statut = true
-    @delivery.save
+    @delivery = Delivery.create(statut: true)
+
     @line.delivery_id = @delivery.id
+
     if @line.save
-      @line.reprise ? (redirect_to new_order_bus_line_trade_path(@order, @bus, @line)) : (redirect_to order_path(@order))
+      redirect_to order_path(@order)
     else
       render :new
     end
@@ -82,10 +90,7 @@ class LinesController < ApplicationController
       :couleur_ext_vehicule,
       :mention_garantie,
       :mention_telematique,
-      :garantie_pep_tool,
-      :telematique_demandee,
       :date_livraison_bdc,
-      :reprise,
       :order_id,
       :financement_type,
       :delivery_id

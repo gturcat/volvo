@@ -1,0 +1,16 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Bus en stock", buses_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Ajouter un bus en stock", new_bus_path(), class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Bus chez le client", archive_buses_path, class: "tab-underlined active" %>
+  </li>
+</ul>
+</div>
+<div class="container">
+  <%= render 'list_buses'  %>
+</div>

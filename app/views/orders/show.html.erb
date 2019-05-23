@@ -1,3 +1,17 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined active " %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined " %>
+  </li>
+</ul>
+</div>
+
 <div class="container">
   <div class="tab">
     <div class="panel panel-default">
@@ -53,6 +67,9 @@
 <% elsif @order_to_close && @order.statut == false %>
         <div class="status_bar">Cette commande est cloturée</div>
 <% end %>
+
+<!-- affichage des formations demandés -->
+<%= render 'formations_demandees' if @order.trainings.present? %>
 
 <br>
 <%= link_to "retour à la liste des commandes en cours", orders_path %>

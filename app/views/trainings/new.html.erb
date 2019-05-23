@@ -1,0 +1,26 @@
+<div class = "wrapper">
+  <ul class="list-inline tabs-underlined">
+    <li>
+      <%= link_to "Commandes en cours", orders_path, class: "tab-underlined" %>
+    </li>
+    <li>
+      <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined active" %>
+    </li>
+    <li>
+      <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined  " %>
+    </li>
+  </ul>
+</div>
+
+<div class="form-container">
+  <h5>Ajouter une formation</h5>
+    <%= simple_form_for [@order, @line.bus, @line, @training] do |f| %>
+    <%= f.input :line_id, :input_html => { value: @line.id}, as: :hidden %>
+    <%= f.input :date, as: :date, html5: true%>
+    <%= f.input :lieu%>
+    <%= f.input :formateur%>
+    <button type="submit" class="btn btn-primary">
+    <i class="far fa-edit"></i>
+    <% end %>
+  </div>
+</div>

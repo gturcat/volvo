@@ -11,7 +11,6 @@ class TradesController < ApplicationController
 
   def edit
     @trade = Trade.find(params[:id])
-    raise
   end
 
   def create
@@ -35,6 +34,13 @@ class TradesController < ApplicationController
   end
 
   def destroy
+    @trade = Trade.find(params[:id])
+    @bus = @trade.bus
+    @bus.statut2 = ""
+    @bus.statut1 = "client"
+    @bus.save
+    @trade.delete
+    redirect_to order_path(@trade.line.order)
   end
 
   def show
@@ -59,6 +65,21 @@ class TradesController < ApplicationController
     @trades = Trade.all.where(status: true)
   end
 
+  def archive
+    @trades = Trade.all.where(status: false)
+  end
+
+  def close
+    @trade = Trade.find(params[:id])
+    @bus = @trade.bus
+    @trade.status = false
+    @bus.statut1 = "disponible"
+    @bus.statut2 = "Stock VO"
+    @bus.save
+    @trade.save
+    redirect_to trade_path(@trade)
+  end
+
   private
 
   def search_used_bus
@@ -74,7 +95,6 @@ class TradesController < ApplicationController
       :bus_id,
       :date_rentree,
       :heure_rentree,
-      :status
     )
   end
 

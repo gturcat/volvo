@@ -11,6 +11,7 @@ class BusesController < ApplicationController
     session[:delivery_id] = nil
     session[:order_id] = nil
     session[:trade_id] = nil
+    set_documents
     @bus = Bus.find(params[:id])
     session[:bus_id] = @bus.id
 
@@ -77,14 +78,27 @@ class BusesController < ApplicationController
     redirect_to bus_path(@bus)
   end
 
-def destroy
-  @bus = Bus.find(params[:id])
-  id = @bus.orders.last.id
-  @bus.destroy
-  redirect_to order_path(id)
-end
+  def destroy
+    @bus = Bus.find(params[:id])
+    id = @bus.orders.last.id
+    @bus.destroy
+    redirect_to order_path(id)
+  end
+
+  def archive
+    @buses = @buses = Bus.where("buses.statut1 = 'client' ")
+  end
 
   private
+
+  def set_documents
+    @documents_factory_delivery = [
+      "VCR",
+      "Document de transport",
+      "Delivery Note",
+      "Photo livraison usine"
+    ]
+  end
 
   def bus_params
     params.require(:bus).permit(
@@ -122,15 +136,15 @@ end
         :date_arrivee_partenaire_volvo,
         :partenaire_prevenu
         ],
-        ferries_attributes: [
-          :id,
-          :date_convoyage,
-          :depart,
-          :arrivee,
-          :sens,
-          :site,
-          :numero_bdc,
-          :note
+      ferries_attributes: [
+        :id,
+        :date_convoyage,
+        :depart,
+        :arrivee,
+        :sens,
+        :site,
+        :numero_bdc,
+        :note
         ]
      )
   end

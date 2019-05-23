@@ -1,44 +1,16 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Bus en stock", buses_path, class: "tab-underlined active " %>
+  </li>
+  <li>
+    <%= link_to "Ajouter un bus en stock", new_bus_path(), class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Bus chez le client", archive_buses_path, class: "tab-underlined " %>
+  </li>
+</ul>
+</div>
 <div class="container">
-  <%= link_to new_bus_path() do %>
-  ajouter un bus en stock Volvo Bus
-  <% end %>
-  <h2>Bus en stock ou en commande</h2>
-  <div class="tab">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading"></div>
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Denomination Commerciale</th>
-            <th>Type</th>
-            <th>CB / CH</th>
-            <th>7 / 9 </th>
-            <th>N° de Chassis</th>
-            <th>Statut 1</th>
-            <th>Statut 2</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @buses.each  do | bus| %>
-          <tr>
-            <td><%= bus.description.name %></td>
-            <td><%= bus.type.name %></td>
-            <td><%= bus.ch_cb %></td>
-            <td> <%= bus.sept_neuf %></td>
-            <td> <%= bus.numero_chassis %></td>
-            <td><%= bus.statut1 %></td>
-            <td><%= bus.statut2 %></td>
-            <td><%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
-              <i class="far fa-edit"></i>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= render 'list_buses'  %>
 </div>

@@ -1,45 +1,18 @@
-<div class="container">
-
- <%= link_to "Nouvelle Commande", new_order_path, class: "nav-link" %>
-
-<h2>Commande en cours</h2>
-<div class="tab">
-  <div class="panel panel-default">
-    <!-- Default panel contents-->
-    <div class="panel-heading">
-    <!-- Table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Client</th>
-          <th>N° Bdc</th>
-          <th>Vendeur</th>
-          <th>Date</th>
-          <th>action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.client %></td>
-          <td><%= order.numero_bon_de_commande %></td>
-          <td><%= order.sales_advisor[:name] %></td>
-          <td><%= order.date %></td>
-          <td>
-            <%= link_to order_path(order[:id]), class: "btn btn-primary" do %>
-          <i class="far fa-eye"></i><% end %>
-
-              <%= link_to order_path(order[:id]), class: "btn btn-warning" do %>
-          <i class="far fa-edit"></i><% end %>
-
-          <%= link_to order_path(order[:id]), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
-            </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined active " %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined " %>
+  </li>
+</ul>
 </div>
+<div class="container">
+<%= render 'list_orders'  %>
 </div>
 
 

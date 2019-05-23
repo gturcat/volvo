@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_160050) do
+
+ActiveRecord::Schema.define(version: 2019_05_23_132514) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.string "prix_mini"
     t.string "version"
     t.string "implantation"
+    t.string "mention_garantie"
     t.index ["description_id"], name: "index_buses_on_description_id"
     t.index ["type_id"], name: "index_buses_on_type_id"
   end
@@ -74,6 +77,9 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.boolean "transmission_bl_controlling"
     t.boolean "doc_originaux_envoyés_client"
     t.boolean "statut"
+    t.boolean "garantie_pep_tool"
+    t.boolean "telematique_demandee"
+    t.text "note"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
@@ -152,8 +158,6 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
     t.bigint "order_book_id"
-    t.boolean "garantie_pep_tool"
-    t.string "telematique_demandee"
     t.boolean "reprise"
     t.bigint "delivery_id"
     t.index ["bus_id"], name: "index_lines_on_bus_id"
@@ -227,6 +231,19 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
     t.index ["line_id"], name: "index_trades_on_line_id"
   end
 
+  create_table "trainings", force: :cascade do |t|
+    t.date "date"
+    t.string "lieu"
+    t.string "formateur"
+    t.string "numero_bcd"
+    t.string "info_transmise"
+    t.bigint "line_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "statut"
+    t.index ["line_id"], name: "index_trainings_on_line_id"
+  end
+
   create_table "types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -275,5 +292,6 @@ ActiveRecord::Schema.define(version: 2019_05_16_160050) do
   add_foreign_key "tasks", "works"
   add_foreign_key "trades", "buses"
   add_foreign_key "trades", "lines"
+  add_foreign_key "trainings", "lines"
   add_foreign_key "works", "deliveries"
 end

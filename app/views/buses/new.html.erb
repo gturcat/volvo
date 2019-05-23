@@ -1,51 +1,134 @@
-<div class="container">
-  <% if !@order.present? %>
-    <h5>Rentrer un bus en stock</h5>
-    <%= simple_form_for @bus do |f| %>
+<% if !@order.present? %>
+<div class = "wrapper">
+  <ul class="list-inline tabs-underlined">
+    <li>
+      <%= link_to "Bus en stock", buses_path, class: "tab-underlined" %>
+    </li>
+    <li>
+      <%= link_to "Ajouter un bus en stock", new_bus_path(), class: "tab-underlined active" %>
+    </li>
+    <li>
+      <%= link_to "Bus chez le client", archive_buses_path, class: "tab-underlined " %>
+    </li>
+  </ul>
+</div>
+
+<div class="form-container">
+  <%= simple_form_for @bus do |f| %>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :statut1, collection: ["client", "indisponible", "disponible"]%>
+    </div>
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :statut2, collection: [ 'A commander',
-                  'Config usine à valider',
-                  'En commande',
-                  'Annulé',
-                  'En Stock SE35',
-                  'Stock VO',
-                  'En stock VTFL',
-                  'Démo SE35',
-                  'Démo FR05',
-                  'Facturé VN',
-                  'Facturé VTFL',
-                  'VO à rentrer',
-                  'Facturé VO',
-                'Facturé VO (ex Demo)'] %>
+      'Config usine à valider',
+      'En commande',
+      'Annulé',
+      'En Stock SE35',
+      'Stock VO',
+      'En stock VTFL',
+      'Démo SE35',
+      'Démo FR05',
+      'Facturé VN',
+      'Facturé VTFL',
+      'VO à rentrer',
+      'Facturé VO',
+      'Facturé VO (ex Demo)'] %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :description_id, collection: @descriptions %>
+    </div>
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :type_id, collection: @types%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :ch_cb, collection: ["CB","CH"], as: :radio_buttons %>
+    </div>
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
-      <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
-    <% end %>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
   <% end %>
-
-<% if @order.present? && !@ordered_bus.present?  %>
-      <%= simple_form_for [@order,@bus] do |f| %>
-      <%= f.input :description_id, collection: @descriptions %>
-      <%= f.input :type_id, collection: @types%>
-      <%= f.input :ch_cb, collection: ["CB","CH"], as: :radio_buttons %>
-      <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
-      <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
-    <% end %>
+</div>
   <% end %>
+  <% if @order.present? && !@ordered_bus.present?  %>
+  <div class = "wrapper">
+  <ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined " %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined active " %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined " %>
+  </li>
+</ul>
+</div>
+  <div class="form-container">
+    <%= simple_form_for [@order,@bus] do |f| %>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <%= f.input :description_id, collection: @descriptions %>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <%= f.input :type_id, collection: @types%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <%= f.input :ch_cb, collection: ["CB","CH"], as: :radio_buttons %>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
+    <% end %>
+    </div>
+    <% end %>
 
-<% if @ordered_bus.present? %>
-  <h5>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.description.name %> pour le client :<%=@order.client %></h5>
+    <% if @ordered_bus.present? %>
+    <div class = "wrapper">
+    <ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined active" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined " %>
+  </li>
+</ul>
+</div>
+    <div class="form-container">
+      <h5>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.description.name %> pour le client :<%=@order.client %></h5>
       <%= simple_form_for [@order,@ordered_bus,@line,@bus] do |f| %>
       <%= f.input :immatriculation%>
-      <%= f.input :description_id, collection: @descriptions %>
-      <%= f.input :type_id, collection: @types%>
-      <%= f.input :ch_cb, collection: ["CB","CH"],as: :radio_buttons %>
-      <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <%= f.input :description_id, collection: @descriptions %>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <%= f.input :type_id, collection: @types%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <%= f.input :ch_cb, collection: ["CB","CH"], as: :radio_buttons %>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <%= f.input :sept_neuf, collection: ["7","9"], as: :radio_buttons %>
+        </div>
+      </div>
       <button type="submit" class="btn btn-primary">Creer ce véhicule</button>
-    <% end %>
-  <% end %>
+      <% end %>
+      <% end %>
+    </div>
 
-
-</div>

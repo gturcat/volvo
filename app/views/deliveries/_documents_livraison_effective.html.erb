@@ -32,31 +32,4 @@
   </div>
 </div>
 
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading"></div>
-    <!-- Table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Documents Envoyés</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%@documents_livraison_effective.each do |document|  %>
-        <tr>
-          <td><%= document %></td>
-          <td>
-            <%if @delivery.documents.where(name: "#{document}").take.present?  %>
-            <%= link_to document_path(@delivery.documents.where(name: "#{document}").take, :name => "#{document}"), class:"btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-            <%= link_to new_document_path(:name => "#{document}"), class:"btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-            <% else %>
-            <%=link_to new_document_path(:name => "#{document}"), class:"btn btn-primary" do %><i class="fas fa-plus-circle"></i><% end %>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<%= render './shared/documents', object: @documents_livraison_effective, locals: { title: "listes des documents", model: @delivery }  %>

@@ -4,9 +4,8 @@ class DocumentsController < ApplicationController
   @bus = Bus.find(session[:bus_id]) if session[:bus_id].present?
   @delivery = Delivery.find(session[:delivery_id]) if session[:delivery_id].present?
   @trade = Trade.find(session[:trade_id]) if session[:trade_id].present?
-  @document = @bus.factory_orders.last.documents.where(name: params[:name]).take if @bus.present?
-  @document = @delivery.documents.where(name: params[:name]).take if @delivery.present?
-  @document = @trade.documents.where(name: params[:name]).take if @trade.present?
+   @document = Document.find(params[:id])
+  @pages = Cloudinary::Api.resource(@document.pdf.file.public_id,:type=>"private", :pages => true)["pages"]
   end
 
   def new
@@ -67,8 +66,7 @@ class DocumentsController < ApplicationController
   end
 
   def edit
-    @document = @bus.factory_orders.last.documents.where(name: params[:name]).take if session[:bus_id].present?
-    @document = @delivery.documents.where(name: params[:name]).take if session[:delivery_id].present?
+    @document = Document.find(params[:id])
     @trade = Trade.find(session[:trade_id]) if session[:trade_id].present?
   end
 
@@ -80,9 +78,7 @@ class DocumentsController < ApplicationController
     session[:bus_id] = nil
     session[:delivery_id] = nil
     session[:trade_id] = nil
-    @document = @bus.factory_orders.last.documents.where(:name => document_params[:name]).take if @bus.present?
-    @document = @delivery.documents.where(name: document_params[:name]).take if @delivery.present?
-    @document = @trade.documents.where(name: trade_params[:name]).take if @trade.present?
+    @document = Document.find(params[:id])
     @document.update(document_params)
     redirect_to bus_path(@bus) if @bus.present?
     redirect_to delivery_path(@delivery) if @delivery.present?
@@ -90,6 +86,20 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    @name = params[:name]
+    @bus = Bus.find(session[:bus_id]) if session[:bus_id].present?
+    @delivery = Delivery.find(session[:delivery_id]) if session[:delivery_id].present?
+    @trade = Trade.find(session[:trade_id]) if session[:trade_id].present?
+    session[:bus_id] = nil
+    session[:delivery_id] = nil
+    session[:trade_id] = nil
+    @document = Document.find(params[:id])
+    public_id = @document.pdf.file.public_id
+    Cloudinary::Api.delete_resources([public_id], :type => :private)
+    @document.delete
+    redirect_to bus_path(@bus) if @bus.present?
+    redirect_to delivery_path(@delivery) if @delivery.present?
+    redirect_to trade_path(@trade) if @trade.present?
   end
 
   private
@@ -102,10 +112,9 @@ class DocumentsController < ApplicationController
     params.require(:delivery).permit(:id)
   end
 
-   def trade_params
+  def trade_params
     params.require(:trade).permit(:id)
   end
-
 
   def document_params
     params.require(:document).permit(:id, :name, :pdf)

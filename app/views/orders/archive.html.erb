@@ -1,0 +1,16 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined active " %>
+  </li>
+</ul>
+</div>
+<div class="container">
+<%= render 'list_orders'  %>
+</div>
