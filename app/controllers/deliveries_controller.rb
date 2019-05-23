@@ -18,10 +18,8 @@ class DeliveriesController < ApplicationController
       @bus.statut2 = nil
       @bus.mention_garantie = @line.mention_garantie if !@bus.mention_garantie.present?
       @bus.save
-      redirect_to delivery_path(@delivery)
-  else
-    redirect_to delivery_path(@delivery)
     end
+    redirect_to delivery_path(@delivery)
   end
 
   def show
@@ -40,6 +38,7 @@ class DeliveriesController < ApplicationController
     session[:delivery_id] = @delivery.id
     @trade = @order.trades.last
     @traded_bus = @trade.bus if @trade.present?
+    @training = @line.training
   end
 
   def edit
@@ -133,7 +132,8 @@ class DeliveriesController < ApplicationController
       :envoi_double_cle,
       :doc_originaux_envoyés_client,
       :garantie_pep_tool,
-      :telematique_demandee
+      :telematique_demandee,
+      :note
     )
   end
 end

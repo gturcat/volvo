@@ -1,0 +1,23 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Formation</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date de la formation</th>
+          <th>Lieu</th>
+          <th>Formateur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @training.date.strftime('%d-%B-%y')%></td>
+          <td><%= @training.lieu%></td>
+          <td><%= @training.formateur %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
