@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :factory_orders, only: [:show, :edit, :update]
+  resources :factory_orders, only: [:show, :edit, :update] do
+    resources :partners
+  end
   resources :documents, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :deliveries, only: [:index, :show, :edit, :update] do
     member do

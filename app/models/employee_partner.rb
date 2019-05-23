@@ -1,3 +1,3 @@
 class EmployeePartner < ApplicationRecord
-  belongs_to :partner
+  belongs_to :partner, optional: true
 end
