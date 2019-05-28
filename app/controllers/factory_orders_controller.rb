@@ -6,10 +6,11 @@ class FactoryOrdersController < ApplicationController
 
   def update
     @factory_order = FactoryOrder.find(params[:id])
-    @employee = EmployeePartner.find_by(email: params["factory_order"]["partners"]["employee_partners"]["email"])
-    @mail = @employee.email
-    @partner = @employee.partner
-    PartnerMailer.confirm(@mail, @factory_order, @partner).deliver_now
+    @partner = Partner.find_by(nom: params["factory_order"]["partners"]["nom"])
+    @employees = @partner.employee_partners
+    @employees.each do |employee|
+      PartnerMailer.confirm(employee.email, @factory_order, @partner).deliver_now
+    end
     redirect_to bus_path(@factory_order.bus)
   end
 
