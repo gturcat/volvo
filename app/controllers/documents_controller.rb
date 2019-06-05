@@ -67,7 +67,6 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
-    @trade = Trade.find(session[:trade_id]) if session[:trade_id].present?
   end
 
   def update
