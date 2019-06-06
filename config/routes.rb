@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :factory_orders, only: [:show, :edit, :update] do
     resources :partners
+    member do
+      get 'partner_mail'
+    end
   end
   resources :documents, only: [:new, :create, :show, :edit, :update]
   resources :deliveries, only: [:index, :show, :edit, :update] do

@@ -37,26 +37,27 @@
         <tr>
           <th>Lieu départ Usine</th>
           <th>Date Départ Usine</th>
-          <th>lieu Arrivée chez Partenaire Volvo</th>
-          <th>Date Arrivée chez partenaire Volvo</th>
-          <th>Choissez le partenaire</th>
+          <th>Lieu Arrivée chez Partenaire Volvo</th>
+          <th>Date Arrivée chez Partenaire Volvo</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= f.text_field :lieu_depart_usine, label: false %></td>
+          <td><%= f.text_field :lieu_depart_usine, label: false%></td>
           <td><%= f.date_field :date_depart_usine, label: false %></td>
-          <td><%= f.text_field :lieu_arrivee_partenaire_volvo, label: false %></td>
+          <td><%= f.input :lieu_arrivee_partenaire_volvo, collection: Partner.all.map {|partner| partner.adresse}, label: false %></td>
           <td><%= f.date_field :date_arrivee_partenaire_volvo, label: false %></td>
-           <%= f.simple_fields_for :partners do |partner| %>
-            <td><%= partner.input :nom, collection: Partner.all.map {|partner| partner.nom}, label: false  %></td>
-          <%end%>
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">
-            <i class="far fa-save"></i>
-            </button>
-            <% end %>
+      <button type="submit" class="btn btn-primary">
+        <i class="far fa-save"></i>
+      </button>
+      <% if @factory_order.lieu_depart_usine != nil %>
+       <button type="submit" class="btn btn-primary">
+          <i> <%= link_to "Mail au parténaire", partner_mail_factory_order_url, :style=>'color:#FFFFFF;'%> </i>
+        </button>
+      <%end%>
+    <%end%>
   </div>
 </div>
