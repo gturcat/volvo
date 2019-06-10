@@ -7,7 +7,6 @@
       <thead>
         <tr>
           <th>Status 2</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -26,10 +25,10 @@
             'Facturé VTFL',
             'VO à rentrer',
             'Facturé VO',
-          'Facturé VO (ex Demo)'], label: false  %></td>
-          <td><button type="submit" class="btn btn-primary">
+          'Facturé VO (ex Demo)'], label: false%></td>
+          <button type="submit" class="btn btn-primary" id="autosubmit" hidden>
             <i class="far fa-save"></i>
-            </button></td><% end %>
+            </button><% end %>
         </tr>
       </tbody>
     </table>
@@ -37,3 +36,14 @@
 
   </div>
 </div>
+
+<script>
+  const info = document.querySelector("#bus_statut2");
+  console.log(info);
+  const autosubmit = document.querySelector('#autosubmit');
+  const submitOnClick = () => {
+
+    autosubmit.click();
+  }
+  info.addEventListener("change", submitOnClick);
+</script>
