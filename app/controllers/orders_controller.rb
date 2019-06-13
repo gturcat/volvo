@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   def index
     @descriptions = Description.all
     @types = Type.all
-    @orders = Order.where(statut: true)
+    @orders = Order.pending
   end
 
   def new
@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.statut = true
+    @order.pending!
     if @order.save
       redirect_to order_path(@order[:id])
     else
@@ -48,19 +48,18 @@ class OrdersController < ApplicationController
 
   def destroy
     # efface toutes les reprises
-    #erase_all_trade
+    erase_all_trade
     # le bus commandé est rendu disponible pour une autre commande
-    #set_bus_to_available
+    set_bus_to_available
     #erase_all_line
-    @order.save
-    @order.delete
+    @order.archive!
     redirect_to orders_path
   end
 
-  def archive
+  def closed
     @descriptions = Description.all
     @types = Type.all
-    @orders = Order.where(statut: false)
+    @orders = Order.close
   end
 
   private
@@ -115,26 +114,29 @@ class OrdersController < ApplicationController
     @order.lines.each do |line|
       delivery = line.delivery
       # efface le bus si commandé uniquement pour cette commande
-      bus_to_delete = line.bus if line.bus.statut2 == "A commander"
-      line.delete
-      delivery.documents.each do |document|
-        public_id = document.pdf.file.public_id
-        Cloudinary::Api.delete_resources([public_id], :type => :private)
-        document.delete
+      bus_to_cancel = line.bus if line.bus.statut2 == "A commander"
+      # delivery.documents.each do |document|
+      #   public_id = document.pdf.file.public_id
+      #   Cloudinary::Api.delete_resources([public_id], :type => :private)
+      #   document.delete
+      # end
+      delivery.statut = false
+      delivery.save
+      # if bus_to_delete.present?
+      #   if bus_to_delete.factory_orders.last.present?
+      #     # bus_to_delete.factory_orders.last.documents.each do |document|
+      #     #   public_id = document.pdf.file.public_id
+      #     #   Cloudinary::Api.delete_resources([public_id], :type => :private)
+      #     #   document.delete
+      #     end
+      #     factory_order = line.bus.factory_orders.last
+      #     factory_order.delete
+      # end
+
+      if bus_to_cancel.present?
+        bus_to_cancel.statut2 = "Annulé"
+        bus_to_cancel.save
       end
-      delivery.delete
-      if bus_to_delete.present?
-        if bus_to_delete.factory_orders.last.present?
-          bus_to_delete.factory_orders.last.documents.each do |document|
-            public_id = document.pdf.file.public_id
-            Cloudinary::Api.delete_resources([public_id], :type => :private)
-            document.delete
-          end
-          factory_order = line.bus.factory_orders.last
-          factory_order.delete
-        end
-      end
-      bus_to_delete.delete if bus_to_delete.present?
     end
   end
 

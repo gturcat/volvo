@@ -5,4 +5,6 @@ class Order < ApplicationRecord
   has_many :buses, through: :lines
   has_many :trades, through: :lines, dependent: :destroy
   has_many :trainings, through: :lines, dependent: :destroy
+
+  enum statut: { pending: 0, close: 1, archive: 2 }
 end

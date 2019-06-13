@@ -7,7 +7,7 @@
     <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined" %>
   </li>
   <li>
-    <%= link_to "Commandes traitées", archive_orders_path, class: "tab-underlined " %>
+    <%= link_to "Commandes traitées", closed_orders_path, class: "tab-underlined " %>
   </li>
 </ul>
 </div>
@@ -60,7 +60,7 @@
 <% if @order_to_close && @order.statut == true %>
   <h5>Cloturer cette commande</h5>
     <%= simple_form_for @order do |f| %>
-      <%= f.input :statut, :input_html => { value: false}, as: :hidden  %>
+      <%= f.input :statut, :input_html => { value: close}, as: :hidden  %>
       <button type="submit" class="btn btn-primary" %>
       Cloturer cette commande</button>
       <% end %>

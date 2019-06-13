@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :orders do
     collection do
+      get 'closed'
       get 'archive'
     end
     resources :buses do
