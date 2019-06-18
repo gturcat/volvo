@@ -6,6 +6,9 @@
             <i class="far fa-save"></i>
             </button>
             <% end %>
+<% if @delivery.attestation_amenagement.attached? %>
             <%= link_to pdfjs.full_path(file:
             "#{url_for(@delivery.attestation_amenagement)}"), target: "_blank" do %><i class="far fa-save"></i><% end %>
             <%= link_to rails_blob_path(@delivery.attestation_amenagement, disposition: 'attachment') do%><i class="far fa-save"></i><% end %>
+            <% end %>
+
