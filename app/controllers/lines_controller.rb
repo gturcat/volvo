@@ -43,8 +43,9 @@ class LinesController < ApplicationController
     # efface le bus si commandé pour l'occasion
     if bus.statut2 == "A commander"
       factory_order = bus.factory_orders.last
-      factory_order.delete
-      bus.delete
+      factory_order.delete if factory_order.present?
+      bus.statut2 = "Annulé"
+      bus.save
     end
     redirect_to order_path(@order)
   end

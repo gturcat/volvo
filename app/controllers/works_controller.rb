@@ -2,7 +2,6 @@ class WorksController < ApplicationController
 
   def new
     @work = Work.new
-    @work.tasks.build
   end
 
   def create
