@@ -45,4 +45,6 @@ Rails.application.routes.draw do
     end
   end
   resources :trainings, only: [:destroy]
+
+  mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 end

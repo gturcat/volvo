@@ -1,0 +1,11 @@
+
+
+<%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :attestation_amenagement, :class => "form-control" %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+            <%= link_to pdfjs.full_path(file:
+            "#{url_for(@delivery.attestation_amenagement)}"), target: "_blank" do %><i class="far fa-save"></i><% end %>
+            <%= link_to rails_blob_path(@delivery.attestation_amenagement, disposition: 'attachment') do%><i class="far fa-save"></i><% end %>

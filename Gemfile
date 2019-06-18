@@ -20,6 +20,8 @@ gem 'carrierwave', '~> 1.2'
 gem 'ransack'
 gem 'where_exists'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
+gem 'aws-sdk-s3', require: false
+gem 'pdfjs_viewer-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

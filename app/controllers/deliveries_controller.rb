@@ -133,7 +133,8 @@ class DeliveriesController < ApplicationController
       :doc_originaux_envoyés_client,
       :garantie_pep_tool,
       :telematique_demandee,
-      :note
+      :note,
+      :attestation_amenagement
     )
   end
 end

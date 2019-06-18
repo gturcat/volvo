@@ -1,44 +1,39 @@
 <div class="tab">
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading"></div>
-          <!-- Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Chassis</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Sens</th>
-                <th>Depart</th>
-                <th>Arrivée</th>
-                <th>n° BdC</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @ferries.each  do | ferry| %>
-              <tr>
-                <td><%= ferry.bus.numero_chassis %></td>
-                <td><%= ferry.bus.type.name %></td>
-                <td><%= ferry.date_convoyage %></td>
-                <td><%= ferry.sens %></td>
-                <td><%= ferry.depart %></td>
-                <td><%= ferry.arrivee %></td>
-                <td><%= ferry.numero_bdc %></td>
-                <td>
-
-                  <%= link_to ferry_path(ferry[:id]), class: "btn btn-primary" do %><i class="far fa-eye"></i><% end %>
-
-                  <%= link_to edit_ferry_path(ferry[:id]), class: "btn btn-warning" do %><i class="far fa-edit"></i><% end %>
-
-                  <%= link_to ferry_path(ferry[:id]), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
-
-                </td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Chassis</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Sens</th>
+          <th>Depart</th>
+          <th>Arrivée</th>
+          <th>n° BdC</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ferries.each  do | ferry| %>
+        <tr>
+          <td><%= ferry.bus.numero_chassis %></td>
+          <td><%= ferry.bus.type.name %></td>
+          <td><%= ferry.date_convoyage %></td>
+          <td><%= ferry.sens %></td>
+          <td><%= ferry.depart %></td>
+          <td><%= ferry.arrivee %></td>
+          <td><%= ferry.numero_bdc %></td>
+          <td>
+            <%= link_to ferry_path(ferry[:id]), class: "btn btn-primary" do %><i class="far fa-eye"></i><% end %>
+            <%= link_to edit_ferry_path(ferry[:id]), class: "btn btn-warning" do %><i class="far fa-edit"></i><% end %>
+            <%= link_to ferry_path(ferry[:id]), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
