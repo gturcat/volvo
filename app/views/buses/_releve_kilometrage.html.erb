@@ -6,23 +6,24 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Numero Immat.</th>
+          <th>kilometrage</th>
+          <th>Date de relevé</th>
           <th>Action</th>
+
         </tr>
       </thead>
       <tbody>
         <%= simple_form_for @bus do |f| %>
         <tr>
-          <td><%= f.input :date_debut_garantie, as: :date, html5: true, label: false %></td>
-          <td><%= f.input :immatriculation, label: false %></td>
+          <td><%= f.input :kilometrage, label: false %></td>
+          <td><%= f.input :date_kilometrage, as: :date,  html5: true, label: false %></td>
           <td><button type="submit" class="btn btn-primary">
-    <i class="far fa-save"></i>
-    </button></td>
+            <i class="far fa-save"></i>
+            </button></td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
-    <% end %>
+            <% end %>
+    </div>
   </div>
-</div>
