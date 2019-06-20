@@ -12,19 +12,19 @@
       </thead>
       <tbody>
         <tr>
-          <td><% if @delivery.Facture.attached? %>
+          <td><% if @delivery.facture.attached? %>
             <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.Facture)}"), target: "_blank" do %>
-            <%= @delivery.Facture.name %>
+            <%= @delivery.facture.name %>
             <% end %>
-            <%= link_to rails_blob_path(@delivery.Facture, disposition: 'attachment') do%>
+            <%= link_to rails_blob_path(@delivery.facture, disposition: 'attachment') do%>
             <i class="far fa-save"></i>
             <% end %>
             <% else %>
-            <%= @delivery.Facture.name %>
+            <%= @delivery.facture.name %>
             <% end %>
           </td>
           <td><%= simple_form_for @delivery do |form| %>
-            <%= form.file_field :Facture %>
+            <%= form.file_field :facture %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>
@@ -34,19 +34,19 @@
 
         <% if @bus.immatriculation.present?  %>
         <tr>
-          <td><% if @delivery.A_Reception_Envoi_papiers_originaux.attached? %>
-            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.A_Reception_Envoi_papiers_originaux)}"), target: "_blank" do %>
-            <%= @delivery.A_Reception_Envoi_papiers_originaux.name %>
+          <td><% if @delivery.a_reception_envoi_papiers_originaux.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.a_reception_envoi_papiers_originaux)}"), target: "_blank" do %>
+            <%= @delivery.a_reception_envoi_papiers_originaux.name %>
             <% end %>
-            <%= link_to rails_blob_path(@delivery.A_Reception_Envoi_papiers_originaux, disposition: 'attachment') do%>
+            <%= link_to rails_blob_path(@delivery.a_reception_envoi_papiers_originaux, disposition: 'attachment') do%>
             <i class="far fa-save"></i>
             <% end %>
             <% else %>
-            <%= @delivery.A_Reception_Envoi_papiers_originaux.name %>
+            <%= @delivery.a_reception_envoi_papiers_originaux.name %>
             <% end %>
           </td>
           <td><%= simple_form_for @delivery do |form| %>
-            <%= form.file_field :A_Reception_Envoi_papiers_originaux %>
+            <%= form.file_field :a_reception_envoi_papiers_originaux %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>

@@ -29,11 +29,11 @@ class FactoryOrdersController < ApplicationController
             :date_arrivee_partenaire_volvo,
             :partenaire_prevenu,
             :partner_id,
-            :VCR,
-            :Document_de_Transport,
-            :Delivery_Note,
-            :VCR,
-            :Photos_Livraison
+            :vcr,
+            :document_de_transport,
+            :delivery_note,
+            :vcr,
+            :photos_livraison
             )
   end
 end

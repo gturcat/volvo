@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_20_075437) do
+ActiveRecord::Schema.define(version: 2019_06_20_154906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,19 +99,19 @@ ActiveRecord::Schema.define(version: 2019_06_20_075437) do
     t.boolean "garantie_pep_tool"
     t.boolean "telematique_demandee"
     t.text "note"
-    t.string "Bulletion_de_livraison"
-    t.string "CDOC"
-    t.string "Attestation_EAD"
-    t.string "Attestation_Limiteur_de_Vitesse"
-    t.string "Photos_Vehicule"
-    t.string "Facture"
-    t.string "Bon_de_commande"
+    t.string "bulletion_de_livraison"
+    t.string "cdoc"
+    t.string "attestation_ead"
+    t.string "attestation_limiteur_de_vitesse"
+    t.string "photos_Vehicule"
+    t.string "facture"
+    t.string "bon_de_commande"
     t.string "offre_configuration_avec_plan_implantation"
-    t.string "Information_Peinture"
-    t.string "Plan_VOSP"
-    t.string "Fiche_RCR"
-    t.string "A_Reception_Envoi_papiers_originaux"
-    t.string "Justificatif_Financement"
+    t.string "information_peinture"
+    t.string "plan_vosp"
+    t.string "Fiche_rcr"
+    t.string "a_reception_envoi_papiers_originaux"
+    t.string "justificatif_financement"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
@@ -160,10 +160,10 @@ ActiveRecord::Schema.define(version: 2019_06_20_075437) do
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
     t.bigint "partner_id"
-    t.string "Document_de_Transport"
-    t.string "Delivery_Note"
-    t.string "VCR"
-    t.string "Photos_Livraison"
+    t.string "document_de_transport"
+    t.string "delivery_note"
+    t.string "vcr"
+    t.string "photos_livraison"
     t.index ["bus_id"], name: "index_factory_orders_on_bus_id"
     t.index ["partner_id"], name: "index_factory_orders_on_partner_id"
   end

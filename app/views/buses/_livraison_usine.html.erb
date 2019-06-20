@@ -13,19 +13,19 @@
       </thead>
       <tbody>
         <tr>
-          <td><% if @factory_order.VCR.attached? %>
-            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.VCR)}"), target: "_blank" do %>
-            <%= @factory_order.VCR.name %>
+          <td><% if @factory_order.vcr.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.vcr)}"), target: "_blank" do %>
+            <%= @factory_order.vcr.name %>
             <% end %>
-            <%= link_to rails_blob_path(@factory_order.VCR, disposition: 'attachment') do%>
+            <%= link_to rails_blob_path(@factory_order.vcr, disposition: 'attachment') do%>
             <i class="far fa-save"></i>
             <% end %>
             <% else %>
-            <%= @factory_order.VCR.name %>
+            <%= @factory_order.vcr.name %>
             <% end %>
           </td>
           <td><%= simple_form_for @factory_order do |form| %>
-            <%= form.file_field :VCR %>
+            <%= form.file_field :vcr %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>
@@ -34,19 +34,19 @@
         </tr>
 
         <tr>
-          <td><% if @factory_order.Document_de_Transport.attached? %>
-            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.Document_de_Transport)}"), target: "_blank" do %>
-            <%= @factory_order.Document_de_Transport.name %>
+          <td><% if @factory_order.document_de_transport.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.document_de_transport)}"), target: "_blank" do %>
+            <%= @factory_order.document_de_transport.name %>
             <% end %>
-            <%= link_to rails_blob_path(@factory_order.Document_de_Transport, disposition: 'attachment') do%>
+            <%= link_to rails_blob_path(@factory_order.document_de_transport, disposition: 'attachment') do%>
             <i class="far fa-save"></i>
             <% end %>
             <% else %>
-            <%= @factory_order.Document_de_Transport.name %>
+            <%= @factory_order.document_de_transport.name %>
             <% end %>
           </td>
           <td><%= simple_form_for @factory_order do |form| %>
-            <%= form.file_field :Document_de_Transport %>
+            <%= form.file_field :document_de_transport %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>
@@ -54,19 +54,19 @@
           </td>
         </tr>
         <tr>
-          <td><% if @factory_order.Delivery_Note.attached? %>
-            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.Delivery_Note)}"), target: "_blank" do %>
-            <%= @factory_order.Delivery_Note.name %>
+          <td><% if @factory_order.delivery_note.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.delivery_note)}"), target: "_blank" do %>
+            <%= @factory_order.delivery_note.name %>
             <% end %>
-            <%= link_to rails_blob_path(@factory_order.Delivery_Note, disposition: 'attachment') do%>
+            <%= link_to rails_blob_path(@factory_order.delivery_note, disposition: 'attachment') do%>
             <i class="far fa-save"></i>
             <% end %>
             <% else %>
-            <%= @factory_order.Delivery_Note.name %>
+            <%= @factory_order.delivery_note.name %>
             <% end %>
           </td>
           <td><%= simple_form_for @factory_order do |form| %>
-            <%= form.file_field :Delivery_Note %>
+            <%= form.file_field :delivery_note %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>
@@ -75,19 +75,19 @@
         </tr>
 
         <tr>
-          <td><% if @factory_order.Photos_Livraison.attached? %>
-            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.Photos_Livraison)}"), target: "_blank" do %>
-            <%= @factory_order.Photos_Livraison.name %>
+          <td><% if @factory_order.photos_livraison.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.photos_livraison)}"), target: "_blank" do %>
+            <%= @factory_order.photos_livraison.name %>
             <% end %>
-            <%= link_to rails_blob_path(@factory_order.Photos_Livraison, disposition: 'attachment') do%>
+            <%= link_to rails_blob_path(@factory_order.photos_livraison, disposition: 'attachment') do%>
             <i class="far fa-save"></i>
             <% end %>
             <% else %>
-            <%= @factory_order.Photos_Livraison.name %>
+            <%= @factory_order.photos_livraison.name %>
             <% end %>
           </td>
           <td><%= simple_form_for @factory_order do |form| %>
-            <%= form.file_field :Photos_Livraison %>
+            <%= form.file_field :photos_livraison %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>

@@ -9,22 +9,17 @@ class Delivery < ApplicationRecord
   has_one_attached :cpi
   has_one_attached :cerfa_changement_titulaire
   has_one_attached :cerfa_cession
-  has_one_attached :Bulletion_de_livraison
-  has_one_attached :CDOC
-  has_one_attached :Attestation_EAD
-  has_one_attached :Attestation_Limiteur_de_Vitesse
-  has_one_attached :Photos_Vehicule
-  has_one_attached :Facture
-  has_one_attached :Bon_de_commande
+  has_one_attached :bulletion_de_livraison
+  has_one_attached :cdoc
+  has_one_attached :attestation_ead
+  has_one_attached :attestation_limiteur_de_vitesse
+  has_one_attached :photos_vehicule
+  has_one_attached :facture
+  has_one_attached :bon_de_commande
   has_one_attached :offre_configuration_avec_plan_implantation
-  has_one_attached :Information_Peinture
-  has_one_attached :Plan_VOSP
-  has_one_attached :Fiche_RCR
-  has_one_attached :A_Reception_Envoi_papiers_originaux
-  has_one_attached :Justificatif_Financement
-
-
-
-
-
+  has_one_attached :information_peinture
+  has_one_attached :plan_vosp
+  has_one_attached :fiche_rcr
+  has_one_attached :a_reception_envoi_papiers_originaux
+  has_one_attached :justificatif_financement
 end

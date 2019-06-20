@@ -106,11 +106,11 @@ class DeliveriesController < ApplicationController
   def all_documents_present?
     answer = false
     # needed_documents = @documents_livraison_effective + @documents_cloture_adv
-    if (@delivery.CDOC.attached? && @delivery.Bulletion_de_livraison.attached? && @delivery.Attestation_EAD.attached? && @delivery.Attestation_Limiteur_de_Vitesse.attached? && @delivery.Plan_VOSP.attached? && @delivery.Photos_Vehicule.attached? && delivery.Facture.attached)
+    if (@delivery.cdoc.attached? && @delivery.bulletion_de_livraison.attached? && @delivery.attestation_ead.attached? && @delivery.attestation_limiteur_de_vitesse.attached? && @delivery.plan_vosp.attached? && @delivery.photos_vehicule.attached? && delivery.facture.attached)
       answer = true
     end
     if @bus.immatriculation.present?
-     answer = @delivery.A_Reception_Envoi_papiers_originaux.attached?
+     answer = @delivery.a_reception_envoi_papiers_originaux.attached?
    end
     return answer
   end
@@ -142,19 +142,19 @@ class DeliveriesController < ApplicationController
       :cpi,
       :cerfa_changement_titulaire,
       :cerfa_cession,
-      :Bulletion_de_livraison,
-      :CDOC,
-      :Attestation_EAD,
-      :Attestation_Limiteur_de_Vitesse,
-      :Photos_Vehicule,
-      :Farcture,
-      :Bon_de_commande,
+      :bulletion_de_livraison,
+      :cdoc,
+      :attestation_ead,
+      :attestation_limiteur_de_vitesse,
+      :photos_vehicule,
+      :facture,
+      :bon_de_commande,
       :offre_configuration_avec_plan_implantation,
-      :Information_Peinture,
-      :Plan_VOSP,
-      :Fiche_RCR,
-      :A_Reception_Envoi_papiers_originaux,
-      :Justificatif_Financement,
+      :information_peinture,
+      :plan_vosp,
+      :fiche_rcr,
+      :a_reception_envoi_papiers_originaux,
+      :justificatif_financement
     )
   end
 end
