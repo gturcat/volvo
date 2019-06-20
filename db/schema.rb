@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_06_13_141415) do
-
+ActiveRecord::Schema.define(version: 2019_06_20_073237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +99,19 @@ ActiveRecord::Schema.define(version: 2019_06_13_141415) do
     t.boolean "garantie_pep_tool"
     t.boolean "telematique_demandee"
     t.text "note"
+    t.string "Bulletion_de_livraison"
+    t.string "CDOC"
+    t.string "Attestation_EAD"
+    t.string "Attestation_Limiteur_de_Vitesse"
+    t.string "Photos_Vehicule"
+    t.string "Facture"
+    t.string "Bon_de_commande"
+    t.string "offre_configuration_avec_plan_implantation"
+    t.string "Information_Peinture"
+    t.string "Plan_VOSP"
+    t.string "Fiche_RCR"
+    t.string "A_Reception_Envoi_papiers_originaux"
+    t.string "Justificatif_Financement"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 

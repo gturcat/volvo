@@ -134,7 +134,24 @@ class DeliveriesController < ApplicationController
       :garantie_pep_tool,
       :telematique_demandee,
       :note,
-      :attestation_amenagement
+      :attestation_amenagement,
+      :coc,
+      :cpi,
+      :cerfa_changement_titulaire,
+      :cerfa_cession,
+      :Bulletion_de_livraison,
+      :CDOC,
+      :Attestation_EAD,
+      :Attestation_Limiteur_de_Vitesse,
+      :Photos_Vehicule,
+      :Facture,
+      :Bon_de_commande,
+      :offre_configuration_avec_plan_implantation,
+      :Information_Peinture,
+      :Plan_VOSP,
+      :Fiche_RCR,
+      :A_Reception_Envoi_papiers_originaux,
+      :Justificatif_Financement,
     )
   end
 end

@@ -1,0 +1,122 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Immatriculation :<%=@bus.immatriculation if @bus.immatriculation.present?  %></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !@bus.immatriculation.present?  %>
+        <tr>
+          <td><% if @delivery.attestation_amenagement.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.attestation_amenagement)}"), target: "_blank" do %>
+            <%= @delivery.attestation_amenagement.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.attestation_amenagement, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.attestation_amenagement.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :attestation_amenagement %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @delivery.coc.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.coc)}"), target: "_blank" do %>
+            <%= @delivery.coc.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.coc, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.coc.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :coc %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+        <tr>
+          <td><% if @delivery.cpi.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.cpi)}"), target: "_blank" do %>
+            <%= @delivery.cpi.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.cpi, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.cpi.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :cpi %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <% if @bus.immatriculation.present?  %>
+        <tr>
+          <td><% if @delivery.cerfa_changement_titulaire.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.cerfa_changement_titulaire)}"), target: "_blank" do %>
+            <%= @delivery.cerfa_changement_titulaire.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.cerfa_changement_titulaire, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.cerfa_changement_titulaire.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :cerfa_changement_titulaire %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if @delivery.cerfa_cession.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.cerfa_cession)}"), target: "_blank" do %>
+            <%= @delivery.cerfa_cession.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.cerfa_cession, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.cerfa_cession.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :cerfa_cession %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

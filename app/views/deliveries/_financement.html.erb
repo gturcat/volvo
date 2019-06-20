@@ -1,1 +1,37 @@
-<%= render './shared/documents', object: @documents_financement, locals: { title: @line.financement_type, model: @delivery }  %>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if @delivery.Justificatif_Financement.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.Justificatif_Financement)}"), target: "_blank" do %>
+            <%= @delivery.Justificatif_Financement.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.Justificatif_Financement, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.Justificatif_Financement.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :Justificatif_Financement %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
