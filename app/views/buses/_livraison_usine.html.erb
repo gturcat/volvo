@@ -1,2 +1,101 @@
 
-<%= render './shared/documents', object: @documents_factory_delivery, locals: { title: "Documents Livraison Usine", model: @bus.factory_orders.last}  %>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if @factory_order.VCR.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.VCR)}"), target: "_blank" do %>
+            <%= @factory_order.VCR.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@factory_order.VCR, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @factory_order.VCR.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @factory_order do |form| %>
+            <%= form.file_field :VCR %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @factory_order.Document_de_Transport.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.Document_de_Transport)}"), target: "_blank" do %>
+            <%= @factory_order.Document_de_Transport.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@factory_order.Document_de_Transport, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @factory_order.Document_de_Transport.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @factory_order do |form| %>
+            <%= form.file_field :Document_de_Transport %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if @factory_order.Delivery_Note.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.Delivery_Note)}"), target: "_blank" do %>
+            <%= @factory_order.Delivery_Note.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@factory_order.Delivery_Note, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @factory_order.Delivery_Note.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @factory_order do |form| %>
+            <%= form.file_field :Delivery_Note %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @factory_order.Photos_Livraison.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.Photos_Livraison)}"), target: "_blank" do %>
+            <%= @factory_order.Photos_Livraison.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@factory_order.Photos_Livraison, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @factory_order.Photos_Livraison.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @factory_order do |form| %>
+            <%= form.file_field :Photos_Livraison %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
