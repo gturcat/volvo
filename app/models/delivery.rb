@@ -4,4 +4,22 @@ class Delivery < ApplicationRecord
   has_many :documents, dependent: :destroy
   has_many :works
   has_one :order, through: :line
+  has_one_attached :attestation_amenagement
+  has_one_attached :coc
+  has_one_attached :cpi
+  has_one_attached :cerfa_changement_titulaire
+  has_one_attached :cerfa_cession
+  has_one_attached :bulletion_de_livraison
+  has_one_attached :cdoc
+  has_one_attached :attestation_ead
+  has_one_attached :attestation_limiteur_de_vitesse
+  has_one_attached :photos_vehicule
+  has_one_attached :facture
+  has_one_attached :bon_de_commande
+  has_one_attached :offre_configuration_avec_plan_implantation
+  has_one_attached :information_peinture
+  has_one_attached :plan_vosp
+  has_one_attached :fiche_rcr
+  has_one_attached :a_reception_envoi_papiers_originaux
+  has_one_attached :justificatif_financement
 end

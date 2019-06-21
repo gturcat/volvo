@@ -14,16 +14,21 @@
   <%= f.input :date_convoyage, as: :date, html5: true %>
  <div class="row">
       <div class="col-sm-6 col-xs-12">
-  <%= f.input :depart %>
+  <%= f.input :depart, label: "Lieu de départ" %>
       </div>
       <div class="col-sm-6 col-xs-12">
-  <%= f.input :arrivee %>
+  <%= f.input :arrivee, label: "lieu d'arrivée" %>
       </div>
   </div>
-  <%= f.input :sens, collection: [ 'Aller', 'Retour'], as: :radio_buttons %>
-  <%= f.input :site %>
-  <%= f.input :numero_bdc %>
-  <%= f.input :note, as: :text %>
+  <div class="row">
+      <div class="col-sm-6 col-xs-12">
+  <%= f.input :site, label: "Sites prévenus" %>
+   </div>
+      <div class="col-sm-6 col-xs-12">
+  <%= f.input :numero_bdc, label: "n°bdc pour le convoyage crée"%>
+</div>
+  </div>
+  <%= f.input :note, as: :text, label: "Note (nom du convoyeur)" %>
   <%= f.submit "Convoyer", class: "btn btn-primary" %>
 <% end %>
 </div>

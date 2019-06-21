@@ -31,4 +31,41 @@
     <% end %>
   </div>
 </div>
-<%= render './shared/documents', object: @documents_facturation, locals: { title: "Document de facturation", model: @delivery }  %>
+
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if @delivery.facture.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.facture)}"), target: "_blank" do %>
+            <%= @delivery.facture.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.facture, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.facture.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :facture %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

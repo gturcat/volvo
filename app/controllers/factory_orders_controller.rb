@@ -16,6 +16,24 @@ class FactoryOrdersController < ApplicationController
   private
 
   def factory_order_params
-    params.require(:factory_order).permit(:id, :envoiOF, :date_limit_modif_config, :reception_oc, :dispo_fr, :CDD, :lieu_depart_usine, :date_depart_usine, :lieu_arrivee_partenaire_volvo, :date_arrivee_partenaire_volvo, :partenaire_prevenu, :partner_id)
+    params.require(:factory_order)
+    .permit(:id,
+            :envoiOF,
+            :date_limit_modif_config,
+            :reception_oc,
+            :dispo_fr,
+            :CDD,
+            :lieu_depart_usine,
+            :date_depart_usine,
+            :lieu_arrivee_partenaire_volvo,
+            :date_arrivee_partenaire_volvo,
+            :partenaire_prevenu,
+            :partner_id,
+            :vcr,
+            :document_de_transport,
+            :delivery_note,
+            :vcr,
+            :photos_livraison
+            )
   end
 end

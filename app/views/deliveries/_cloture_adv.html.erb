@@ -1,4 +1,63 @@
-<%= render './shared/documents', object: @documents_cloture_adv, locals: { title: "listes des documents", model: @delivery }  %>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Immatriculation :<%=@bus.immatriculation if @bus.immatriculation.present?  %></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if @delivery.facture.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.Facture)}"), target: "_blank" do %>
+            <%= @delivery.facture.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.facture, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.facture.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :facture %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <% if @bus.immatriculation.present?  %>
+        <tr>
+          <td><% if @delivery.a_reception_envoi_papiers_originaux.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.a_reception_envoi_papiers_originaux)}"), target: "_blank" do %>
+            <%= @delivery.a_reception_envoi_papiers_originaux.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.a_reception_envoi_papiers_originaux, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.a_reception_envoi_papiers_originaux.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :a_reception_envoi_papiers_originaux %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div class="tab">
   <div class="tab">

@@ -6,12 +6,18 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Status 1</th>
           <th>Status 2</th>
         </tr>
       </thead>
       <tbody>
         <%= simple_form_for @bus do |f| %>
         <tr>
+          <td><%= f.input :statut1, collection: [ 'En commande client',
+            'Disponible',
+            'Indisponible',
+            'Livré/Facturé'
+            ], label: false%></td>
           <td><%= f.input :statut2, collection: [ 'A commander',
             'Config usine à valider',
             'En commande',

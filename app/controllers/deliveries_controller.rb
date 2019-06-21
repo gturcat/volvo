@@ -29,7 +29,7 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
     @line = @delivery.line
     @bus = @line.bus
-    set_documents
+    # set_documents
     @delivery = Delivery.find(params[:id])
     @line = @delivery.line
     @bus = @line.bus
@@ -54,42 +54,42 @@ class DeliveriesController < ApplicationController
   private
 
 
-  def set_documents
-    @documents_financement = ["Justificatif financement"]
-    @documents_livraison_effective = [
-                                    "C.D.O.K",
-                                    "Bulletion de livraison",
-                                    "Attestation E.A.D",
-                                    "Attestation Limiteur de Vitesse",
-                                    "Plan VOSP",
-                                    "Photo véhicule"
-                                    ]
-    @documents_facturation = ["Facture"]
-    @documents_envoyés = ["Bon de commande",
-                          "offre configuration avec plan d'implantation",
-                          "Information Peinture",
-                          "Plan VOSP",
-                          "Fiche RCR"
-                          ]
-    if !@bus.immatriculation.present? # si vehicule neuf
-      @documents_immatriculation = ["Attestation Amenagement",
-                                    "C.O.C",
-                                    "C.P.I"
-                                    ]
-      @documents_cloture_adv = [
-                              "Facture",
-                              ]
-    elsif @bus.immatriculation.present? # si vehicule d'occasion
-      @documents_immatriculation = ["CERFA Chamgement de titulaire",
-                                    "CERFA Cesssion",
-                                    "C.P.I"
-                                    ]
-      @documents_cloture_adv = [
-                              "Facture",
-                              "A. Reception - Envoi des papiers originaux au client"
-                              ]
-    end
-  end
+  # def set_documents
+  #   @documents_financement = ["Justificatif financement"]
+  #   @documents_livraison_effective = [
+  #                                   "C.D.O.K",
+  #                                   "Bulletion de livraison",
+  #                                   "Attestation E.A.D",
+  #                                   "Attestation Limiteur de Vitesse",
+  #                                   "Plan VOSP",
+  #                                   "Photo véhicule"
+  #                                   ]
+  #   @documents_facturation = ["Facture"]
+  #   @documents_envoyés = ["Bon de commande",
+  #                         "offre configuration avec plan d'implantation",
+  #                         "Information Peinture",
+  #                         "Plan VOSP",
+  #                         "Fiche RCR"
+  #                         ]
+  #   if !@bus.immatriculation.present? # si vehicule neuf
+  #     @documents_immatriculation = ["Attestation Amenagement",
+  #                                   "C.O.C",
+  #                                   "C.P.I"
+  #                                   ]
+  #     @documents_cloture_adv = [
+  #                             "Facture",
+  #                             ]
+  #   elsif @bus.immatriculation.present? # si vehicule d'occasion
+  #     @documents_immatriculation = ["CERFA Chamgement de titulaire",
+  #                                   "CERFA Cesssion",
+  #                                   "C.P.I"
+  #                                   ]
+  #     @documents_cloture_adv = [
+  #                             "Facture",
+  #                             "A. Reception - Envoi des papiers originaux au client"
+  #                             ]
+  #   end
+  # end
 
   def ready_to_close?
     answer = false
@@ -104,11 +104,14 @@ class DeliveriesController < ApplicationController
   end
 
   def all_documents_present?
-    answer = true
-    needed_documents = @documents_livraison_effective + @documents_cloture_adv
-    needed_documents.each do |name|
-      answer = false unless @delivery.documents.where(name: name).present?
+    answer = false
+    # needed_documents = @documents_livraison_effective + @documents_cloture_adv
+    if (@delivery.cdoc.attached? && @delivery.bulletion_de_livraison.attached? && @delivery.attestation_ead.attached? && @delivery.attestation_limiteur_de_vitesse.attached? && @delivery.plan_vosp.attached? && @delivery.photos_vehicule.attached? && delivery.facture.attached)
+      answer = true
     end
+    if @bus.immatriculation.present?
+     answer = @delivery.a_reception_envoi_papiers_originaux.attached?
+   end
     return answer
   end
 
@@ -133,7 +136,25 @@ class DeliveriesController < ApplicationController
       :doc_originaux_envoyés_client,
       :garantie_pep_tool,
       :telematique_demandee,
-      :note
+      :note,
+      :attestation_amenagement,
+      :coc,
+      :cpi,
+      :cerfa_changement_titulaire,
+      :cerfa_cession,
+      :bulletion_de_livraison,
+      :cdoc,
+      :attestation_ead,
+      :attestation_limiteur_de_vitesse,
+      :photos_vehicule,
+      :facture,
+      :bon_de_commande,
+      :offre_configuration_avec_plan_implantation,
+      :information_peinture,
+      :plan_vosp,
+      :fiche_rcr,
+      :a_reception_envoi_papiers_originaux,
+      :justificatif_financement
     )
   end
 end

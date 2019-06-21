@@ -1,4 +1,4 @@
-<div class="tab">
+
   <div class="tab">
     <div class="panel panel-default">
       <!-- Default panel contents-->
@@ -30,9 +30,9 @@
       </table>
     </div>
   </div>
-</div>
-  <%= render './shared/documents', object: @documents_immatriculation, locals: { title: "Documents Immatriculation  #{@bus.immatriculation}", model: @delivery }  %>
-  <div class="tab">
+
+<%= render 'documents_immat'  %>
+
   <div class="tab">
     <div class="panel panel-default">
       <!-- Default panel contents-->
@@ -59,4 +59,3 @@
       </table>
     </div>
   </div>
-</div>

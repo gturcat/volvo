@@ -4,14 +4,12 @@
       <br>
       <li><h5>Informations Véhicule</h5></a></li>
       <li><a href="#section-1">Commande Client</a></li>
-      <li><a href="#section-2">Offre</a></li>
-      <li><a href="#section-3">Informations Véhicule</a></li>
-      <li><a href="#section-4">Indentification Usine</a></li>
-      <li><a href="#section-5">Commande Usine</a></li>
-      <li><a href="#section-6">Livraison Usine</a></li>
-      <li><a href="#section-7">Immatriculation</a></li>
-      <li><a href="#section-8">Garantie</a></li>
-      <li><a href="#section-13">Telematique</a></li>
+      <li><a href="#section-2">Informations Véhicule</a></li>
+      <li><a href="#section-3">Indentification Usine</a></li>
+      <li><a href="#section-4">Commande Usine</a></li>
+      <li><a href="#section-5">Livraison Usine</a></li>
+      <li><a href="#section-6">Relevé Kilometrage</a></li>
+      <li><a href="#section-13">Immatriculation</a></li>
       <% if @delivery.present? %>
       <%= link_to "Informations Livraison", delivery_path(@delivery)%>
       <% end %>
@@ -37,34 +35,27 @@
       <% end %>
     </div>
     <div class="add-padding-left" id="section-3">
-      <h5>Offre</h5>
-      <%= render "offre" %>
-    </div>
-    <div class="add-padding-left" id="section-4">
       <h5>Indentification Usine</h5>
       <%= render "identification_usine" %>
     </div>
-    <div class="add-padding-left" id="section-5">
+    <div class="add-padding-left" id="section-4">
       <h5>Commande Usine</h5>
       <%= render "nouvelle_commande_usine" if !@bus.factory_orders.last.id.present? %>
       <%= render "maj_commande_usine" if @bus.factory_orders.last.id.present?  %>
     </div>
-    <div class="add-padding-left" id="section-6">
+    <div class="add-padding-left" id="section-5">
       <h5>Livraison Usine Chez le Partenaire </h5>
       <%= render "livraison_usine" if @bus.factory_orders.last.id.present?%>
     </div>
 
-    <div class="add-padding-left" id="section-7">
+    <div class="add-padding-left" id="section-6">
+      <h5>Relevé Kilométrage </h5>
+      <%= render "releve_kilometrage"%>
+    </div>
+
+    <div class="add-padding-left" id="section-13">
       <h5>Immatriculation</h5>
       <%= render "immatriculation" %>
-    </div>
-     <div class="add-padding-left" id="section-8">
-      <h5>Garantie</h5>
-      <%= render "garantie" if @bus.mention_garantie.present?%>
-    </div>
-     <div class="add-padding-left" id="section-13">
-      <h5>Telematique</h5>
-      <%= render "telematique" if @bus.lines.present?%>
     </div>
   </div>
 </div>

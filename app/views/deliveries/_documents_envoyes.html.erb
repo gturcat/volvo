@@ -1,1 +1,119 @@
-<%= render './shared/documents', object: @documents_envoyés, locals: { title: "listes des documents", model: @delivery }  %>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if @delivery.bon_de_commande.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.bon_de_commande)}"), target: "_blank" do %>
+            <%= @delivery.bon_de_commande.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.bon_de_commande, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.bon_de_commande.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :bon_de_commande %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @delivery.offre_configuration_avec_plan_implantation.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.offre_configuration_avec_plan_implantation)}"), target: "_blank" do %>
+            <%= @delivery.offre_configuration_avec_plan_implantation.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.offre_configuration_avec_plan_implantation, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.offre_configuration_avec_plan_implantation.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :offre_configuration_avec_plan_implantation %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if @delivery.information_peinture.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.information_peinture)}"), target: "_blank" do %>
+            <%= @delivery.information_peinture.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.information_peinture, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.information_peinture.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :information_peinture %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @delivery.plan_vosp.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.plan_vosp)}"), target: "_blank" do %>
+            <%= @delivery.plan_vosp.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.plan_vosp, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.plan_vosp.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :plan_vosp %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if @delivery.fiche_rcr.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.fiche_rcr)}"), target: "_blank" do %>
+            <%= @delivery.fiche_rcr.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.fiche_rcr, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.fiche_rcr.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :fiche_rcr %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

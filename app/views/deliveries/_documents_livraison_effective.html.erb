@@ -32,4 +32,145 @@
   </div>
 </div>
 
-<%= render './shared/documents', object: @documents_livraison_effective, locals: { title: "listes des documents", model: @delivery }  %>
+
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if @delivery.cdoc.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.cdoc)}"), target: "_blank" do %>
+            <%= @delivery.cdoc.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.cdoc, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.cdoc.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :cdoc %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @delivery.bulletion_de_livraison.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.bulletion_de_livraison)}"), target: "_blank" do %>
+            <%= @delivery.bulletion_de_livraison.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.bulletion_de_livraison, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.bulletion_de_livraison.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :bulletion_de_livraison %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if @delivery.attestation_ead.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.attestation_ead)}"), target: "_blank" do %>
+            <%= @delivery.attestation_ead.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.attestation_ead, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.attestation_ead.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :attestation_ead %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><% if @delivery.attestation_limiteur_de_vitesse.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.attestation_limiteur_de_vitesse)}"), target: "_blank" do %>
+            <%= @delivery.attestation_limiteur_de_vitesse.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.attestation_limiteur_de_vitesse, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.attestation_limiteur_de_vitesse.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :attestation_limiteur_de_vitesse %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if @delivery.plan_vosp.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.plan_vosp)}"), target: "_blank" do %>
+            <%= @delivery.plan_vosp.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.plan_vosp, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.plan_vosp.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :plan_vosp %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+  <tr>
+          <td><% if @delivery.photos_vehicule.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(@delivery.photos_vehicule)}"), target: "_blank" do %>
+            <%= @delivery.photos_vehicule.name %>
+            <% end %>
+            <%= link_to rails_blob_path(@delivery.photos_vehicule, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= @delivery.photos_vehicule.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for @delivery do |form| %>
+            <%= form.file_field :photos_vehicule %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

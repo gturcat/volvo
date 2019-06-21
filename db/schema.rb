@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_141415) do
+ActiveRecord::Schema.define(version: 2019_06_20_164555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "buses", force: :cascade do |t|
     t.string "numero_chassis"
@@ -78,6 +99,19 @@ ActiveRecord::Schema.define(version: 2019_06_13_141415) do
     t.boolean "garantie_pep_tool"
     t.boolean "telematique_demandee"
     t.text "note"
+    t.string "bulletion_de_livraison"
+    t.string "cdoc"
+    t.string "attestation_ead"
+    t.string "attestation_limiteur_de_vitesse"
+    t.string "photos_Vehicule"
+    t.string "facture"
+    t.string "bon_de_commande"
+    t.string "offre_configuration_avec_plan_implantation"
+    t.string "information_peinture"
+    t.string "plan_vosp"
+    t.string "Fiche_rcr"
+    t.string "a_reception_envoi_papiers_originaux"
+    t.string "justificatif_financement"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
@@ -126,6 +160,10 @@ ActiveRecord::Schema.define(version: 2019_06_13_141415) do
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
     t.bigint "partner_id"
+    t.string "document_de_transport"
+    t.string "delivery_note"
+    t.string "vcr"
+    t.string "photos_livraison"
     t.index ["bus_id"], name: "index_factory_orders_on_bus_id"
     t.index ["partner_id"], name: "index_factory_orders_on_partner_id"
   end
@@ -134,13 +172,12 @@ ActiveRecord::Schema.define(version: 2019_06_13_141415) do
     t.date "date_convoyage"
     t.string "depart"
     t.string "arrivee"
-    t.string "sens"
-    t.string "site"
-    t.string "numero_bdc"
     t.string "note"
     t.bigint "bus_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "site"
+    t.boolean "numero_bdc"
     t.index ["bus_id"], name: "index_ferries_on_bus_id"
   end
 
