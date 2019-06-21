@@ -20,7 +20,7 @@
           <td><%= line.training.date  %></td>
           <td><%= line.training.lieu %></td>
           <td><%= line.training.formateur %></td>
-          <td><%= line.bus.description.name %></td>
+          <td><%= line.bus.type.name %></td>
           <td>
             <%= link_to training_path(line.training), method: :delete,  class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
             <i class="fas fa-minus-circle"></i>

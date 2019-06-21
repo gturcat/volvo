@@ -14,7 +14,7 @@ class DeliveriesController < ApplicationController
       @bus = @line.bus
       @delivery.statut = false
       @delivery.save
-      @bus.statut1 = "client"
+      @bus.facture_livre
       @bus.statut2 = nil
       @bus.mention_garantie = @line.mention_garantie if !@bus.mention_garantie.present?
       @bus.save

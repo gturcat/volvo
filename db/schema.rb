@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_20_164555) do
+ActiveRecord::Schema.define(version: 2019_06_21_101928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,33 +36,8 @@ ActiveRecord::Schema.define(version: 2019_06_20_164555) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "buses", force: :cascade do |t|
-    t.string "numero_chassis"
-    t.string "reference_usine"
-    t.string "designation_configuration"
-    t.string "bo_number"
-    t.date "date_debut_garantie"
-    t.integer "kilometrage"
-    t.date "date_kilometrage"
-    t.string "immatriculation"
-    t.string "statut1"
-    t.string "statut2"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "type_id"
-    t.string "ch_cb"
-    t.string "sept_neuf"
-    t.bigint "description_id"
-    t.string "option_contremarque"
-    t.string "option_commercial"
-    t.date "date_option"
-    t.string "prix_mini"
-    t.string "version"
-    t.string "implantation"
-    t.string "mention_garantie"
-    t.index ["description_id"], name: "index_buses_on_description_id"
-    t.index ["type_id"], name: "index_buses_on_type_id"
-  end
+# Could not dump table "buses" because of following StandardError
+#   Unknown type 'bus_statut1' for column 'statut1'
 
   create_table "deliveries", force: :cascade do |t|
     t.string "lieu_prepa"

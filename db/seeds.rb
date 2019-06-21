@@ -11,37 +11,7 @@ abrial = SalesAdvisor.create(name: "B. Abrial")
 marsella = SalesAdvisor.create(name: "D. Marsella")
 ribourg = SalesAdvisor.create(name: "H. Ribourg")
 
-Description.destroy_all
-puts 'destroy all Description'
-puts 'creating good Description'
-Description.create(name: '7700LH')
-Description.create(name: '7900LHC')
-Description.create(name: '7900LH')
-Description.create(name: '7900LAH')
-Description.create(name: '8600 12m50')
-Description.create(name: '8600 13m20')
-Description.create(name: '8900 12m20')
-Description.create(name: '8900 13m')
-Description.create(name: '8900 14m90')
-Description.create(name: '8900LE 12m')
-Description.create(name: '8900LE 13m')
-Description.create(name: '8900LE 13m70')
-Description.create(name: '8900LE 14m70')
-Description.create(name: '9500H 12m30')
-Description.create(name: '9500H 13m10')
-Description.create(name: '9700H 12m30')
-Description.create(name: '9700H 13m50 Carrus')
-Description.create(name: '9700HD 12m30')
-Description.create(name: '9700LHD 13m')
-Description.create(name: '9700LHD 13m80')
-Description.create(name: '9900HD 12m30')
-Description.create(name: '9900LHD 13m')
-Description.create(name: '9900LHD 13m80')
-Description.create(name: 'VO')
-Description.create(name: 'B5TL')
-Description.create(name: 'B8R')
-Description.create(name: 'B8RLE')
-Description.create(name: 'B11R')
+
 
 OrderBook.destroy_all
 puts 'destroy all OrderBook'

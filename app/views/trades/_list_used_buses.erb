@@ -6,7 +6,6 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Description</th>
                   <th>Immatriculation</th>
                   <th>Couleur Exterieure</th>
                   <th>Client</th>
@@ -18,7 +17,6 @@
               <tbody>
                 <% @used_buses.each  do | bus| %>
                 <tr>
-                  <td><%= bus.description[:name] %></td>
                   <td><%= bus.immatriculation %> </td>
                   <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.last.present? %></td>
                   <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>

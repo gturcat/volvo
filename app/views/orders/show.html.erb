@@ -42,7 +42,7 @@
 <h6>Rechercher un bus en stock par sa description</h6>
 <p>Il est possible de commander plusieurs Bus sur la même commande en effectuant une nouvelle recherche</p>
 <%= search_form_for @q, url: order_path(@order), html: { method: :get } do |f| %>
-  <%= f.search_field :description_name_cont %>
+  <%= f.search_field :type_name_cont %>
   <%= f.submit  %>
 <% end %>
 
