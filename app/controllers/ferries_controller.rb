@@ -11,7 +11,7 @@ class FerriesController < ApplicationController
   def create
     @ferry = Ferry.new(ferry_params)
     @bus = Bus.find(params[:bus_id])
-    @order = @bus.orders.where("orders.statut = true").take
+    @order = @bus.orders.pending.take
     @line = @order.lines.where(bus_id: @bus.id).take if @order.present?
     @delivery = Delivery.find(@line.delivery_id) if @order.present?
     @ferry.bus = @bus

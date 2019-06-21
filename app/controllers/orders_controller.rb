@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     @buses = []
     @q = Bus.ransack(params[:q])
     if params[:q].present?
-      search_stock if params[:q][:description_name_cont].present?
+      search_stock if params[:q][:type_name_cont].present?
     end
     @order_to_close = true if order_to_close?
   end
@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
     answer = true
     answer = false unless @ordered_buses.present?
     @ordered_buses.each do |bus|
-      answer = false if bus.statut1 != "client"
+      answer = false if bus.facture_livre?
     end
     @order.lines.each do |line|
       if line.trade.present?
@@ -90,7 +90,7 @@ class OrdersController < ApplicationController
         document.delete
       end
       bus = trade.bus
-      bus.statut1 = "client"
+      bus.facture_livre!
       bus.statut2 = ""
       bus.save
       trade.delete
@@ -105,7 +105,7 @@ class OrdersController < ApplicationController
 
   def set_bus_to_available
     @order.buses.each do |bus|
-      bus.statut1 = "disponible"
+      bus.disponible!
       bus.save
     end
   end
@@ -141,7 +141,7 @@ class OrdersController < ApplicationController
   end
 
   def search_stock
-    @buses = @q.result.where(statut1: "disponible").includes(:description)
+    @buses = @q.result.where(statut1: ["indisponible","disponible"]).includes(:type)
   end
 
   def order_params

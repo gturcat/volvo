@@ -24,7 +24,7 @@ class LinesController < ApplicationController
       #le bus repris est rendu au client
     if trade.present?
       traded_bus = trade.bus
-      traded_bus.statut1 = "client"
+      traded_bus.facture_livre!
       traded_bus.statut2 = ""
       traded_bus.save
       trade.delete
@@ -36,7 +36,7 @@ class LinesController < ApplicationController
 
     # le bus commandé est rendu disponible pour une autre commande
     bus = @line.bus
-    bus.statut1 = "disponible"
+    bus.disponible!
     bus.save
     @line.delete
     delivery_to_delete.delete
@@ -61,7 +61,7 @@ class LinesController < ApplicationController
     @line.order = Order.find(params[:order_id])
     @order = @line.order
     @bus = @line.bus
-    @bus.statut1 = "indisponible"
+    @bus.en_commande!
     @bus.save
     #creation de la livraison correspondante
     @delivery = Delivery.create(statut: true)

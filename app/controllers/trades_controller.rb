@@ -18,7 +18,7 @@ class TradesController < ApplicationController
     @trade.status = true
     @bus = @trade.bus
     @bus.statut2 = "VO à rentrer"
-    @bus.statut1 = "client"
+    @bus.facture_livre!
     @bus.save
     if @trade.save
       redirect_to order_path(@trade.line.order)
@@ -37,7 +37,7 @@ class TradesController < ApplicationController
     @trade = Trade.find(params[:id])
     @bus = @trade.bus
     @bus.statut2 = ""
-    @bus.statut1 = "client"
+    @bus.facture_livre!
     @bus.save
     @trade.delete
     redirect_to order_path(@trade.line.order)
@@ -73,7 +73,7 @@ class TradesController < ApplicationController
     @trade = Trade.find(params[:id])
     @bus = @trade.bus
     @trade.status = false
-    @bus.statut1 = "disponible"
+    @bus.disponible!
     @bus.statut2 = "Stock VO"
     @bus.save
     @trade.save
@@ -83,7 +83,7 @@ class TradesController < ApplicationController
   private
 
   def search_used_bus
-    @used_buses = @q.result.where(statut1: "client")
+    @used_buses = @q.result.where(statut1: "facture_livre")
   end
 
   def trade_params

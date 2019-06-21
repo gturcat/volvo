@@ -6,7 +6,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Description</th>
+
           <th>Immatriculation</th>
           <th>Statut 2</th>
           <th>Prix de rachat</th>
@@ -18,11 +18,11 @@
         <% @order.lines.each  do |line| %>
           <% if line.trade.present? %>
         <tr>
-          <td><%= line.trade.bus.description[:name]  %></td>
+
           <td><%= line.trade.bus.immatriculation %></td>
           <td><%= line.trade.bus.statut2 %></td>
           <td><%= line.trade.prix_achat %></td>
-          <td><%= line.bus.description.name %></td>
+          <td><%= line.bus.type.name %></td>
           <td>
             <%= link_to bus_path(line.trade.bus), class: "btn btn-warning" do %>
             <i class="far fa-edit"></i>

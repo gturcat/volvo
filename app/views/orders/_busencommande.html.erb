@@ -6,8 +6,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Description</th>
-          <th>Order Book</th>
+          <th>type</th>
           <th>Couleur Exterieure</th>
           <th>Delai Bon de commande</th>
           <th>Garantie</th>
@@ -19,8 +18,7 @@
       <tbody>
         <% @ordered_buses.each  do | bus| %>
         <tr>
-          <td><%= bus.description[:name] %></td>
-          <td><%= bus.lines.last.order_book[:name] if bus.lines.last.order_book.present?  %></td>
+          <td><%= bus.type.name  %></td>
           <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>

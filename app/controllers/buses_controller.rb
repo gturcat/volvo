@@ -4,7 +4,7 @@ class BusesController < ApplicationController
     @descriptions = Description.all
     @types = Type.all
     @orders = Order.all
-    @buses = Bus.where("buses.statut1 != 'client' ")
+    @buses = Bus.where.not(statut1: :facture_livre)
   end
 
   def show
@@ -54,7 +54,7 @@ class BusesController < ApplicationController
         render :new
       end
     elsif @order.present? && @ordered_bus.present?
-      @bus.statut1 = "client" # statut2 forcé à "client " car le bus crée est un VO à reprendre et appartient toujours à son client
+      @bus.facture_livre! # statut1 forcé à "client " car le bus crée est un VO à reprendre et appartient toujours à son client
 
       if @bus.save
         redirect_to new_order_bus_line_trade_path(@order, @ordered_bus, @line, @bus.id)
@@ -86,7 +86,7 @@ class BusesController < ApplicationController
   end
 
   def archive
-    @buses = @buses = Bus.where("buses.statut1 = 'client' ")
+    @buses = @buses = Bus.facture_livre
   end
 
   private
@@ -122,6 +122,12 @@ class BusesController < ApplicationController
       :prix_mini,
       :version,
       :implantation,
+      :longueur,
+      :nbr_places,
+      :couleur,
+      :volo_coach_line,
+      :note,
+      :reference,
       factory_orders_attributes: [
         :id,
         :envoiOF,

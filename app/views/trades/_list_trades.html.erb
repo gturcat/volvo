@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th>Date de rentrée</th>
-          <th>Description</th>
+          <th>Type</th>
           <th>Immatriculation</th>
           <th>Prix de rachat</th>
           <th>action</th>
@@ -17,7 +17,7 @@
         <% @trades.each do |trade| %>
         <tr>
           <td><%= trade.date_rentree_bdc %></td>
-          <td><%= trade.bus.description.name %></td>
+          <td><%= trade.bus.type.name %></td>
           <td><%= trade.bus.immatriculation %></td>
           <td><%= trade.prix_achat%></td>
           <td>
