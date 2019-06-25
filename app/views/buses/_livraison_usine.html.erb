@@ -53,26 +53,6 @@
             <% end %>
           </td>
         </tr>
-        <tr>
-          <td><% if @factory_order.delivery_note.attached? %>
-            <%= link_to pdfjs.full_path(file:"#{url_for(@factory_order.delivery_note)}"), target: "_blank" do %>
-            <%= @factory_order.delivery_note.name %>
-            <% end %>
-            <%= link_to rails_blob_path(@factory_order.delivery_note, disposition: 'attachment') do%>
-            <i class="far fa-save"></i>
-            <% end %>
-            <% else %>
-            <%= @factory_order.delivery_note.name %>
-            <% end %>
-          </td>
-          <td><%= simple_form_for @factory_order do |form| %>
-            <%= form.file_field :delivery_note %>
-            <button type="submit" class="btn btn-primary">
-            <i class="far fa-save"></i>
-            </button>
-            <% end %>
-          </td>
-        </tr>
 
         <tr>
           <td><% if @factory_order.photos_livraison.attached? %>
@@ -87,15 +67,47 @@
             <% end %>
           </td>
           <td><%= simple_form_for @factory_order do |form| %>
-            <%= form.file_field :photos_livraison %>
+            <%= form.file_field :photos_livraison, multiple: true %>
             <button type="submit" class="btn btn-primary">
             <i class="far fa-save"></i>
             </button>
             <% end %>
           </td>
         </tr>
-
       </tbody>
     </table>
+  </div>
+</div>
+
+
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents
+    <div class="panel-heading">Bus en stock</div>-->
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Photos envoyées usine</th>
+          <th>Avarie Usine</th>
+          <th>Détails (Transporteur / Process avarie)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+         <%= simple_form_for @factory_order do |f| %>
+        <tr>
+          <td><%= f.input :photos_envoyees_usine, label: false %></td>
+          <td><%= f.input :avarie, label: false %></td>
+          <td><%= f.input :details_avarie, label: false %></td>
+          <td>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %></td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 </div>

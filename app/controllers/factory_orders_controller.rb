@@ -33,7 +33,7 @@ class FactoryOrdersController < ApplicationController
             :document_de_transport,
             :delivery_note,
             :vcr,
-            :photos_livraison
+            photos_livraison: []
             )
   end
 end

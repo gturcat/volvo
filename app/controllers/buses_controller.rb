@@ -7,6 +7,22 @@ class BusesController < ApplicationController
     @buses = Bus.where.not(statut1: :facture_livre)
   end
 
+  def vn
+    session[:order_id] = nil
+    @descriptions = Description.all
+    @types = Type.all
+    @orders = Order.all
+    @buses = Bus.where.not(statut1: :facture_livre).where(immatriculation: nil)
+  end
+
+  def vo
+    session[:order_id] = nil
+    @descriptions = Description.all
+    @types = Type.all
+    @orders = Order.all
+    @buses = Bus.where.not(statut1: :facture_livre).where.not(immatriculation: nil)
+  end
+
   def show
     session[:delivery_id] = nil
     session[:order_id] = nil
@@ -62,7 +78,7 @@ class BusesController < ApplicationController
         render :new
       end
     elsif @bus.save
-      redirect_to buses_path(@bus)
+      redirect_to vn_buses_path(@bus)
     else
       render :new
     end
