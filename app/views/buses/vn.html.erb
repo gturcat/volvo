@@ -1,10 +1,13 @@
 <div class = "wrapper">
 <ul class="list-inline tabs-underlined">
   <li>
-    <%= link_to "Véhicule en stock", buses_path, class: "tab-underlined active " %>
-  </li>
-  <li>
     <%= link_to "Ajouter un véhicule en stock", new_bus_path(), class: "tab-underlined" %>
+  </li>
+    <li>
+    <%= link_to "VN en stock", vn_buses_path, class: "tab-underlined active " %>
+  </li>
+      <li>
+    <%= link_to "VO en stock", vo_buses_path, class: "tab-underlined " %>
   </li>
   <li>
     <%= link_to "Véhicule chez le client", archive_buses_path, class: "tab-underlined " %>

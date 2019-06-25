@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :ferries, only: [:index, :show, :edit, :update, :destroy]
   resources :buses do
     collection do
+      get 'vn'
+      get 'vo'
+    end
+    collection do
       get 'archive'
     end
     resources :ferries, only: [:new, :create]
