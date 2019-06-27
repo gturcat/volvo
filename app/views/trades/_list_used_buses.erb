@@ -17,7 +17,7 @@
               <tbody>
                 <% @used_buses.each  do | bus| %>
                 <tr>
-                  <td><%= bus.immatriculation %> </td>
+                  <td><%= bus.numero_chassis %> </td>
                   <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.last.present? %></td>
                   <td><%= bus.orders.last[:client] if bus.orders.last.present?%></td>
                   <td><%= bus.statut1 %></td>

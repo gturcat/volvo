@@ -29,7 +29,8 @@ class FerriesController < ApplicationController
   def update
     @ferry = Ferry.find(params[:id])
     @ferry.update(ferry_params)
-    redirect_to ferry_path(@ferry[:id])
+    @delivery = Delivery.find(session[:delivery_id])
+    redirect_to delivery_path(@delivery)
   end
 
   def destroy

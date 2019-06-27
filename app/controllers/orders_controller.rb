@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :erase_all_training, :erase_all_trade, :set_bus_to_available, :erase_all_line, only: [:destroy]
 
+
   def index
     @descriptions = Description.all
     @types = Type.all
@@ -75,9 +76,9 @@ class OrdersController < ApplicationController
       answer = false if bus.facture_livre?
     end
     @order.lines.each do |line|
-      if line.trade.present?
+      line.trades.each do |trade|
         # le status d'un trade est passé a false quand la reprise est cloturée
-        answer = false if line.trade.status == false
+        answer = false if trade.status == false
       end
     end
     return answer
@@ -150,7 +151,8 @@ class OrdersController < ApplicationController
       :numero_bon_de_commande,
       :date,
       :sales_advisor_id,
-      :statut
+      :statut,
+      :departement
     )
   end
 

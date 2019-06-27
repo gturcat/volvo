@@ -22,6 +22,7 @@ gem 'where_exists'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 gem 'aws-sdk-s3', require: false
 gem 'pdfjs_viewer-rails'
+gem 'rails-jquery-autocomplete'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

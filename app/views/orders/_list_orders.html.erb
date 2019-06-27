@@ -10,6 +10,7 @@
           <th>N° Bdc</th>
           <th>Vendeur</th>
           <th>Date</th>
+          <th>Departement</th>
           <th>action</th>
         </tr>
       </thead>
@@ -20,6 +21,7 @@
           <td><%= order.numero_bon_de_commande %></td>
           <td><%= order.sales_advisor[:name] %></td>
           <td><%= order.date %></td>
+          <td><%= order.departement %></td>
           <td>
             <%= link_to order_path(order[:id]), class: "btn btn-primary" do %>
           <i class="far fa-eye"></i><% end %>

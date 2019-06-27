@@ -213,7 +213,10 @@ CREATE TABLE public.deliveries (
     plan_vosp character varying,
     "Fiche_rcr" character varying,
     a_reception_envoi_papiers_originaux character varying,
-    justificatif_financement character varying
+    justificatif_financement character varying,
+    financement_type character varying,
+    contact_banque character varying,
+    note_financement text
 );
 
 
@@ -396,7 +399,6 @@ CREATE TABLE public.lines (
     delai_previsionnel date,
     date_livraison_bdc date,
     couleur_ext_vehicule character varying,
-    financement_type character varying,
     mention_garantie character varying,
     mention_telematique character varying,
     order_id bigint,
@@ -471,7 +473,8 @@ CREATE TABLE public.orders (
     sales_advisor_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    statut character varying
+    statut character varying,
+    departement character varying
 );
 
 
@@ -758,7 +761,10 @@ CREATE TABLE public.works (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     files json,
-    devis character varying
+    devis character varying,
+    bdc_envoye boolean,
+    date_previsionelle_fin_travaux date,
+    note text
 );
 
 
@@ -1448,6 +1454,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190621075937'),
 ('20190621101928'),
 ('20190624085916'),
-('20190624091914');
+('20190624091914'),
+('20190625184943'),
+('20190625190144'),
+('20190627134357');
 
 

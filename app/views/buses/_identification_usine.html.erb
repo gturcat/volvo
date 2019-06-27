@@ -6,8 +6,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th>reference</th>
-          <th>Designation Configuration</th>
           <th>BO N°</th>
           <th>N°Chassis</th>
           <th>Actions</th>
@@ -16,8 +14,6 @@
       <tbody>
         <%= simple_form_for @bus do |f| %>
         <tr>
-          <td><%= f.input :reference_usine, label: false %></td>
-          <td><%= f.input :designation_configuration, label: false %></td>
           <td><%= f.input :bo_number, label: false %></td>
           <td><%= f.input :numero_chassis, label: false %></td>
           <td><button type="submit" class="btn btn-primary">

@@ -37,7 +37,6 @@
           <tr>
             <th>Order Book</th>
             <th>Date livraison bdc</th>
-            <th>Financement type</th>
             <th>Couleur ext vehicule</th>
             <th>Mention garantie</th>
             <th>Mention telematique</th>
@@ -47,7 +46,6 @@
           <tr>
             <td><%= @line.order_book.name if @line.order_book.present? %></td>
             <td><%= @line.date_livraison_bdc if @order.present? %></td>
-            <td><%= @line.financement_type if @order.present? %></td>
             <td><%= @line.couleur_ext_vehicule if @order.present? %></td>
             <td><%= @line.mention_garantie if @order.present? %></td>
             <td><%= @line.mention_telematique if @order.present? %></td>

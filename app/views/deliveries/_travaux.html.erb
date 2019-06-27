@@ -1,3 +1,5 @@
+
+  <% @delivery.works.each do |work| %>
 <div class="tab">
   <div class="panel panel-default">
     <!-- Default panel contents -->
@@ -7,39 +9,91 @@
       <thead>
         <tr>
           <th>Nature des travaux</th>
+          <th>Note</th>
           <th>Date demande préparation livraison</th>
-          <th>Devis</th>
-          <th>facture</th>
+          <th>Bon de commande envoyé</th>
+          <th>Date previsionnelle fin de travaux</th>
           <th>Montant facture</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <% @delivery.works.each do |work| %>
         <tr>
-
           <%= simple_form_for work do |f| %>
           <td><%=f.input :nature_travaux,label: false %></td>
-          <td><%=f.date_field :demande_preparation, label: false, hint:false %></td>
-          <td>
-              <%= f.input :devis, as: :file, label: false if !work.devis.present? %>
-              <%if work.devis.present? %>
-              <i class="far fa-eye btn btn-primary"></i>
-              <i class="far fa-edit btn btn-warning"></i>
-              <% end %>
-          </td>
-          <td><%= f.input :facture_travaux, as: :file, label: false if !work.facture_travaux.present? %>
-              <%if work.facture_travaux.present? %>
-              <i class="far fa-eye btn btn-primary"></i>
-              <i class="far fa-edit btn btn-warning"></i>
-              <% end %></td>
-              <td><%=f.input :facture_montant, label: false %></td>
+          <td><%=f.input :note,label: false %></td>
+          <td><%=f.input :demande_preparation, as: :date, html5: true, label: false, hint:false %></td>
+          <td><%=f.input :bdc_envoye, label: false %></td></td>
+          <td><%=f.input :date_previsionelle_fin_travaux,  as: :date, html5: true,label: false %></td></td>
+          <td><%=f.input :facture_montant, label: false %></td>
             <td><button type="submit" class="btn btn-primary">
-                  <i class="far fa-save"></i>
-            <% end %></td>
+                  <i class="far fa-save"></i></button>
+                  <%= link_to work_path(work), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
+            <% end %>
+          </td>
         </tr>
-        <% end %>
       </tbody>
     </table>
   </div>
 </div>
+
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Documents</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><% if work.devis.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(work.devis)}"), target: "_blank" do %>
+            <%= work.devis.name %>
+            <% end %>
+            <%= link_to rails_blob_path(work.devis, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= work.devis.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for work do |form| %>
+            <%= form.file_field :devis %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><% if work.facture_travaux.attached? %>
+            <%= link_to pdfjs.full_path(file:"#{url_for(work.facture_travaux)}"), target: "_blank" do %>
+            <%= work.facture_travaux.name %>
+            <% end %>
+            <%= link_to rails_blob_path(work.facture_travaux, disposition: 'attachment') do%>
+            <i class="far fa-save"></i>
+            <% end %>
+            <% else %>
+            <%= work.facture_travaux.name %>
+            <% end %>
+          </td>
+          <td><%= simple_form_for work do |form| %>
+            <%= form.file_field :facture_travaux %>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+ <% end %>

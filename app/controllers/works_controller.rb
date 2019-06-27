@@ -25,6 +25,12 @@ class WorksController < ApplicationController
     redirect_to delivery_path(@work.delivery)
   end
 
+  def destroy
+    @work = Work.find(params[:id])
+    @work.delete
+    redirect_to delivery_path(@work.delivery)
+  end
+
 private
 
   def work_params
@@ -33,6 +39,10 @@ private
       :devis,
       :demande_preparation,
       :facture_travaux,
-      :facture_montant)
+      :facture_montant,
+      :bdc_envoye,
+      :note,
+      :date_previsionelle_fin_travaux
+      )
   end
 end

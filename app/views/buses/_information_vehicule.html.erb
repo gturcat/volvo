@@ -7,23 +7,27 @@
         <thead>
           <tr>
             <th>Type</th>
-            <th>CB / CH</th>
-            <th>7 / 9 </th>
+            <th>Longueur</th>
+            <th>Nombre de places </th>
+            <th>Volvo Coach Line</th>
+            <th>Note</th>
+            <th>Reference</th>
+            <th>Couleur</th>
             <th>N° de Chassis</th>
             <th>immatriculation</th>
-            <th>Statut 1</th>
-            <th>Statut 2</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><%= @bus.type.name %></td>
-            <td><%= @bus.ch_cb %></td>
-            <td> <%= @bus.sept_neuf %></td>
+            <td><%= @bus.longueur %></td>
+            <td><%= @bus.nbr_places %></td>
+            <td><%= @bus.volo_coach_line %></td>
+            <td><%= @bus.note %></td>
+            <td><%= @bus.reference %></td>
+            <td><%= @bus.couleur %></td>
             <td> <%= @bus.numero_chassis %></td>
             <td><%= @bus.immatriculation %></td>
-            <td><%= @bus.statut1 %></td>
-            <td><%= @bus.statut2 %></td>
           </tr>
         </tbody>
       </table>

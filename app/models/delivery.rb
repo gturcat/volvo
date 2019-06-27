@@ -3,6 +3,7 @@ class Delivery < ApplicationRecord
   has_one :line, dependent: :destroy
   has_many :documents, dependent: :destroy
   has_many :works
+  accepts_nested_attributes_for :works,  reject_if: :all_blank, allow_destroy: true
   has_one :order, through: :line
   has_one_attached :attestation_amenagement
   has_one_attached :coc
