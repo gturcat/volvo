@@ -83,7 +83,7 @@ class TradesController < ApplicationController
   private
 
   def search_used_bus
-    @used_buses = @q.result.where(statut1: "facture_livre")
+    @used_buses = @q.result.where(statut1: "facture_livre").where.not(statut2: "VO à rentrer")
   end
 
   def trade_params

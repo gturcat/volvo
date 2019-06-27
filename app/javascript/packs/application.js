@@ -1,5 +1,6 @@
 import "bootstrap";
-
+import 'js-autocomplete/auto-complete.css';
+import autocomplete from 'js-autocomplete';
 
 let mainNavLinks = document.querySelectorAll("#sidebar ul li a");
 let mainSections = document.querySelectorAll(".tab section");
@@ -32,6 +33,28 @@ window.addEventListener("scroll", event => {
     }
   });
 });
+
+
+
+const search = document.querySelector('#order_departement');
+search.addEventListener('keyup', (event) => {
+  const query = event.currentTarget.value;
+  console.log(query);
+  const nom = fetch(`https://geo.api.gouv.fr/departements?nom=${query}`)
+    .then(response => response.json())
+    .then((data) => {
+    console.log(data);
+    });
+  const code = fetch(`https://geo.api.gouv.fr/departements?code=${query}`)
+    .then(response => response.json())
+    .then((data) => {
+    console.log(data);
+    });
+});
+
+
+
+
 
 
 

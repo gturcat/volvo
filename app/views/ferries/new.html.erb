@@ -20,14 +20,6 @@
   <%= f.input :arrivee, label: "lieu d'arrivée" %>
       </div>
   </div>
-  <div class="row">
-      <div class="col-sm-6 col-xs-12">
-  <%= f.input :site, label: "Sites prévenus" %>
-   </div>
-      <div class="col-sm-6 col-xs-12">
-  <%= f.input :numero_bdc, label: "n°bdc pour le convoyage crée"%>
-</div>
-  </div>
   <%= f.input :note, as: :text, label: "Note (nom du convoyeur)" %>
   <%= f.submit "Convoyer", class: "btn btn-primary" %>
 <% end %>

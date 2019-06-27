@@ -1,5 +1,5 @@
 class Work < ApplicationRecord
   belongs_to :delivery, optional: true
-  has_many :tasks, dependent: :destroy
-  accepts_nested_attributes_for :tasks, :allow_destroy => true
+  has_one_attached :devis
+  has_one_attached :facture_travaux
 end

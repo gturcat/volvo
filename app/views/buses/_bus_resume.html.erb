@@ -40,12 +40,12 @@
 </div>
 
 <script>
-  const info = document.querySelector("#bus_statut2");
-  console.log(info);
+  const info1 = document.querySelector("#bus_statut2");
+  const info2 = document.querySelector("#bus_statut1");
   const autosubmit = document.querySelector('#autosubmit');
   const submitOnClick = () => {
-
     autosubmit.click();
   }
-  info.addEventListener("change", submitOnClick);
+  info1.addEventListener("change", submitOnClick);
+  info2.addEventListener("change", submitOnClick);
 </script>

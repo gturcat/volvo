@@ -6,7 +6,6 @@
     <table class="table">
       <thead>
         <tr>
-
           <th>Immatriculation</th>
           <th>Statut 2</th>
           <th>Prix de rachat</th>
@@ -16,25 +15,22 @@
       </thead>
       <tbody>
         <% @order.lines.each  do |line| %>
-          <% if line.trade.present? %>
-        <tr>
-
-          <td><%= line.trade.bus.immatriculation %></td>
-          <td><%= line.trade.bus.statut2 %></td>
-          <td><%= line.trade.prix_achat %></td>
-          <td><%= line.bus.type.name %></td>
-          <td>
-            <%= link_to bus_path(line.trade.bus), class: "btn btn-warning" do %>
-            <i class="far fa-edit"></i>
-            <% end %>
-
-            <%= link_to trade_path(line.trade),method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
-            <i class="fas fa-minus-circle"></i>
-            <% end %>
-
-          </td>
-        </tr>
-        <% end %>
+          <% line.trades.each do |trade| %>
+            <tr>
+              <td><%= trade.bus.immatriculation %></td>
+              <td><%= trade.bus.statut2 %></td>
+              <td><%= trade.prix_achat %></td>
+              <td><%= line.bus.type.name %></td>
+            <td>
+              <%= link_to bus_path(trade.bus), class: "btn btn-warning" do %>
+              <i class="far fa-edit"></i>
+              <% end %>
+              <%= link_to trade_path(trade),method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
+              <i class="fas fa-minus-circle"></i>
+              <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

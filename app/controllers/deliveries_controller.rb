@@ -155,6 +155,6 @@ class DeliveriesController < ApplicationController
       :fiche_rcr,
       :a_reception_envoi_papiers_originaux,
       :justificatif_financement
-    )
+      )
   end
 end

@@ -25,6 +25,7 @@
             <th>Date BdC</th>
             <th>N°BdC</th>
             <th>Vendeur</th>
+            <th>Departement</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
             <td><%= @order.date %></td>
             <td><%= @order.numero_bon_de_commande %></td>
             <td><%= @order.sales_advisor[:name] %></td>
+            <td><%= @order.departement %></td>
           </tr>
         </tbody>
       </table>
