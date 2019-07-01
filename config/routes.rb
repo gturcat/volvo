@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+
+
+  get 'orders/buses-bulk-update/:id' => 'orders#bulk_update', :as => 'bulk_update'
+  post 'orders/buses-bulk-update-save/:id' => 'orders#bulk_update_save', :as => 'bulk_update_save'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :ferries, only: [:index, :show, :edit, :update, :destroy]
   resources :buses do
