@@ -1,0 +1,24 @@
+<div class = "wrapper">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined" %>
+  </li>
+  <li>
+    <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined active" %>
+  </li>
+  <li>
+    <%= link_to "Commandes traitées", closed_orders_path, class: "tab-underlined  " %>
+  </li>
+</ul>
+
+<div class="form-container">
+<% @buses.each do |bus| %>
+  <%= bus.type.name %>
+  <%= fields_for "buses[]", bus do |f| %>
+    <%= f.select :statut1, { disponible: "disponible", indisponible: "indisponible", facture_livre: "facture_livre", en_commande: "en_commande" } %>
+    <% end %>
+<% end %>
+<%= submit_tag "Update Bus Statu1", :class => 'btn btn-success' %></p>
+<% end %>
+</div>
+

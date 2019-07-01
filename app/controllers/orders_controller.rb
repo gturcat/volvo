@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :erase_all_training, :erase_all_trade, :set_bus_to_available, :erase_all_line, only: [:destroy]
 
 
   def index
@@ -47,14 +46,25 @@ class OrdersController < ApplicationController
     redirect_to order_path(@order[:id])
   end
 
-  def destroy
-    # efface toutes les reprises
-    erase_all_trade
-    # le bus commandé est rendu disponible pour une autre commande
-    set_bus_to_available
-    #erase_all_line
-    @order.archive!
-    redirect_to orders_path
+   def bulk_update
+    @order = Order.find(params[:id])
+    @buses = @order.buses
+  end
+
+  def bulk_update_save
+
+  result = Bus.update(params[:buses].keys, params[:buses].values).reject { |p| p.errors.empty? }
+  @bus = Bus.find(params[:buses].keys.first)
+  @order = @bus.orders.pending.take
+    if result.empty?
+      flash[:notice] = "Bus updated"
+      erase_all_trade
+      erase_all_training
+      @order.archive!
+      redirect_to orders_path
+    else
+      render :bulk_update
+    end
   end
 
   def closed
