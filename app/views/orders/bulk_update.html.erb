@@ -9,16 +9,55 @@
   <li>
     <%= link_to "Commandes traitées", closed_orders_path, class: "tab-underlined  " %>
   </li>
+  <li>
+    <%= link_to "Commandes traitées", closed_orders_path, class: "tab-underlined  " %>
+  </li>
 </ul>
 
-<div class="form-container">
 <%= form_tag bulk_update_save_path :method => :post do %>
-<% @buses.each do |bus| %>
-  <%= bus.type.name %>
-  <%= fields_for "buses[]", bus do |f| %>
-    <%= f.select :statut1, { disponible: "disponible", indisponible: "indisponible", facture_livre: "facture_livre", en_commande: "en_commande" } %>
-    <% end %>
-<% end %>
-<%= submit_tag "Update Bus Statu1", :class => 'btn btn-success' %></p>
+
+<div class="container">
+  <h6>Vous vous appretez à supprimer une commande</h6>
+  <p>Merci de préciser le status dans lequel vous souhaitez mettre chaque bus après la suppression de la commande</p>
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"></div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>type</th>
+          <th>Couleur Exterieure</th>
+          <th>Delai Bon de commande</th>
+          <th>Garantie</th>
+          <th>Télématique</th>
+          <th>Status 2</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @buses.each do |bus| %>
+        <tr>
+          <td><%= bus.type.name  %></td>
+          <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.present? %></td>
+          <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
+          <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>
+          <td><%= bus.lines.last[:mention_telematique] if bus.lines.present? %></td>
+          <td><%= bus.statut2 %></td>
+          <td>
+        <%= fields_for "buses[]", bus do |f| %>
+        <%= f.select :statut1, { disponible: "disponible", indisponible: "indisponible", facture_livre: "facture_livre", en_commande: "en_commande" } %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= submit_tag "Supprimer commande", :class => 'btn btn-primary' %></p>
 <% end %>
 </div>
+
+

@@ -41,6 +41,12 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def archive
+    @descriptions = Description.all
+    @types = Type.all
+    @orders = Order.archive
+  end
+
   def update
     @order.update(order_params)
     redirect_to order_path(@order[:id])
