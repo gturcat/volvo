@@ -1,7 +1,7 @@
 <div class = "wrapper">
 <ul class="list-inline tabs-underlined">
   <li>
-    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined active " %>
+    <%= link_to "Commandes en cours", orders_path, class: "tab-underlined #{'active' if @order.pending? }" %>
   </li>
   <li>
     <%= link_to "Ajouter une commande", new_order_path, class: "tab-underlined" %>
@@ -10,7 +10,7 @@
     <%= link_to "Commandes traitées", closed_orders_path, class: "tab-underlined " %>
   </li>
   <li>
-    <%= link_to "Commandes annulées", archive_orders_path, class: "tab-underlined  " %>
+    <%= link_to "Commandes annulées", archive_orders_path, class: "tab-underlined #{'active' unless @order.pending? } " %>
   </li>
 </ul>
 </div>
@@ -44,11 +44,13 @@
     </div>
   </div>
 
-<h6>Rechercher un bus en stock par sa description</h6>
-<p>Il est possible de commander plusieurs Bus sur la même commande en effectuant une nouvelle recherche</p>
-<%= search_form_for @q, url: order_path(@order), html: { method: :get } do |f| %>
-  <%= f.search_field :type_name_cont %>
-  <%= f.submit  %>
+<% if @order.pending?  %>
+  <h6>Rechercher un bus en stock par sa description</h6>
+  <p>Il est possible de commander plusieurs Bus sur la même commande en effectuant une nouvelle recherche</p>
+    <%= search_form_for @q, url: order_path(@order), html: { method: :get } do |f| %>
+      <%= f.search_field :type_name_cont %>
+      <%= f.submit  %>
+    <% end %>
 <% end %>
 
 <% if params[:q]!=nil && @buses.length>0  %>

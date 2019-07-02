@@ -16,13 +16,9 @@ class LinesController < ApplicationController
     delivery_to_delete = @line.delivery
     @line.delivery = nil
     @line.save
-
-
-
     # efface l'eventuelle reprise
-    trade = @line.trade
+    @line.trades.each do |trade|
       #le bus repris est rendu au client
-    if trade.present?
       traded_bus = trade.bus
       traded_bus.facture_livre!
       traded_bus.statut2 = ""

@@ -52,25 +52,26 @@ class OrdersController < ApplicationController
     redirect_to order_path(@order[:id])
   end
 
-   def bulk_update
+  def bulk_update
     @order = Order.find(params[:id])
     @buses = @order.buses
   end
 
   def bulk_update_save
-
-  result = Bus.update(params[:buses].keys, params[:buses].values).reject { |p| p.errors.empty? }
-  @bus = Bus.find(params[:buses].keys.first)
-  @order = @bus.orders.pending.take
-    if result.empty?
-      flash[:notice] = "Bus updated"
-      erase_all_trade
-      erase_all_training
-      @order.archive!
-      redirect_to orders_path
-    else
-      render :bulk_update
+    @order = Order.find(params[:id])
+    if params[:buses].present?
+      result = Bus.update(params[:buses].keys, params[:buses].values).reject { |p| p.errors.empty? }
+      @bus = Bus.find(params[:buses].keys.first)
+      if result.empty?
+        flash[:notice] = "Bus updated"
+      else
+        render :bulk_update
+      end
     end
+    erase_all_trade
+    erase_all_training
+    @order.archive!
+    redirect_to orders_path
   end
 
   def closed
