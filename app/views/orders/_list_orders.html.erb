@@ -25,11 +25,12 @@
           <td>
             <%= link_to order_path(order[:id]), class: "btn btn-primary" do %>
           <i class="far fa-eye"></i><% end %>
-
-              <%= link_to edit_order_path(order[:id]), class: "btn btn-warning" do %>
+          <% if order.pending?  %>
+            <%= link_to edit_order_path(order[:id]), class: "btn btn-warning" do %>
           <i class="far fa-edit"></i><% end %>
 
           <%= link_to bulk_update_path(order), class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
+          <% end %>
             </td>
         </tr>
         <% end %>

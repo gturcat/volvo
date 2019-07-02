@@ -12,7 +12,9 @@
           <th>Garantie</th>
           <th>Télématique</th>
           <th>Status 2</th>
+          <% if @order.pending?  %>
           <th>Actions</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +26,7 @@
           <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:mention_telematique] if bus.lines.present? %></td>
           <td><%= bus.statut2 %></td>
+          <% if @order.pending?  %>
           <td>
             <%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>
             <i class="far fa-edit"></i><% end %>
@@ -38,6 +41,7 @@
             <% end %>
             <% end %>
           </td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>

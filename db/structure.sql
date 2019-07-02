@@ -473,8 +473,8 @@ CREATE TABLE public.orders (
     sales_advisor_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    statut character varying,
-    departement character varying
+    departement character varying,
+    statut integer
 );
 
 
@@ -1457,6 +1457,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190624091914'),
 ('20190625184943'),
 ('20190625190144'),
-('20190627134357');
+('20190627134357'),
+('20190702122524');
 
 

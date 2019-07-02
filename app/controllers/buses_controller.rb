@@ -12,7 +12,7 @@ class BusesController < ApplicationController
     @descriptions = Description.all
     @types = Type.all
     @orders = Order.all
-    @buses = Bus.where.not(statut1: :facture_livre).where(immatriculation: nil)
+    @buses = Bus.where.not(statut1: :facture_livre).where.not("statut2 = 'Stock VO'")
   end
 
   def vo
@@ -20,7 +20,7 @@ class BusesController < ApplicationController
     @descriptions = Description.all
     @types = Type.all
     @orders = Order.all
-    @buses = Bus.where.not(statut1: :facture_livre).where.not(immatriculation: nil)
+    @buses = Bus.where("statut2 = 'Stock VO'")
   end
 
   def show
