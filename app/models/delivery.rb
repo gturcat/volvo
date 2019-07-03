@@ -23,4 +23,6 @@ class Delivery < ApplicationRecord
   has_one_attached :fiche_rcr
   has_one_attached :a_reception_envoi_papiers_originaux
   has_one_attached :justificatif_financement
+
+  enum statut: { pending: 0, close: 1, cancel: 2 }
 end

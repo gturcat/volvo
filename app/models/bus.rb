@@ -14,4 +14,5 @@ class Bus < ApplicationRecord
 
   enum statut1: { disponible: "disponible", indisponible: "indisponible", facture_livre: "facture_livre", en_commande: "en_commande" }
 
+  scope :ordered, -> { includes(:lines, :orders).where(orders: {statut: "pending"} ) }
 end

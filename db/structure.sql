@@ -138,7 +138,8 @@ CREATE TABLE public.buses (
     couleur character varying,
     note character varying,
     reference character varying,
-    statut1 public.bus_statut1
+    statut1 public.bus_statut1,
+    marque character varying
 );
 
 
@@ -197,7 +198,6 @@ CREATE TABLE public.deliveries (
     envoi_double_cle boolean,
     transmission_bl_controlling boolean,
     "doc_originaux_envoyés_client" boolean,
-    statut boolean,
     garantie_pep_tool boolean,
     telematique_demandee boolean,
     note text,
@@ -216,7 +216,8 @@ CREATE TABLE public.deliveries (
     justificatif_financement character varying,
     financement_type character varying,
     contact_banque character varying,
-    note_financement text
+    note_financement text,
+    statut integer
 );
 
 
@@ -1458,6 +1459,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190625184943'),
 ('20190625190144'),
 ('20190627134357'),
-('20190702122524');
+('20190702122524'),
+('20190702133620'),
+('20190702144229');
 
 

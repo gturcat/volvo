@@ -1,10 +1,10 @@
 class DeliveriesController < ApplicationController
   def index
-    @deliveries = Delivery.where(statut: true)
+    @deliveries = Delivery.pending
   end
 
   def archive
-    @deliveries = Delivery.where(statut: false)
+    @deliveries = Delivery.close
   end
 
   def close
@@ -12,8 +12,7 @@ class DeliveriesController < ApplicationController
       @delivery = Delivery.find(params[:id])
       @line = @delivery.line
       @bus = @line.bus
-      @delivery.statut = false
-      @delivery.save
+      @delivery.close
       @bus.facture_livre
       @bus.statut2 = nil
       @bus.mention_garantie = @line.mention_garantie if !@bus.mention_garantie.present?

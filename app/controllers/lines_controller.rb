@@ -14,8 +14,7 @@ class LinesController < ApplicationController
     @order = @line.order
     # efface la livraison
     delivery_to_delete = @line.delivery
-    @line.delivery = nil
-    @line.save
+    delivery_to_delete.cancel!
     # efface l'eventuelle reprise
     @line.trades.each do |trade|
       #le bus repris est rendu au client
@@ -57,10 +56,9 @@ class LinesController < ApplicationController
     @line.order = Order.find(params[:order_id])
     @order = @line.order
     @bus = @line.bus
-    @bus.en_commande!
-    @bus.save
     #creation de la livraison correspondante
-    @delivery = Delivery.create(statut: true)
+    @delivery = Delivery.new
+    @delivery.pending!
 
     @line.delivery_id = @delivery.id
 
