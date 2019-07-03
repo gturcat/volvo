@@ -8,7 +8,6 @@ class TrainingsController < ApplicationController
 
   def create
     @training = Training.new(trade_params)
-    @training.statut = true
     if @training.save
       redirect_to order_path(@training.line.order)
     else

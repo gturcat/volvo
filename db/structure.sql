@@ -331,7 +331,8 @@ CREATE TABLE public.factory_orders (
     photos_livraison character varying,
     photos_envoyees_usine boolean,
     avarie boolean,
-    details_avarie text
+    details_avarie text,
+    statut integer
 );
 
 
@@ -652,11 +653,11 @@ CREATE TABLE public.trainings (
     lieu character varying,
     formateur character varying,
     numero_bcd character varying,
-    info_transmise character varying,
     line_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    statut boolean
+    email_volvo_driver date,
+    info_transmise_rcr_client date
 );
 
 
@@ -1461,6 +1462,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190627134357'),
 ('20190702122524'),
 ('20190702133620'),
-('20190702144229');
+('20190702144229'),
+('20190703135640'),
+('20190703143159');
 
 

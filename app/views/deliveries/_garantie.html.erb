@@ -1,0 +1,29 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Garantie</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mention Garantie sur bon de commande</th>
+          <th>Garantie envoyé sur PEP TOOL </th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @line.mention_garantie%></td>
+          <%= simple_form_for @delivery do |f| %>
+          <td><%= f.input :garantie_pep_tool, label: false %></td>
+          <td>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -63,6 +63,8 @@
     <div class="add-padding-left" id="section-8">
       <h5>Divers</h5>
       <%= render "divers" if @training.present? %>
+      <%= render "telematique" if @line.mention_telematique == "oui" %>
+      <%= render "garantie" if @line.mention_garantie.present? %>
     </div>
     <div class="add-padding-left" id="section-9">
       <h5>Immatriculation</h5>

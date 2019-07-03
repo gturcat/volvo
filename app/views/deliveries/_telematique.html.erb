@@ -1,0 +1,29 @@
+<div class="tab">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Telematique</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mention Telematique sur bon de commande</th>
+          <th>Telematique demandée </th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @line.mention_telematique%></td>
+          <%= simple_form_for @delivery do |f| %>
+          <td><%= f.input :telematique_demandee, label: false %></td>
+          <td>
+            <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            </button>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

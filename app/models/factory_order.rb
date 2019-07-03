@@ -8,4 +8,7 @@ class FactoryOrder < ApplicationRecord
   has_one_attached :delivery_note
   has_one_attached :vcr
   has_many_attached :photos_livraison
+
+  enum statut: { pending: 0, close: 1, cancel: 2 }
+
 end
