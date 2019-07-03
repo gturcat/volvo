@@ -31,12 +31,12 @@ class BusesController < ApplicationController
     @bus = Bus.find(params[:id])
     session[:bus_id] = @bus.id
 
-    if @bus.factory_orders.last.present?
-      @factory_order = @bus.factory_orders.last
-      @partners = Partner.all
+    if @bus.factory_orders.pending.last.present?
+      @factory_order = @bus.factory_orders.pending.last
+      # @partners = Partner.all
     else
       @factory_order = @bus.factory_orders.build
-      @partners = Partner.all
+      # @partners = Partner.all
     end
 
     @bus.ferries.build
@@ -157,7 +157,8 @@ class BusesController < ApplicationController
         :date_depart_usine,
         :lieu_arrivee_partenaire_volvo,
         :date_arrivee_partenaire_volvo,
-        :partenaire_prevenu
+        :partenaire_prevenu,
+        :statut
         ],
       ferries_attributes: [
         :id,

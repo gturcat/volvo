@@ -1,4 +1,4 @@
-<%= simple_form_for [@factory_order] do |f| %>
+<%= simple_form_for @factory_order do |f| %>
 <div class="tab">
   <div class="panel panel-default">
     <!-- Default panel contents
@@ -44,15 +44,15 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= f.text_field :lieu_depart_usine, label: false %></td>
-          <td><%= f.date_field :date_depart_usine, label: false %></td>
-          <td><%= f.text_field :lieu_arrivee_partenaire_volvo, label: false %></td>
-          <td><%= f.date_field :date_arrivee_partenaire_volvo, label: false %></td>
-           <%= f.simple_fields_for :partners do |part| %>
-            <%= part.simple_fields_for :employee_partners do |e| %>
-            <td><%= e.input :email, collection: EmployeePartner.all.map {|emp| emp.email}, label: false  %></td>
-            <%end%>
-          <%end%>
+          <td><%= f.input :lieu_depart_usine, label: false %></td>
+          <td><%= f.input :date_depart_usine, as: :date, html5: true, label: false %></td>
+          <td><%= f.input :lieu_arrivee_partenaire_volvo, label: false %></td>
+          <td><%= f.input :date_arrivee_partenaire_volvo, as: :date, html5: true, label: false %></td>
+           <%# f.simple_fields_for :partners do |part| %>
+             <%# part.simple_fields_for :employee_partners do |e| %>
+            <td><%# e.input :email, collection: EmployeePartner.all.map {|emp| emp.email}, label: false  %></td>
+            <%#end%>
+          <%#end%>
         </tr>
       </tbody>
     </table>
@@ -60,5 +60,9 @@
             <i class="far fa-save"></i>
             </button>
             <% end %>
+            <%= simple_form_for @factory_order do |f| %>
+      <%= f.hidden_field :statut, { value: 'cancel' }  %>
+     <%= f.submit 'supprimer cette commande usine' %>
+     <% end %>
   </div>
 </div>

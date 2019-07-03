@@ -6,10 +6,14 @@ class FactoryOrdersController < ApplicationController
 
   def update
     @factory_order = FactoryOrder.find(params[:id])
-    @employee = EmployeePartner.find_by(email: params["factory_order"]["partners"]["employee_partners"]["email"])
-    @mail = @employee.email
-    @partner = @employee.partner
-    PartnerMailer.confirm(@mail, @factory_order, @partner).deliver_now
+    @factory_order.update(factory_order_params)
+    if @factory_order.cancel?
+      @factory_order.delete
+    end
+    # @employee = EmployeePartner.find_by(email: params["factory_order"]["partners"]["employee_partners"]["email"])
+    # @mail = @employee.email
+    # @partner = @employee.partner
+    # PartnerMailer.confirm(@mail, @factory_order, @partner).deliver_now
     redirect_to bus_path(@factory_order.bus)
   end
 
@@ -33,6 +37,7 @@ class FactoryOrdersController < ApplicationController
             :document_de_transport,
             :delivery_note,
             :vcr,
+            :statut,
             photos_livraison: []
             )
   end
