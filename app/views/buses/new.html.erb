@@ -139,8 +139,16 @@
     <div class="form-container">
       <h5>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.type.name %> pour le client :<%=@order.client %></h5>
       <%= simple_form_for [@order,@ordered_bus,@line,@bus] do |f| %>
+      <%= f.input :marque%>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
       <%= f.input :immatriculation%>
-      <div class="row">
+      </div>
+    <div class="col-sm-6 col-xs-12">
+      <%= f.input :numero_chassis%>
+     </div>
+    </div>
+  <div class="row">
     <div class="col-sm-6 col-xs-12">
       <%= f.input :type_id, collection: @types%>
     </div>

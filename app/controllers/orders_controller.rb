@@ -63,11 +63,12 @@ class OrdersController < ApplicationController
       result = Bus.update(params[:buses].keys, params[:buses].values).reject { |p| p.errors.empty? }
       @bus = Bus.find(params[:buses].keys.first)
       if result.empty?
-        flash[:notice] = "Bus updated"
+        flash[:notice] = "Statut des véhicule mis à jour"
       else
         render :bulk_update
       end
     end
+    erase_all_line
     erase_all_trade
     erase_all_training
     @order.archive!
@@ -132,14 +133,13 @@ class OrdersController < ApplicationController
     @order.lines.each do |line|
       delivery = line.delivery
       # efface le bus si commandé uniquement pour cette commande
-      bus_to_cancel = line.bus if line.bus.statut2 == "A commander"
+      #bus_to_cancel = line.bus if line.bus.statut2 == "A commander"
       # delivery.documents.each do |document|
       #   public_id = document.pdf.file.public_id
       #   Cloudinary::Api.delete_resources([public_id], :type => :private)
       #   document.delete
       # end
-      delivery.statut = false
-      delivery.save
+      delivery.cancel!
       # if bus_to_delete.present?
       #   if bus_to_delete.factory_orders.last.present?
       #     # bus_to_delete.factory_orders.last.documents.each do |document|
@@ -151,15 +151,17 @@ class OrdersController < ApplicationController
       #     factory_order.delete
       # end
 
-      if bus_to_cancel.present?
-        bus_to_cancel.statut2 = "Annulé"
-        bus_to_cancel.save
-      end
+      # if bus_to_cancel.present?
+      #   bus_to_cancel.statut2 = "Annulé"
+      #   bus_to_cancel.save
+      # end
     end
   end
 
   def search_stock
-    @buses = @q.result.where(statut1: ["indisponible","disponible"]).includes(:type)
+    # doit retourner l'ensemble des véhicules qui ne sont pas lié à une commande client
+
+    @buses = @q.result.where(statut1: ["indisponible","disponible"]).includes(:type) - Bus.ordered
   end
 
   def order_params

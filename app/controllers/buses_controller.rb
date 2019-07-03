@@ -59,6 +59,7 @@ class BusesController < ApplicationController
 
   def create
     @bus = Bus.new(bus_params)
+    @bus.marque = "Volvo"
     @order = Order.find(params[:order_id]) if params[:order_id].present?
     @ordered_bus = Bus.find(params[:bus_id]) if params[:bus_id].present?
     @line = Line.find(params[:line_id]) if params[:line_id].present?

@@ -23,9 +23,9 @@
 
   <div>
     <div class="add-padding-left" id="section-0">
-      <% if @delivery.statut == true && @ready_to_close %>
+      <% if @delivery.pending? && @ready_to_close %>
         <%= link_to "Clore cette livraison", close_delivery_path(@delivery)%>
-      <% elsif @delivery.statut == false %>
+      <% elsif @delivery.close? %>
         <div class="status_bar">Ce bus a été livré à son client</div>
         <% end %>
     </div>
