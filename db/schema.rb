@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_091914) do
+ActiveRecord::Schema.define(version: 2019_07_03_143159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,40 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-# Could not dump table "buses" because of following StandardError
-#   Unknown type 'bus_statut1' for column 'statut1'
+  create_table "buses", force: :cascade do |t|
+    t.string "numero_chassis"
+    t.string "reference_usine"
+    t.string "designation_configuration"
+    t.string "bo_number"
+    t.date "date_debut_garantie"
+    t.integer "kilometrage"
+    t.date "date_kilometrage"
+    t.string "immatriculation"
+    t.string "statut2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "type_id"
+    t.string "ch_cb"
+    t.string "sept_neuf"
+    t.bigint "description_id"
+    t.string "option_contremarque"
+    t.string "option_commercial"
+    t.date "date_option"
+    t.string "prix_mini"
+    t.string "version"
+    t.string "implantation"
+    t.string "mention_garantie"
+    t.string "longueur"
+    t.integer "nbr_places"
+    t.string "volo_coach_line"
+    t.string "couleur"
+    t.string "note"
+    t.string "reference"
+    t.integer "statut1"
+    t.string "marque"
+    t.index ["description_id"], name: "index_buses_on_description_id"
+    t.index ["type_id"], name: "index_buses_on_type_id"
+  end
 
   create_table "deliveries", force: :cascade do |t|
     t.string "lieu_prepa"
@@ -70,7 +102,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.boolean "envoi_double_cle"
     t.boolean "transmission_bl_controlling"
     t.boolean "doc_originaux_envoyés_client"
-    t.boolean "statut"
     t.boolean "garantie_pep_tool"
     t.boolean "telematique_demandee"
     t.text "note"
@@ -87,6 +118,10 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.string "Fiche_rcr"
     t.string "a_reception_envoi_papiers_originaux"
     t.string "justificatif_financement"
+    t.string "financement_type"
+    t.string "contact_banque"
+    t.text "note_financement"
+    t.integer "statut"
     t.index ["place_id"], name: "index_deliveries_on_place_id"
   end
 
@@ -109,17 +144,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.index ["trade_id"], name: "index_documents_on_trade_id"
   end
 
-  create_table "employee_partners", force: :cascade do |t|
-    t.string "nom"
-    t.string "tel"
-    t.string "email"
-    t.string "role"
-    t.bigint "partner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["partner_id"], name: "index_employee_partners_on_partner_id"
-  end
-
   create_table "factory_orders", force: :cascade do |t|
     t.string "envoiOF"
     t.date "date_limit_modif_config"
@@ -134,7 +158,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bus_id"
-    t.bigint "partner_id"
     t.string "document_de_transport"
     t.string "delivery_note"
     t.string "vcr"
@@ -142,8 +165,8 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.boolean "photos_envoyees_usine"
     t.boolean "avarie"
     t.text "details_avarie"
+    t.integer "statut"
     t.index ["bus_id"], name: "index_factory_orders_on_bus_id"
-    t.index ["partner_id"], name: "index_factory_orders_on_partner_id"
   end
 
   create_table "ferries", force: :cascade do |t|
@@ -163,7 +186,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.date "delai_previsionnel"
     t.date "date_livraison_bdc"
     t.string "couleur_ext_vehicule"
-    t.string "financement_type"
     t.string "mention_garantie"
     t.string "mention_telematique"
     t.bigint "order_id"
@@ -192,18 +214,9 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.bigint "sales_advisor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "statut"
+    t.string "departement"
+    t.integer "statut"
     t.index ["sales_advisor_id"], name: "index_orders_on_sales_advisor_id"
-  end
-
-  create_table "partners", force: :cascade do |t|
-    t.string "nom"
-    t.string "place"
-    t.string "dpt"
-    t.string "adresse"
-    t.string "tel"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -249,11 +262,11 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.string "lieu"
     t.string "formateur"
     t.string "numero_bcd"
-    t.string "info_transmise"
     t.bigint "line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "statut"
+    t.date "email_volvo_driver"
+    t.date "info_transmise_rcr_client"
     t.index ["line_id"], name: "index_trainings_on_line_id"
   end
 
@@ -288,6 +301,9 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
     t.datetime "updated_at", null: false
     t.json "files"
     t.string "devis"
+    t.boolean "bdc_envoye"
+    t.date "date_previsionelle_fin_travaux"
+    t.text "note"
     t.index ["delivery_id"], name: "index_works_on_delivery_id"
   end
 
@@ -296,7 +312,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_091914) do
   add_foreign_key "documents", "deliveries"
   add_foreign_key "documents", "factory_orders"
   add_foreign_key "documents", "trades"
-  add_foreign_key "employee_partners", "partners"
   add_foreign_key "factory_orders", "buses"
   add_foreign_key "ferries", "buses"
   add_foreign_key "lines", "buses"

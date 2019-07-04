@@ -12,7 +12,7 @@ class Bus < ApplicationRecord
   has_many :partners, through: :factory_orders
   accepts_nested_attributes_for :partners
 
-  enum statut1: { disponible: "disponible", indisponible: "indisponible", facture_livre: "facture_livre", en_commande: "en_commande" }
+  enum statut1: { disponible: 0, indisponible: 1, facture_livre: 2, en_commande: 3 }
 
   scope :ordered, -> { includes(:lines, :orders).where(orders: {statut: "pending"} ) }
 end
