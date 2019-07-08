@@ -6,21 +6,27 @@
             <table class="table">
               <thead>
                 <tr>
-
-                  <th>CB / CH</th>
-                  <th>7 / 9 </th>
-                  <th>n° de chassis</th>
-                  <th>Status 2</th>
+                  <th>Marque</th>
+                  <th>type</th>
+                  <th>Long. </th>
+                  <th>Places</th>
+                  <th>V.C.L</th>
+                  <th>N° Chassis</th>
+                  <th>Statut 1</th>
+                  <th>Statut 2</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <% @buses.each  do | bus| %>
                 <tr>
-
-                  <td><%= bus.ch_cb  %></td>
-                  <td><%= bus.sept_neuf %></td>
+                  <td><%= bus.marque  %></td>
+                  <td><%= bus.type.name if bus.type.present? %></td>
+                  <td><%= bus.longueur  %></td>
+                  <td><%= bus.nbr_places %></td>
+                  <td><%= bus.volo_coach_line %></td>
                   <td><%= bus.numero_chassis %></td>
+                  <td><%= bus.statut1 %></td>
                   <td><%= bus.statut2 %></td>
                   <td><%= link_to new_order_bus_line_path(@order, bus), class: "btn btn-warning" do %>
                     <i class="fas fa-cart-plus"></i>

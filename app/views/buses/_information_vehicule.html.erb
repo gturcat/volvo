@@ -6,6 +6,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th>Marque</th>
             <th>Type</th>
             <th>Longueur</th>
             <th>Nombre de places </th>
@@ -19,7 +20,8 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @bus.type.name %></td>
+             <td><%=@bus.marque %></td>
+            <td><%= @bus.type.name if @bus.type.present? %></td>
             <td><%= @bus.longueur %></td>
             <td><%= @bus.nbr_places %></td>
             <td><%= @bus.volo_coach_line %></td>

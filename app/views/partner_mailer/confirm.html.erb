@@ -1,7 +1,7 @@
 
 <p>Bonjour <%= @partner.nom %>,</p>
 
-<p> Vous venez de commander un nouveau bus à notre usine Volvo Bus: </p>
+<p> Vous venez de commander un nouveau véhicule à notre usine Volvo Bus: </p>
 
 <table>
   <thead>
@@ -10,19 +10,8 @@
   </thead>
   <tbody>
     <tr>
-      <td>Dénomination Commerciale: </td>
-      <td><%= @factory_order.bus.type.name %></td>
-    </tr>
      <td>Type: </td>
-     <td><%=@factory_order.bus.type.name%></td>
-   </tr>
-   <tr>
-     <td>CB / CH: </td>
-     <td><%= @factory_order.bus.ch_cb %></td>
-   </tr>
-    <tr>
-     <td>Sept / Neuf: </td>
-     <td><%= @factory_order.bus.sept_neuf %></td>
+     <td><%=@factory_order.bus.type.name if @factory_order.bus.type.present?%></td>
    </tr>
     <tr>
      <td>Lieu de départ de l'usine: </td>

@@ -20,7 +20,7 @@
               <td><%= trade.bus.immatriculation %></td>
               <td><%= trade.bus.statut2 %></td>
               <td><%= trade.prix_achat %></td>
-              <td><%= line.bus.type.name %></td>
+              <td><%= line.bus.type.name  if line.bus.type.present? %></td>
             <td>
               <%= link_to bus_path(trade.bus), class: "btn btn-warning" do %>
               <i class="far fa-edit"></i>

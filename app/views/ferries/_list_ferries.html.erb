@@ -19,7 +19,7 @@
         <% @ferries.each  do | ferry| %>
         <tr>
           <td><%= ferry.bus.numero_chassis %></td>
-          <td><%= ferry.bus.type.name %></td>
+          <td><%= ferry.bus.type.name if ferry.bus.type.present?%></td>
           <td><%= ferry.date_convoyage %></td>
           <td><%= ferry.depart %></td>
           <td><%= ferry.arrivee %></td>
