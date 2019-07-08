@@ -6,11 +6,15 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Marque</th>
           <th>type</th>
-          <th>Couleur Exterieure</th>
-          <th>Delai Bon de commande</th>
+          <th>Long. </th>
+          <th>Places</th>
+          <th>V.C.L</th>
+          <th>Couleur Ext. Commandée</th>
+           <th>Date Livraison bdc</th>
           <th>Garantie</th>
-          <th>Télématique</th>
+          <th>Telematique</th>
           <th>Status 2</th>
           <% if @order.pending?  %>
           <th>Actions</th>
@@ -20,7 +24,12 @@
       <tbody>
         <% @ordered_buses.each  do | bus| %>
         <tr>
-          <td><%= bus.type.name  %></td>
+          <td><%= bus.marque  %></td>
+          <td><%= bus.type.name if bus.type.present?  %></td>
+          <td><%= bus.longueur  %></td>
+          <td><%= bus.nbr_places %></td>
+          <td><%= bus.volo_coach_line %></td>
+
           <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>

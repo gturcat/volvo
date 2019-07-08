@@ -137,9 +137,10 @@
 </ul>
 </div>
     <div class="form-container">
-      <h5>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.type.name %> pour le client :<%=@order.client %></h5>
+      <h5><strong>Reprendre ce véhicule au  client : <%=@order.client %></strong></h5>
       <%= simple_form_for [@order,@ordered_bus,@line,@bus] do |f| %>
-      <%= f.input :marque%>
+      <br>
+      <%= f.input :marque, label: 'Préciser la Marque si différent de Volvo'%>
   <div class="row">
     <div class="col-sm-6 col-xs-12">
       <%= f.input :immatriculation%>

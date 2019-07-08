@@ -39,7 +39,7 @@
       <tbody>
         <% @buses.each do |bus| %>
         <tr>
-          <td><%= bus.type.name  %></td>
+          <td><%= bus.type.name if bus.type.present?  %></td>
           <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
           <td><%= bus.lines.last[:mention_garantie] if bus.lines.present? %></td>

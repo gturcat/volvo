@@ -13,7 +13,8 @@ class DeliveriesController < ApplicationController
       @line = @delivery.line
       @bus = @line.bus
       @delivery.close
-      @bus.facture_livre
+      @bus.facture_livre!
+      @bus.couleur = @delivery.line.couleur_ext_vehicule
       @bus.statut2 = nil
       @bus.mention_garantie = @line.mention_garantie if !@bus.mention_garantie.present?
       @bus.save

@@ -1,0 +1,90 @@
+Searching 370 files for "type.name"
+
+/Users/guillaume/code/volvo/app/views/buses/_information_vehicule.html.erb:
+   22            <tr>
+   23               <td><%=@bus.marque %></td>
+   24:             <td><%= @bus.type.name if @bus.type.present? %></td>
+   25              <td><%= @bus.longueur %></td>
+   26              <td><%= @bus.nbr_places %></td>
+
+/Users/guillaume/code/volvo/app/views/buses/_list_buses.html.erb:
+   17            <% @buses.each  do | bus| %>
+   18            <tr>
+   19:             <td><%= bus.type.name %></td>
+   20              <td> <%= bus.numero_chassis %></td>
+   21              <td><%= bus.statut1 %></td>
+
+/Users/guillaume/code/volvo/app/views/buses/new.html.erb:
+  138  </div>
+  139      <div class="form-container">
+  140:       <h5><strong>Reprendre ce bus lié à la commande du bus <%=@ordered_bus.type.name %> pour le client : <%=@order.client %></strong></h5>
+  141        <%= simple_form_for [@order,@ordered_bus,@line,@bus] do |f| %>
+  142        <br>
+
+/Users/guillaume/code/volvo/app/views/ferries/_list_ferries.html.erb:
+   20          <tr>
+   21            <td><%= ferry.bus.numero_chassis %></td>
+   22:           <td><%= ferry.bus.type.name %></td>
+   23            <td><%= ferry.date_convoyage %></td>
+   24            <td><%= ferry.depart %></td>
+
+/Users/guillaume/code/volvo/app/views/orders/_busencommande.html.erb:
+   26          <tr>
+   27            <td><%= bus.marque  %></td>
+   28:           <td><%= bus.type.name  %></td>
+   29            <td><%= bus.longueur  %></td>
+   30            <td><%= bus.nbr_places %></td>
+
+/Users/guillaume/code/volvo/app/views/orders/_busenreprise.html.erb:
+   21                <td><%= trade.bus.statut2 %></td>
+   22                <td><%= trade.prix_achat %></td>
+   23:               <td><%= line.bus.type.name %></td>
+   24              <td>
+   25                <%= link_to bus_path(trade.bus), class: "btn btn-warning" do %>
+
+/Users/guillaume/code/volvo/app/views/orders/_formations_demandees.html.erb:
+   21            <td><%= line.training.lieu %></td>
+   22            <td><%= line.training.formateur %></td>
+   23:           <td><%= line.bus.type.name %></td>
+   24            <td>
+   25              <%= link_to training_path(line.training), method: :delete,  class: "btn btn-danger", data: {confirm: "Are you sure?"} do %>
+
+/Users/guillaume/code/volvo/app/views/orders/_list_buses.html.erb:
+   22                  <tr>
+   23                    <td><%= bus.marque  %></td>
+   24:                   <td><%= bus.type.name  %></td>
+   25                    <td><%= bus.longueur  %></td>
+   26                    <td><%= bus.nbr_places %></td>
+
+/Users/guillaume/code/volvo/app/views/orders/bulk_update.html.erb:
+   40          <% @buses.each do |bus| %>
+   41          <tr>
+   42:           <td><%= bus.type.name  %></td>
+   43            <td><%= bus.lines.last[:couleur_ext_vehicule] if bus.lines.present? %></td>
+   44            <td><%= bus.lines.last[:date_livraison_bdc] if bus.lines.present? %></td>
+
+/Users/guillaume/code/volvo/app/views/partner_mailer/confirm.html.erb:
+   12      <tr>
+   13        <td>Dénomination Commerciale: </td>
+   14:       <td><%= @factory_order.bus.type.name %></td>
+   15      </tr>
+   16       <td>Type: </td>
+   17:      <td><%=@factory_order.bus.type.name%></td>
+   18     </tr>
+   19     <tr>
+
+/Users/guillaume/code/volvo/app/views/trades/_busenreprise.html.erb:
+   18          <tr>
+   19              <td><%= @traded_bus.marque %></td>
+   20:             <td><%= @traded_bus.type.name  if @traded_bus.type.present?  %></td>
+   21               <td><%= @traded_bus.longueur %></td>
+   22              <td><%= @traded_bus.nbr_places %></td>
+
+/Users/guillaume/code/volvo/app/views/trades/_list_trades.html.erb:
+   18          <tr>
+   19            <td><%= trade.date_rentree_bdc %></td>
+   20:           <td><%= trade.bus.type.name if trade.bus.type.present? %></td>
+   21            <td><%= trade.bus.immatriculation %></td>
+   22            <td><%= trade.prix_achat%></td>
+
+13 matches across 12 files

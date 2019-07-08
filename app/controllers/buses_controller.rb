@@ -59,7 +59,7 @@ class BusesController < ApplicationController
 
   def create
     @bus = Bus.new(bus_params)
-    @bus.marque = "Volvo"
+    @bus.marque = "Volvo" if !bus_params[:marque].present?
     @order = Order.find(params[:order_id]) if params[:order_id].present?
     @ordered_bus = Bus.find(params[:bus_id]) if params[:bus_id].present?
     @line = Line.find(params[:line_id]) if params[:line_id].present?
@@ -145,6 +145,7 @@ class BusesController < ApplicationController
       :volo_coach_line,
       :note,
       :reference,
+      :marque,
       factory_orders_attributes: [
         :id,
         :envoiOF,

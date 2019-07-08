@@ -6,8 +6,14 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Type</th>
+            <th>Marque</th>
+            <th>type</th>
+            <th>Long. </th>
+            <th>Places</th>
+            <th>V.C.L</th>
+            <th>Couleur</th>
             <th>N° de Chassis</th>
+            <th>N° immat</th>
             <th>Statut 1</th>
             <th>Statut 2</th>
             <th>Action</th>
@@ -16,8 +22,14 @@
         <tbody>
           <% @buses.each  do | bus| %>
           <tr>
-            <td><%= bus.type.name %></td>
+            <td><%= bus.marque %></td>
+            <td><%= bus.type.name if bus.type.present?%></td>
+            <td><%= bus.longueur %></td>
+            <td><%= bus.nbr_places %></td>
+            <td><%= bus.volo_coach_line %></td>
+            <td><%= bus.couleur %></td>
             <td> <%= bus.numero_chassis %></td>
+            <td> <%= bus.immatriculation %></td>
             <td><%= bus.statut1 %></td>
             <td><%= bus.statut2 %></td>
             <td><%= link_to bus_path(bus[:id]), class: "btn btn-warning" do %>

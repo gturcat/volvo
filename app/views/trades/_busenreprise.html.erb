@@ -6,17 +6,21 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Type</th>
-          <th>CB / CH</th>
-          <th>7 / 9 </th>
-          <th>N° de Chassis</th>
+          <th>Marque</th>
+          <th>type</th>
+          <th>Long. </th>
+          <th>Places</th>
+          <th>V.C.L</th>
+          <th>N° Chassis</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-            <td><%= @traded_bus.type.name %></td>
-            <td><%= @traded_bus.ch_cb %></td>
-            <td> <%= @traded_bus.sept_neuf %></td>
+            <td><%= @traded_bus.marque %></td>
+            <td><%= @traded_bus.type.name  if @traded_bus.type.present?  %></td>
+             <td><%= @traded_bus.longueur %></td>
+            <td><%= @traded_bus.nbr_places %></td>
+            <td> <%= @traded_bus.volo_coach_line %></td>
             <td> <%= @traded_bus.numero_chassis %></td>
         </tr>
       </tbody>

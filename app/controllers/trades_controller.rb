@@ -44,10 +44,13 @@ class TradesController < ApplicationController
   end
 
   def show
+
     session[:bus_id] = nil
     session[:order_id] = nil
     session[:delivery_id] = nil
     @trade = Trade.find(params[:id])
+    @order = @trade.line.order
+    @line =  @trade.line
     @client_name = @trade.line.order.client
     session[:trade_id] = @trade.id
     @bus = @trade.bus
