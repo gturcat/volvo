@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     collection do
       get 'archive'
     end
-    resources :ferries, only: [:new, :create]
+    resources :ferries, only: [:create]
   end
   resources :orders do
     collection do

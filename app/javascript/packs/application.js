@@ -22,8 +22,8 @@ window.addEventListener("scroll", event => {
 
   mainNavLinks.forEach(link => {
     let section = document.querySelector(link.hash);
-
-    if (
+    if (section != null){
+       if (
       section.offsetTop <= fromTop &&
       section.offsetTop + section.offsetHeight > fromTop
     ) {
@@ -31,26 +31,12 @@ window.addEventListener("scroll", event => {
     } else {
       link.classList.remove("current");
     }
+    }
+
+
   });
 });
 
-
-
-const search = document.querySelector('#order_departement');
-search.addEventListener('keyup', (event) => {
-  const query = event.currentTarget.value;
-  console.log(query);
-  const nom = fetch(`https://geo.api.gouv.fr/departements?nom=${query}`)
-    .then(response => response.json())
-    .then((data) => {
-    console.log(data);
-    });
-  const code = fetch(`https://geo.api.gouv.fr/departements?code=${query}`)
-    .then(response => response.json())
-    .then((data) => {
-    console.log(data);
-    });
-});
 
 
 

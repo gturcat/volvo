@@ -6,20 +6,32 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Date de rentrée</th>
-          <th>Type</th>
-          <th>Immatriculation</th>
-          <th>Prix de rachat</th>
-          <th>action</th>
+          <th>Marque</th>
+            <th>type</th>
+            <th>Long. </th>
+            <th>Places</th>
+            <th>V.C.L</th>
+            <th>Couleur</th>
+            <th>N° de Chassis</th>
+            <th>N° immat</th>
+            <th>Statut 1</th>
+            <th>Statut 2</th>
+            <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <% @trades.each do |trade| %>
         <tr>
-          <td><%= trade.date_rentree_bdc %></td>
-          <td><%= trade.bus.type.name if trade.bus.type.present? %></td>
-          <td><%= trade.bus.immatriculation %></td>
-          <td><%= trade.prix_achat%></td>
+         <td><%= trade.bus.marque %></td>
+            <td><%= trade.bus.type.name if trade.bus.type.present?%></td>
+            <td><%= trade.bus.longueur %></td>
+            <td><%= trade.bus.nbr_places %></td>
+            <td><%= trade.bus.volo_coach_line %></td>
+            <td><%= trade.bus.couleur %></td>
+            <td> <%= trade.bus.numero_chassis %></td>
+            <td> <%= trade.bus.immatriculation %></td>
+            <td><%= trade.bus.statut1 %></td>
+            <td><%= trade.bus.statut2 %></td>
           <td>
             <%= link_to trade_path(trade[:id]), class: "btn btn-primary" do %>
           <i class="far fa-eye"></i><% end %>

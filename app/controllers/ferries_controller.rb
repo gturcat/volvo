@@ -3,22 +3,28 @@ class FerriesController < ApplicationController
     @ferries = Ferry.all
   end
 
-  def new
-  @ferry = Ferry.new
-  @bus = Bus.find(params[:bus_id])
-  end
+  # def new
+  #   @ferry = Ferry.new
+  #   @bus = Bus.find(params[:bus_id])
+  # end
 
   def create
     @ferry = Ferry.new(ferry_params)
     @bus = Bus.find(params[:bus_id])
     @order = @bus.orders.pending.take
     @line = @order.lines.where(bus_id: @bus.id).take if @order.present?
-    @delivery = Delivery.find(@line.delivery_id) if @order.present?
+    # @delivery = Delivery.find(@line.delivery_id) if @order.present?
     @ferry.bus = @bus
     if @ferry.save
-      redirect_to delivery_path(@delivery)
+      respond_to do |format|
+        format.html { redirect_to bus_path(@bus) }
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render 'buses/show' }
+        format.js
+      end
     end
   end
 
@@ -28,9 +34,10 @@ class FerriesController < ApplicationController
 
   def update
     @ferry = Ferry.find(params[:id])
+    @bus = Bus.find(params[:bus_id])
     @ferry.update(ferry_params)
-    @delivery = Delivery.find(session[:delivery_id])
-    redirect_to delivery_path(@delivery)
+    # @delivery = Delivery.find(session[:delivery_id])
+    redirect_to bus_path(@delivery)
   end
 
   def destroy
@@ -38,7 +45,6 @@ class FerriesController < ApplicationController
     @ferry.delete
     redirect_to ferries_path
   end
-
 
   def show
     @ferry = Ferry.find(params[:id])
@@ -55,7 +61,6 @@ class FerriesController < ApplicationController
       :note,
       :numero_bdc,
       :sens
-      )
+    )
   end
-
 end

@@ -9,7 +9,8 @@
       <li><a href="#section-4">Commande Usine</a></li>
       <li><a href="#section-5">Livraison Usine</a></li>
       <li><a href="#section-6">Relevé Kilometrage</a></li>
-      <li><a href="#section-13">Immatriculation</a></li>
+      <li><a href="#section-7">Immatriculation</a></li>
+      <li><a href="#section-13">Convoyage</a></li>
       <% if @delivery.present? %>
       <%= link_to "Informations Livraison", delivery_path(@delivery)%>
       <% end %>
@@ -18,14 +19,12 @@
       <% end %>
     </ul>
   </div>
-
   <div>
-      <div class="add-padding-left" id="section-1">
+    <div class="add-padding-left" id="section-1">
       <h5>Informations Véhicule</h5>
       <%= render "bus_resume" %>
       <%= render "./buses/information_vehicule" %>
     </div>
-
     <div class="add-padding-left" id="section-2">
       <h5>Commande Client</h5>
       <% if @order.present?  %>
@@ -47,16 +46,47 @@
       <h5>Livraison Usine Chez le Partenaire </h5>
       <%= render "livraison_usine" if @bus.factory_orders.last.id.present?%>
     </div>
-
     <div class="add-padding-left" id="section-6">
       <h5>Relevé Kilométrage </h5>
       <%= render "releve_kilometrage"%>
     </div>
-
-    <div class="add-padding-left" id="section-13">
+    <div class="add-padding-left" id="section-7">
       <h5>Immatriculation</h5>
       <%= render "immatriculation" %>
     </div>
+    <div class="add-padding-left" id="section-7">
+      <h5>Convoyage</h5>
+
+        <div class="tab">
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"></div>
+            <!-- Table -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Départ</th>
+                  <th>Arrivée</th>
+                  <th>Sites prevenus</th>
+                  <th>N°bdc pour le convoyage crée</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr id="ferries">
+                 <% @bus.ferries.each  do | ferry| %>
+                  <%= render 'ferries/show', ferry: ferry %>
+                  </tr>
+                <% end %>
+                </div>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+        <%= render 'ferries/new_ferry', bus: @bus, ferry: @ferry %>
+    </div>
   </div>
 </div>
-
