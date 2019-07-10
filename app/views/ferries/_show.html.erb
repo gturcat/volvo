@@ -1,0 +1,10 @@
+
+  <td><%= ferry.date_convoyage %></td>
+  <td><%= ferry.depart %></td>
+  <td><%= ferry.arrivee %></td>
+  <%= simple_form_for ferry do |f| %>
+  <td><%= f.input :site, label: false%></td>
+  <td><%= f.input :numero_bdc, label: false %></td>
+  <td><button type="submit" class="btn btn-primary">
+    <i class="far fa-save"></i>
+  </button><% end %></td>

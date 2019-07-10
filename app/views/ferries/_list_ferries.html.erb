@@ -6,26 +6,33 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Chassis</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Depart</th>
-          <th>Arrivée</th>
-          <th>n° BdC</th>
-          <th>Action</th>
+          <th>Marque</th>
+            <th>type</th>
+            <th>Long. </th>
+            <th>Places</th>
+            <th>V.C.L</th>
+            <th>Couleur</th>
+            <th>N° de Chassis</th>
+            <th>N° immat</th>
+            <th>Statut 1</th>
+            <th>Statut 2</th>
+            <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <% @ferries.each  do | ferry| %>
         <tr>
-          <td><%= ferry.bus.numero_chassis %></td>
-          <td><%= ferry.bus.type.name if ferry.bus.type.present?%></td>
-          <td><%= ferry.date_convoyage %></td>
-          <td><%= ferry.depart %></td>
-          <td><%= ferry.arrivee %></td>
-          <td><%= ferry.numero_bdc %></td>
+            <td><%= ferry.bus.marque %></td>
+            <td><%= ferry.bus.type.name if ferry.bus.type.present?%></td>
+            <td><%= ferry.bus.longueur %></td>
+            <td><%= ferry.bus.nbr_places %></td>
+            <td><%= ferry.bus.volo_coach_line %></td>
+            <td><%= ferry.bus.couleur %></td>
+            <td> <%= ferry.bus.numero_chassis %></td>
+            <td> <%= ferry.bus.immatriculation %></td>
+            <td><%= ferry.bus.statut1 %></td>
+            <td><%= ferry.bus.statut2 %></td>
           <td>
-            <%= link_to ferry_path(ferry[:id]), class: "btn btn-primary" do %><i class="far fa-eye"></i><% end %>
             <%= link_to edit_ferry_path(ferry[:id]), class: "btn btn-warning" do %><i class="far fa-edit"></i><% end %>
             <%= link_to ferry_path(ferry[:id]), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
           </td>

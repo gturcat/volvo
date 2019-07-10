@@ -1,0 +1,16 @@
+function refreshForm(innerHTML) {
+  const newReviewForm = document.getElementById('new_ferry');
+  newReviewForm.innerHTML = innerHTML;
+}
+
+function addReview(reviewHTML) {
+  const ferries = document.getElementById('ferries');
+  ferries.insertAdjacentHTML('beforebegin', reviewHTML);
+}
+
+<% if @ferry.errors.any? %>
+  refreshForm('<%= j render "ferries/new_ferry", bus: @bus, ferry: @ferry %>');
+<% else %>
+  addReview('<%= j render "ferries/show", ferry: @ferry %>');
+  refreshForm('<%= j render "ferries/new_ferry", bus: @bus, ferry: Ferry.new %>');
+<% end %>

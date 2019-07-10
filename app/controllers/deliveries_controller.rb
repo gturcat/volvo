@@ -39,6 +39,7 @@ class DeliveriesController < ApplicationController
     @trade = @order.trades.last
     @traded_bus = @trade.bus if @trade.present?
     @training = @line.training
+    @ferry = Ferry.new
   end
 
   def edit

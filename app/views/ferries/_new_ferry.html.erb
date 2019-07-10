@@ -1,0 +1,16 @@
+
+<%= simple_form_for([ bus, ferry ], remote: true) do |f| %>
+  <%= f.input :date_convoyage, as: :date, html5: true %>
+ <div class="row">
+      <div class="col-sm-6 col-xs-12">
+  <%= f.input :depart, label: "Lieu de départ" %>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+  <%= f.input :arrivee, label: "lieu d'arrivée" %>
+      </div>
+  </div>
+  <%= f.input :note, as: :text, label: "Note (nom du convoyeur)" %>
+  <%= f.submit "Convoyer", class: "btn btn-primary" %>
+<% end %>
+
+

@@ -8,7 +8,14 @@
           <tr>
             <th>Mois de livraison</th>
             <th>Client</th>
-            <th>Chassis</th>
+            <th>Marque</th>
+            <th>type</th>
+            <th>Long. </th>
+            <th>Places</th>
+            <th>V.C.L</th>
+            <th>Couleur</th>
+            <th>N° de Chassis</th>
+            <th>N° immat</th>
             <th>RCR</th>
             <th>Action</th>
           </tr>
@@ -18,7 +25,14 @@
           <tr>
             <td><%= delivery.line.date_livraison_bdc.present? ? delivery.line.date_livraison_bdc.strftime('%B-%y') : (delivery.date_livraison.strftime('%B-%y') if delivery.date_livraison.present?) %></td>
             <td><%= delivery.line.order.client %></td>
-            <td><%= delivery.line.bus.numero_chassis%></td>
+            <td><%= delivery.line.bus.marque %></td>
+            <td><%= delivery.line.bus.type.name if delivery.line.bus.type.present?%></td>
+            <td><%= delivery.line.bus.longueur %></td>
+            <td><%= delivery.line.bus.nbr_places %></td>
+            <td><%= delivery.line.bus.volo_coach_line %></td>
+            <td><%= delivery.line.bus.couleur %></td>
+            <td> <%= delivery.line.bus.numero_chassis %></td>
+            <td> <%= delivery.line.bus.immatriculation %></td>
             <td><%= delivery.line.order.sales_advisor.name %></td>
             <td><%= link_to delivery_path(delivery[:id]), class: "btn btn-warning" do %>
               <i class="far fa-edit"></i>
