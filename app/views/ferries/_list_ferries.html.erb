@@ -14,8 +14,8 @@
             <th>Couleur</th>
             <th>N° de Chassis</th>
             <th>N° immat</th>
-            <th>Statut 1</th>
-            <th>Statut 2</th>
+            <th>Départ</th>
+            <th>Arrivée</th>
             <th>Action</th>
         </tr>
       </thead>
@@ -30,8 +30,8 @@
             <td><%= ferry.bus.couleur %></td>
             <td> <%= ferry.bus.numero_chassis %></td>
             <td> <%= ferry.bus.immatriculation %></td>
-            <td><%= ferry.bus.statut1 %></td>
-            <td><%= ferry.bus.statut2 %></td>
+            <td><%= ferry.depart %></td>
+            <td><%= ferry.arrivee %></td>
           <td>
             <%= link_to edit_ferry_path(ferry[:id]), class: "btn btn-warning" do %><i class="far fa-edit"></i><% end %>
             <%= link_to ferry_path(ferry[:id]), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do %><i class="fas fa-minus-circle"></i><% end %>
