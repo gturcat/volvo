@@ -8,7 +8,7 @@
       <li><a href="#section-2">Commande client</a></li>
       <li><a href="#section-3">Livraison au client</a></li>
       <li><a href="#section-4">Documents envoyés</a></li>
-      <li><a href="#section-5">Convoyage</a></li>
+      <li><a href="#section-5">Emplacement</a></li>
       <li><a href="#section-6">Financement</a></li>
       <li><a href="#section-7">Travaux</a></li>
       <li><a href="#section-8">Divers</a></li>
@@ -49,7 +49,7 @@
     </div>
     <div class="add-padding-left" id="section-5">
       <h5>Convoyage</h5>
-      <%= render "emplacement" %>
+      <%= render "buses/emplacement", bus: @bus, ferry: @ferry %>
     </div>
     <div class="add-padding-left" id="section-6">
       <h5>Financement</h5>
